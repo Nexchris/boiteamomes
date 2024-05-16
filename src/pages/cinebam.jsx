@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Header from '../asset/header'
 
 const Maintext = styled.div`
   font-size: 2.5vh;
@@ -83,6 +84,7 @@ background-color: aquamarine;
 function Cinebam() {
   return (
     <Container>
+<Header/>
 <Mainscreen>
 <Link to="/">
         <Back>Retour</Back>

@@ -1,29 +1,21 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import Imagetemplate from '../images/image.png';
 import Imagetemplate2 from '../images/image2.png';
 import { Link } from 'react-router-dom';
+import Header from '../asset/header'
+import Footer from '../asset/footer'
 
 const Container = styled.div`
-  background-color: royalblue;
+  background-color: #F36C97;
   width: 100vw;
   height: 100vh;
 `;
 
-const Back = styled.div`
-margin-left:5vh;
-width:10vh;
-font-size:5vh;
-font-weight:600;
-
-&:hover{
-color:white;
-cursor: pointer;
-}
-`
 
 const Mainscreen = styled.div`
-background-color: royalblue;
+background-color: #F36C97;
   width: 100vw;
   height: 100vh;
 `;
@@ -153,10 +145,8 @@ font-size: 2.5vh;
 function Boiteamomes() {
   return (
     <Container>
+    <Header />
       <Mainscreen>
-      <Link to="/">
-        <Back>Retour</Back>
-        </Link>
         <Maintitle>Boite à <br />momes</Maintitle>
         <Maintext>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quae esse facere architecto quaerat odio molestiae quidem.</Maintext>
       </Mainscreen>
@@ -226,7 +216,7 @@ function Boiteamomes() {
     </Thirdscreen>
 
 
-
+<Footer/>
 
 
     </Container>
