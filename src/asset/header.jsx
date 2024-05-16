@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import BAM from '../images/logo.png';
@@ -10,10 +10,16 @@ const StyledHeader = styled.div`
   display: flex;
   align-items: center;
   padding: 0 20px;
+
 `;
 
 const Logo = styled.img`
   height: 100%;
+  width: fit-content;
+  @media (max-width: 500px) {
+    margin-right: 1vh;
+  }
+
 `;
 
 const HeaderList = styled.ul`
@@ -21,30 +27,50 @@ const HeaderList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+
+  @media (max-width: 500px) {
+    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+    flex-direction: column;
+    position: absolute;
+    top: 7vh; /* Adjust top based on header height */
+    right: 0;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const HeaderItem = styled.li`
-  position: relative; /* Ensure the submenu is positioned relative to its parent */
+  position: relative;
   margin-left: 20px;
   font-size: 1.5rem;
+  
   &:hover {
     cursor: pointer;
     color: gray;
+  }
+
+  @media (max-width: 500px) {
+    margin: 10px 0;
+    font-size: 1.2rem;
   }
 `;
 
 const Headertitle = styled.h1`
   margin: 0;
-  margin-left: 0.5vw;
-  margin-right: 45vw;
   font-size: 1.5rem;
+  margin-right:45vw;
+
+  @media (max-width: 500px) {
+    font-size: 3.5vh;
+    margin-right:0vw;
+  }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: inherit; /* Inherits the color of the parent element */
+  color: inherit;
 `;
-
 
 const HeaderContact = styled.li`
   margin-left: 20px;
@@ -55,18 +81,24 @@ const HeaderContact = styled.li`
   border-radius: 1vw;
   color: white;
   font-size: 1.2rem;
-  transition: background-color 0.3s ease; /* Ajout de la transition */
+  transition: background-color 0.3s ease;
+
   &:hover {
     cursor: pointer;
     background-color: #F9004F;
-    font-weight:bold;
+    font-weight: bold;
+  }
+
+  @media (max-width: 500px) {
+    margin: 10px 0;
+    width: 100%;
   }
 `;
 
 const SubMenu = styled.ul`
   display: none;
-  position: absolute; /* Position the submenu absolutely relative to the parent */
-  top: 100%; /* Position it directly below the parent */
+  position: absolute;
+  top: 100%;
   left: 0;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -78,27 +110,58 @@ const SubMenu = styled.ul`
 
   ${HeaderItem}:hover & {
     display: block;
-    color:black;
+    color: black;
   }
 `;
 
 const SubMenuItem = styled.li`
   padding: 10px 20px;
   font-size: 1rem;
+
   &:hover {
     background-color: #f0f0f0;
     cursor: pointer;
   }
 `;
 
+const Hamburger = styled.div`
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+
+  @media (max-width: 500px) {
+    display: flex;
+    margin-right: 3vh;
+  }
+
+  div {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 4px 0;
+    transition: 0.4s;
+  }
+`;
+
 function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <StyledHeader>
+      <Hamburger onClick={toggleMenu}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </Hamburger>
       <Logo src={BAM} alt="Logo" />
-      <HeaderList>
-        <Headertitle>Boite à momes</Headertitle>
+      <Headertitle>Boite à momes</Headertitle>
+      <HeaderList isOpen={isOpen}>
         <StyledLink to="/">
-        <HeaderItem>Accueil</HeaderItem>
+          <HeaderItem>Accueil</HeaderItem>
         </StyledLink>
         <HeaderItem>
           Atélier
@@ -108,21 +171,19 @@ function Header() {
           </SubMenu>
         </HeaderItem>
         <HeaderItem>
-            Créations
-            <SubMenu>
+          Créations
+          <SubMenu>
             <SubMenuItem>Atelier Enfants</SubMenuItem>
             <SubMenuItem>Atelier Adultes</SubMenuItem>
             <SubMenuItem>Atelier CinéBAM</SubMenuItem>
           </SubMenu>
-
         </HeaderItem>
-        <HeaderItem>Productions
-        <SubMenu>
+        <HeaderItem>
+          Productions
+          <SubMenu>
             <SubMenuItem>Pièces de théâtres</SubMenuItem>
             <SubMenuItem>Production Cinéma</SubMenuItem>
           </SubMenu>
-
-
         </HeaderItem>
         <HeaderContact>Nous Contacter</HeaderContact>
       </HeaderList>
