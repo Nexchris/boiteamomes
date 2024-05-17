@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/HomeScreen';
+import Login from './backend/LoginScreen';
 import Cinebam from './pages/cinebam';
 import Boiteamomes from './pages/boiteamomes';
 import Offer from './pages/offer'
 import { createGlobalStyle } from 'styled-components';
+
 
 // Crée un style global pour appliquer la police à toute l'application
 const GlobalStyle = createGlobalStyle`
@@ -25,6 +27,7 @@ function App() {
           <Route path="/cinebam" element={<Cinebam />} /> {/* Route vers Cinebam */}
           <Route path="/boiteamomes" element={<Boiteamomes />} /> {/* Route vers Cinebam */}
           <Route path="/offer" element={<Offer />} /> {/* Route vers Cinebam */}
+          <Route exact path="/login" element={<Login />} /> {/* Route par défaut vers Home */}
         </Routes>
       </Router>
     </>

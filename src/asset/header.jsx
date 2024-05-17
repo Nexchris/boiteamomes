@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import 'animate.css';
 import BAM from '../images/logo.png';
 
 const StyledHeader = styled.div`
   width: 100vw;
-  height: 7vh;
+  height: 10vh;
   background-color: white;
   display: flex;
   align-items: center;
   padding: 0 20px;
-  @media (min-width: 600px)
+  @media (min-width: 600px) and (max-width: 1600px)
  {
     height: 20vh;
   }
@@ -44,7 +45,7 @@ const HeaderList = styled.ul`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (max-width: 1600px) {
     display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
     flex-direction: column;
     position: absolute;
@@ -79,7 +80,7 @@ const HeaderItem = styled.li`
 const Headertitle = styled.h1`
   margin: 0;
   font-size: 1.5rem;
-  margin-right:45vw;
+  margin-right:40vw;
 
   @media (max-width: 500px) {
     font-size: 3.5vh;
@@ -104,7 +105,7 @@ const HeaderContact = styled.li`
   margin-left: 20px;
   padding-top: 0.3vw;
   background-color: #F36C97;
-  width: 40vw;
+  width: 10vw;
   text-align: center;
   border-radius: 1vw;
   color: white;
@@ -117,7 +118,7 @@ const HeaderContact = styled.li`
     font-weight: bold;
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (max-width: 1600px) {
     width: 25vw;
   }
 
@@ -139,6 +140,7 @@ const SubMenu = styled.ul`
 
   ${HeaderItem}:hover & {
     display: block;
+    animation: fadeInDown 0.5s;
     color: black;
   }
 
