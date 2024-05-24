@@ -19,6 +19,9 @@ const Mainscreen = styled.div`
   background-color: #F36C97;
   width: 100vw;
   height: 100vh;
+  @media (max-width: 768px) {
+    height: 50vh;
+  }
 `;
 
 const Secondscreen = styled.div`
@@ -31,6 +34,10 @@ const Maintitle = styled.h1`
   padding-top: 25vh;
   text-align: center;
   margin: 0;
+  @media (max-width: 768px) {
+    font-size: 7vh;
+    padding-top: 20vh;
+  }
 `;
 
 const Secondtitle = styled.h2`
@@ -39,6 +46,11 @@ const Secondtitle = styled.h2`
   font-weight: 500;
   text-align: center;
   margin: 0;
+  @media (max-width: 768px) {
+    margin: 0;
+    font-size: 6vh;
+    font-weight:700;
+  }
 `;
 
 const Maintext = styled.div`
@@ -53,6 +65,9 @@ const Secondtext = styled.div`
   font-size: 3vh;
   width: 70%;
   text-align: center;
+  @media (max-width: 768px) {
+    margin-left:15%;
+  }
 `;
 
 const Secondcontent = styled.div`
@@ -75,44 +90,113 @@ const Prodcontainer = styled.div`
   display: flex;
   margin-top: 5vh;
   margin-left: 10vh;
+  @media (max-width: 768px) {
+   margin:0;
+   margin-bottom: 10vh;
+  }
+  
 `;
+
+
+
 
 const Prodimage = styled.img`
   border-radius: 15%;
   width:40vw;
   height:60vh;
+  @media (max-width: 768px) {
+    border-radius: 15%; 
+    width: 90vw;
+    margin-left: 3vh;
+    height: 35vh;
+   }
+  
 `;
 
 const ReverseProdimage = styled(Prodimage)`
 width:40vw;
-  margin-left: 60vw;
+  margin-left: 50vw;
+  @media (max-width: 768px) {
+    border-radius: 15%; 
+    width: 90vw;
+    margin-left: 3vh;
+    height: 35vh;
+   }
+  
 `;
 
 const Prodcontainer1 = styled(Prodcontainer)``;
 
 const Offerdiv = styled.div`
   text-align: center;
-  background-color: gray;
+  background-color: #0b0b0b;
+  color:white;
   width: 40%;
   font-size: 2vh;
   height: 25vh;
   margin-left: -20vh;
   margin-top: 35vh;
   border-radius: 5vh;
+
+  @media (max-width: 768px) {
+    width: 85vw;
+    margin-left: -40vh;
+
+   }
+  
 `;
 
 const Reverseofferdiv = styled(Offerdiv)`
-  margin-left: -135vh;
+@media (max-width: 768px) {
+  margin-left: -40vh;
+
+
+ }
+
 `;
 
 const Offerboldtext = styled.div`
-  font-weight: bold;
-  font-size: 2.5vh;
+font-size: 3.5vh;
+padding-bottom:1vh;
+font-weight: 600;
+`;
+
+const Offertext = styled.div`
+font-size: 2.5vh;
+width: 30vw;
+text-align:start;
+margin-left:3vh;
+@media (max-width: 768px) {
+  width: 62vw;
+  font-size: 1.8vh;
+
+
+ }
 `;
 
 const Offerbutton = styled.button`
   font-size: 2.5vh;
+  padding: 10px 3vw;
+  font-weight:bold;
+  margin-left:24vw;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  @media (max-width: 768px) {
+    margin-top: -1vh;
+  
+   }
+
+  
+  &:hover {
+    background-color: #45a049;
+  }
 `;
+
 
 function Cinebam() {
   const [firstProd, setFirstProd] = useState('');
@@ -168,10 +252,12 @@ function Cinebam() {
             <Prodimage src={firstProd} alt="" />
           )}
           <Offerdiv>
-            <Offerboldtext>1. Offre numéro 1</Offerboldtext>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam distinctio ex repellendus, dicta eveniet suscipit iure voluptas placeat aspernatur architecto sapiente <br />
+            <Offerboldtext>La Rixe</Offerboldtext>
+            <Offertext>
+           Septembre. Aprrès un bel été, Jimmy, 16 ans, nouveau dans la ville fait sa rentrée scolaire en compagnie de sa petite copine Leila... 
+           </Offertext>
             <Link to="/offer">
-              <Offerbutton>Cliquer</Offerbutton>
+              <Offerbutton>Voir plus</Offerbutton>
             </Link>
           </Offerdiv>
         </Prodcontainer1>
@@ -183,10 +269,12 @@ function Cinebam() {
             <ReverseProdimage src={secondProd} alt="" />
           )}
           <Reverseofferdiv>
-            <Offerboldtext>1. Offre numéro 2</Offerboldtext>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam distinctio ex repellendus, dicta eveniet suscipit iure voluptas placeat aspernatur architecto sapiente <br />
+            <Offerboldtext>Fausse Rumeurs</Offerboldtext>
+            <Offertext>
+           Issam, 16 ans, reve de devenir un grand danseur. Entouré de son coach et de ses amies, il prépare une audition pour...
+           </Offertext>
             <Link to="/offer">
-              <Offerbutton>Cliquer</Offerbutton>
+              <Offerbutton>Voir Plus</Offerbutton>
             </Link>
           </Reverseofferdiv>
         </Prodcontainer>
