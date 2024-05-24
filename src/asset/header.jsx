@@ -33,12 +33,14 @@ const HeaderList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+  
 
   @media (max-width: 500px) {
     display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+    animation: fadeInDown 0.5s;
     flex-direction: column;
     position: absolute;
-    top: 7vh; /* Adjust top based on header height */
+    top: 9vh; /* Adjust top based on header height */
     right: 0;
     background-color: white;
     width: 100%;
@@ -198,7 +200,7 @@ function Header() {
         <div></div>
       </Hamburger>
       <Logo src={BAM} alt="Logo" />
-      <Headertitle>Boite à momes</Headertitle>
+      <Headertitle>Boite à mômes</Headertitle>
       <HeaderList isOpen={isOpen}>
         <StyledLink to="/">
           <HeaderItem>Accueil</HeaderItem>
@@ -211,7 +213,7 @@ function Header() {
           </SubMenu>
         </HeaderItem>
         <HeaderItem>
-          Créations
+          Boite à momes
           <SubMenu>
             <SubMenuItem>Atelier Enfants</SubMenuItem>
             <SubMenuItem>Atelier Adultes</SubMenuItem>

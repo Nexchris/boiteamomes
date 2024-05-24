@@ -4,6 +4,7 @@ import Home from './pages/HomeScreen';
 import Login from './backend/LoginScreen';
 import Cinebam from './pages/cinebam';
 import Boiteamomes from './pages/boiteamomes';
+import Quisommesnous from './pages/quisommesnous'
 import Offer from './pages/offer'
 import { createGlobalStyle } from 'styled-components';
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/boiteamomes" element={<Boiteamomes />} /> {/* Route vers Cinebam */}
           <Route path="/offer" element={<Offer />} /> {/* Route vers Cinebam */}
           <Route exact path="/login" element={<Login />} /> {/* Route par défaut vers Home */}
+          <Route exact path="/quisommesnous" element={<Quisommesnous />} /> {/* Route par défaut vers Home */}
         </Routes>
       </Router>
     </>

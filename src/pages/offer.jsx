@@ -43,12 +43,6 @@ const Maintitle = styled.h1`
   padding-top: 25vh;
 `;
 
-const Secondtitle = styled.h2`
-  font-size: 10vh;
-  margin:0;
-  margin-left: 70vh;
-
-`;
 
 
 const Thirdtitle = styled.h2`

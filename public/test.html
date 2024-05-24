@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game</title>
+<style>
+  .square {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    display: inline-block;
+    cursor: pointer;
+  }
+  #blueSquare {
+    background-color: blue;
+  }
+  #redSquare {
+    background-color: red;
+  }
+</style>
+</head>
+<body>
+
+<div class="square" id="blueSquare">100</div>
+<div class="square" id="redSquare">100</div>
+<div id="timer">10</div>
+
+<script>
+let blueValue = 100;
+let redValue = 100;
+let timerValue = 10;
+
+const blueSquare = document.getElementById('blueSquare');
+const redSquare = document.getElementById('redSquare');
+const timerDisplay = document.getElementById('timer');
+
+blueSquare.addEventListener('click', () => {
+  blueValue -= 5;
+  if (blueValue < 0) blueValue = 0;
+  updateSquare(blueSquare, blueValue);
+});
+
+redSquare.addEventListener('click', () => {
+  redValue -= 5;
+  if (redValue < 0) redValue = 0;
+  updateSquare(redSquare, redValue);
+});
+
+function updateSquare(square, value) {
+  square.textContent = value;
+}
+
+const timerInterval = setInterval(() => {
+  timerValue--;
+  timerDisplay.textContent = timerValue;
+  if (timerValue === 0) {
+    clearInterval(timerInterval);
+    if (blueValue > redValue) {
+      alert('Blue square wins!');
+    } else if (redValue > blueValue) {
+      alert('Red square wins!');
+    } else {
+      alert('It\'s a tie!');
+    }
+  }
+}, 1000);
+</script>
+
+</body>
+</html>

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import FirebaseConfig from "../firebaseConfig";
-import { Link, useNavigate } from 'react-router-dom'; // Import de useNavigate
+import { useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -32,12 +33,25 @@ const Label = styled.label`
   font-weight: bold;
 `;
 
-const Input = styled.input`
+const InputContainer = styled.div`
+  position: relative;
   margin-bottom: 1rem;
+`;
+
+const Input = styled.input`
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
+  width: 100%;
+`;
+
+const TogglePasswordVisibility = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  cursor: pointer;
 `;
 
 const Button = styled.button`
@@ -47,11 +61,11 @@ const Button = styled.button`
   background-color: #007bff;
   color: white;
   font-size: 1rem;
-  cursor: ${({ isLoading }) => (isLoading ? 'not-allowed' : 'pointer')}; // Désactive le curseur lorsque isLoading est true
+  cursor: ${({ isLoading }) => (isLoading ? 'not-allowed' : 'pointer')};
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${({ isLoading }) => (isLoading ? '#007bff' : '#0056b3')}; // Change la couleur du bouton au survol uniquement si isLoading est false
+    background-color: ${({ isLoading }) => (isLoading ? '#007bff' : '#0056b3')};
   }
 `;
 
@@ -65,32 +79,36 @@ const Spinner = styled.div`
   margin: auto;
 `;
 
-const Login = ({ history }) => { // Passer l'objet history comme prop
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Ajout de l'état isLoading
-  const navigate = useNavigate(); // Utilisation de useNavigate
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true); // Démarre le chargement
+    setIsLoading(true);
 
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
         console.log('Signed in as:', user.email);
-        navigate('/'); // Navigation vers "/"
+        navigate('/');
       })
       .catch((error) => {
         console.error('Erreur:', error.message);
         setError('Erreur');
       })
       .finally(() => {
-        setIsLoading(false); // Arrête le chargement
+        setIsLoading(false);
       });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -99,27 +117,32 @@ const Login = ({ history }) => { // Passer l'objet history comme prop
         <Title>Login</Title>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <Label htmlFor="email">Email</Label>
-        <Input 
-          type="email" 
-          id="email" 
-          name="email" 
+        <Input
+          type="email"
+          id="email"
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required 
+          required
         />
 
         <Label htmlFor="password">Password</Label>
-        <Input 
-          type="password" 
-          id="password" 
-          name="password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required 
-        />
+        <InputContainer>
+          <Input
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <TogglePasswordVisibility onClick={togglePasswordVisibility}>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </TogglePasswordVisibility>
+        </InputContainer>
 
         <Button type="submit" isLoading={isLoading}>
-          {isLoading ? <Spinner /> : 'Login'} {/* Affiche le spinner si isLoading est true, sinon affiche 'Login' */}
+          {isLoading ? <Spinner /> : 'Login'}
         </Button>
       </LoginForm>
     </LoginContainer>
