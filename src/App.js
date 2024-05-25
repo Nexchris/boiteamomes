@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/HomeScreen';
 import Login from './backend/LoginScreen';
+import Back from './backend/Backoffice';
 import Cinebam from './pages/cinebam';
 import Boiteamomes from './pages/boiteamomes';
 import Quisommesnous from './pages/quisommesnous'
@@ -29,6 +30,7 @@ function App() {
           <Route path="/boiteamomes" element={<Boiteamomes />} /> {/* Route vers Cinebam */}
           <Route path="/offer" element={<Offer />} /> {/* Route vers Cinebam */}
           <Route exact path="/login" element={<Login />} /> {/* Route par défaut vers Home */}
+          <Route exact path="/backoffice" element={<Back />} /> {/* Route par défaut vers Home */}
           <Route exact path="/quisommesnous" element={<Quisommesnous />} /> {/* Route par défaut vers Home */}
         </Routes>
       </Router>

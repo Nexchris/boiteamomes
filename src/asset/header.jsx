@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
+import { firestore } from '../firebaseConfig'; // Assurez-vous que le chemin est correct
 import { Link } from 'react-router-dom';
 import 'animate.css';
 import BAM from '../images/logo.png';
@@ -85,7 +86,7 @@ const Headertitle = styled.h1`
   margin-right:40vw;
 
   @media (max-width: 500px) {
-    font-size: 3.5vh;
+    font-size: 3vh;
     margin-right:0vw;
   }
 
@@ -122,6 +123,12 @@ const HeaderContact = styled.li`
 
   @media (min-width: 600px) and (max-width: 1600px) {
     width: 25vw;
+    
+  }
+
+  @media (max-width: 768px) {
+    margin: 0;
+    width: 45vw; 
   }
 
   
@@ -142,7 +149,7 @@ const SubMenu = styled.ul`
 
   ${HeaderItem}:hover & {
     display: block;
-    animation: fadeInDown 0.5s;
+    animation: slideInDown 0.2s;
     color: black;
   }
 
@@ -150,6 +157,7 @@ const SubMenu = styled.ul`
     ${HeaderItem}:hover & {
       display: contents;
       color: black;
+      
     }
   }
 
@@ -188,9 +196,15 @@ const Hamburger = styled.div`
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
+
+  const [headerTitle, setHeaderTitle] = useState(''); // Titre par défaut
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+
+
 
   return (
     <StyledHeader>

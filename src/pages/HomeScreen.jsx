@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import BAMBG from '../images/bambg.jpg';
-import Cinebam from '../images/cinebambackground2.jpg';
+import Leftvideo from "../video/soustension.mp4";
+import RightVideo from "../video/boiteamomes.mp4";
 
 const Container = styled.div`
   display: flex;
   font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
 
   @media (max-width: 768px) {
     display: block;
@@ -14,119 +17,170 @@ const Container = styled.div`
 `;
 
 const Rightscreen = styled.div`
-  width: 50vw;
+  width: ${(props) => props.expanded ? '85vw' : '50vw'};
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${BAMBG});
-  background-size: cover;
-  /* Autres styles */
+  position: relative;
+  overflow: hidden;
+  transition: width 0.5s ease;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, ${(props) => props.isHovered ? '0' : '0.5'});
+    z-index: 1;
+    transition: background-color 0.5s ease;
+    pointer-events: none; /* Désactiver la réception des événements de pointer */
+  }
 
   @media (max-width: 768px) {
     height: 50vh;
-    width: 100vw;
+    width: ${(props) => props.expanded ? '100vw' : '100vw'};
   }
 `;
 
-
 const Leftscreen = styled.div`
-  width: 50vw;
+  width: ${(props) => props.expanded ? '85vw' : '50vw'};
   height: 100vh;
-  background-image: url(${Cinebam});
-  background-size: cover;
- 
-  
+  position: relative;
+  overflow: hidden;
+  transition: width 0.5s ease;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, ${(props) => props.isHovered ? '0' : '0.5'});
+    z-index: 1;
+    transition: background-color 0.5s ease;
+    pointer-events: none; /* Désactiver la réception des événements de pointer */
+  }
 
   @media (max-width: 768px) {
     height: 50vh;
-    width: 100vw;
+    width: ${(props) => props.expanded ? '100vw' : '100vw'};
   }
+`;
+
+const Video = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const TextContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 `;
 
 const Title = styled.h1`
   font-size: 12vh;
-  margin-top: 35%;
-
-  
-`;
-
-const LeftTitle = styled(Title)`
-  margin-left: 25vh;
-  margin-bottom: 1vh;
-
-  @media (max-width: 768px) {
-    margin: 0;
-    font-size: 8vh;
-    text-align: center;
-    padding-top: 10vh;
-    padding-bottom: 15vh;
-  }
+  color: white;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold; /* Ajout de la propriété font-weight */
 `;
 
 
-
-const RightTitle = styled(Title)`
-  margin-left: 12vh;
-  font-size: 11vh;
-  margin-bottom: 1vh;
-
-  @media (max-width: 768px) {
-    margin: 0;
-    font-size: 5vh;
-    text-align: center;
-    padding-top: 10vh;
-    padding-bottom: 20vh;
-  }
+const Title2 = styled.h1`
+  font-size: 8vh;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
 const Text = styled.p`
-  font-size: 2vh;
-  margin-left: 10%;
-  text-align: center;
+  font-size: 3vh;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 
   @media (max-width: 768px) {
-    margin: 0;
-    padding-bottom: 3vh;
-    display:none;
+    font-size: 2.5vh;
   }
 `;
 
 const Button = styled.button`
-  font-size: 5vh;
-  color: black;
-  background-color: white;
-  margin-left: 40vh;
+  background-color: #333;
+  color: white;
   border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
 
-  @media (max-width: 768px) {
-    margin-left: 14vh;
-  
+  &:hover {
+    background-color: #111;
   }
 `;
 
 function HomeScreen() {
+  const videoRef = useRef(null);
+  const rightVideoRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [isRightHovered, setIsRightHovered] = useState(false);
+  const [isRightExpanded, setIsRightExpanded] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovered(true);
+    setExpanded(true);
+    const video = videoRef.current;
+    video.play();
+  };
+
+  const handleMouseOut = () => {
+    setIsHovered(false);
+    setExpanded(false);
+    const video = videoRef.current;
+    video.pause();
+  };
+
+  const handleRightMouseOver = () => {
+    setIsRightHovered(true);
+    setIsRightExpanded(true);
+    const video = rightVideoRef.current;
+    video.play();
+  };
+
+  const handleRightMouseOut = () => {
+    setIsRightHovered(false);
+    setIsRightExpanded(false);
+    const video = rightVideoRef.current;
+    video.pause();
+  };
+
   return (
     <Container>
-      <Leftscreen>
-        <LeftTitle>CINEBAM</LeftTitle>
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, aperiam nesciunt sequi
-          harum error assumenda hic nihil at,{' '}
-        </Text>
-        <Link to="/cinebam">
-          <Button>Voir Plus</Button>
-        </Link>
+      <Leftscreen expanded={expanded} isHovered={isHovered} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        <Video ref={videoRef} src={Leftvideo} autoPlay={false} muted loop />
+        <TextContainer>
+            <Title>Cinebam</Title>
+          <Text>Suivez vos cours en ligne sur la plateforme Cinebam, vous pourrez apprendre à la manière des pros tout en travaillant sur vos projets. Nos formations sont accessibles et adaptées à tous les niveaux de compétences.</Text>
+          <Link to="/cinebam" onClick={(e) => e.stopPropagation()}>
+            <Button>Voir Plus</Button>
+          </Link>
+        </TextContainer>
       </Leftscreen>
-
-      <Rightscreen>
-        <RightTitle>Boite à momes</RightTitle>
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, aperiam nesciunt sequi
-          harum error assumenda hic nihil at,{' '}
-        </Text>
-        <Link to="/boiteamomes">
-          <Button>Voir Plus</Button>
-        </Link>
+      <Rightscreen expanded={isRightExpanded} isHovered={isRightHovered} onMouseOver={handleRightMouseOver} onMouseOut={handleRightMouseOut}>
+        <Video ref={rightVideoRef} src={RightVideo} autoPlay={false} muted loop />
+        <TextContainer>
+          <Title2>Boite à momes</Title2>
+          <Text>Entrez dans le monde magique du théâtre avec La Boîte à Mômes ! Que vous soyez débutant, amateur ou professionnel, nos ateliers de théâtre vous offrent l'opportunité unique de développer vos talents d'acteurs.</Text>
+          <Link to="/boiteamomes">
+            <Button>Voir Plus</Button>
+          </Link>
+        </TextContainer>
       </Rightscreen>
     </Container>
   );
