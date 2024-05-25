@@ -110,8 +110,8 @@ const Text = styled.p`
   margin:0;
   margin-bottom:2vh;
   font-size: 2.5vh;
-  color: #333; /* Dark text color */
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Lighter text shadow */
+  color: white; /* Dark text color */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Lighter text shadow */
   cursor: pointer;
 
   @media (max-width: 768px) {
@@ -188,7 +188,7 @@ function HomeScreen() {
         <Rightscreen expanded={isRightExpanded} isHovered={isRightHovered} onMouseOver={handleRightMouseOver} onMouseOut={handleRightMouseOut}>
           <Video ref={rightVideoRef} src={RightVideo} autoPlay={false} muted loop />
           <TextContainer>
-            <Title2>Boite à momes</Title2>
+            <Title2>Bôite à momes</Title2>
             <Text>Entrez dans le monde magique du théâtre avec La Boîte à Mômes ! Que vous soyez débutant, amateur ou professionnel, nos ateliers de théâtre vous offrent l'opportunité unique de développer vos talents d'acteurs.</Text>
             <Link to="/boiteamomes">
               <Button>Voir Plus</Button>

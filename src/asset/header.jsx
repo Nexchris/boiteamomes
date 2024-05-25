@@ -6,7 +6,7 @@ import 'animate.css';
 import BAM from '../images/logo.png';
 
 const StyledHeader = styled.div`
-  width: 100vw;
+  width: 99vw;
   height: 10vh;
   background-color: white;
   display: flex;
@@ -214,31 +214,39 @@ function Header() {
         <div></div>
       </Hamburger>
       <Logo src={BAM} alt="Logo" />
-      <Headertitle>Boite à mômes</Headertitle>
+      <StyledLink to="/">
+      <Headertitle>Bôite à mômes</Headertitle>
+      </StyledLink>
       <HeaderList isOpen={isOpen}>
-        <StyledLink to="/">
-          <HeaderItem>Accueil</HeaderItem>
-        </StyledLink>
+
+        
+
+    
         <HeaderItem>
-          Atélier
-          <SubMenu>
-            <SubMenuItem>Théâtre Enfants</SubMenuItem>
-            <SubMenuItem>Théâtre Adultes</SubMenuItem>
-          </SubMenu>
-        </HeaderItem>
-        <HeaderItem>
+        <StyledLink to="boiteamomes">
           Boite à momes
+          </StyledLink>
           <SubMenu>
-            <SubMenuItem>Atelier Enfants</SubMenuItem>
-            <SubMenuItem>Atelier Adultes</SubMenuItem>
-            <SubMenuItem>Atelier CinéBAM</SubMenuItem>
+            <SubMenuItem>Magic Theatre</SubMenuItem>
+            <SubMenuItem>Le Collier de perles magiques</SubMenuItem>
+            <SubMenuItem> Vol au manoir de la Comtesse Douchka</SubMenuItem>
           </SubMenu>
         </HeaderItem>
         <HeaderItem>
-          Productions
+        <StyledLink to="cinebam">
+          Cinébam
+          </StyledLink>
           <SubMenu>
-            <SubMenuItem>Pièces de théâtres</SubMenuItem>
-            <SubMenuItem>Production Cinéma</SubMenuItem>
+            <SubMenuItem>La Rixe</SubMenuItem>
+            <SubMenuItem>Fausses Rumeurs</SubMenuItem>
+            <SubMenuItem>Happy Birthday</SubMenuItem>
+          </SubMenu>
+        </HeaderItem>
+        <HeaderItem>
+          Qui sommes nous ?
+          <SubMenu>
+            <SubMenuItem>Fondatrice</SubMenuItem>
+            <SubMenuItem>Nos Valeurs</SubMenuItem>
           </SubMenu>
         </HeaderItem>
         <HeaderContact>Nous Contacter</HeaderContact>
