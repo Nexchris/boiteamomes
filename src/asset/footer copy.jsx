@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ref, getDownloadURL } from 'firebase/storage'; // Assurez-vous d'importer ces fonctionnalités depuis la bonne bibliothèque Firebase
-import { storage } from '../firebaseConfig'; // Assurez-vous que le chemin est correct
 
 const FooterContainer = styled.footer`
   background-color: #333;
@@ -60,13 +59,8 @@ const Footer = () => {
   return (
     <FooterContainer>
       <IconContainer>
-        <a href="https://www.facebook.com/BoitAMomes/">
         <Icon src={firstIcon} alt="Facebook" />
-        </a>
-
-        <a href="https://twitter.com/boitamomes">
         <Icon src={secondIcon} alt="Twitter" />
-        </a>
         <Icon src={thirdIcon} alt="Mail" />
         <Icon src={fourthIcon} alt="LinkedIn" />
       </IconContainer>

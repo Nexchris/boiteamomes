@@ -1,10 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import BAMBG from '../images/bambg.jpg';
-import Leftvideo from "../video/soustension.mp4";
-import RightVideo from "../video/boiteamomes.mp4";
 import Header from '../asset/header';
+import { storage } from '../firebaseConfig'; 
+import { ref, getDownloadURL } from "firebase/storage";
+import { useVideoURL } from '../context/VideoUrlContext';
+
 
 const Container = styled.div`
   display: flex;
@@ -88,11 +90,16 @@ const TextContainer = styled.div`
   z-index: 2; /* Ensure it sits on top of the video */
   padding: 20px; /* Add some padding for better visual separation */
   border-radius: 10px; /* Round the corners for a softer look */
+  @media (max-width: 768px) {
+    width: 75vw;
+    height: 25vh;
+  }
+  
 `;
 
 const Title = styled.h1`
   margin:0;
-  font-size: 8vh;
+  font-size: 7vh;
   color: white; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold; 
@@ -104,6 +111,10 @@ const Title2 = styled.h1`
   color: white; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold; 
+  @media (max-width: 768px) {
+    font-size:5.5vh;
+  }
+  
 `;
 
 const Text = styled.p`
@@ -115,7 +126,7 @@ const Text = styled.p`
   cursor: pointer;
 
   @media (max-width: 768px) {
-    font-size: 2.5vh;
+    display:none;
   }
 `;
 
@@ -142,6 +153,24 @@ function HomeScreen() {
   const [expanded, setExpanded] = useState(false);
   const [isRightHovered, setIsRightHovered] = useState(false);
   const [isRightExpanded, setIsRightExpanded] = useState(false);
+  const [leftVideoURL, setLeftVideoURL] = useState("");
+  const [rightVideoURL, setRightVideoURL] = useState("");
+
+  useEffect(() => {
+    const leftVideoStorageRef = ref(storage, 'video/soustension.mp4');
+    getDownloadURL(leftVideoStorageRef).then((url) => {
+      setLeftVideoURL(url);
+    }).catch((error) => {
+      console.error("Error getting left video URL:", error);
+    });
+
+    const rightVideoStorageRef = ref(storage, 'video/boiteamomes.mp4');
+    getDownloadURL(rightVideoStorageRef).then((url) => {
+      setRightVideoURL(url);
+    }).catch((error) => {
+      console.error("Error getting right video URL:", error);
+    });
+  }, []);
 
   const handleMouseOver = () => {
     setIsHovered(true);
@@ -176,7 +205,7 @@ function HomeScreen() {
       <Header />
       <Container>
         <Leftscreen expanded={expanded} isHovered={isHovered} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-          <Video ref={videoRef} src={Leftvideo} autoPlay={false} muted loop />
+          <Video ref={videoRef} src={leftVideoURL} autoPlay={false} muted loop />
           <TextContainer>
             <Title>Cinebam</Title>
             <Text>Suivez vos cours en ligne sur la plateforme Cinebam, vous pourrez apprendre à la manière des pros tout en travaillant sur vos projets. Nos formations sont accessibles et adaptées à tous les niveaux de compétences.</Text>
@@ -186,9 +215,9 @@ function HomeScreen() {
           </TextContainer>
         </Leftscreen>
         <Rightscreen expanded={isRightExpanded} isHovered={isRightHovered} onMouseOver={handleRightMouseOver} onMouseOut={handleRightMouseOut}>
-          <Video ref={rightVideoRef} src={RightVideo} autoPlay={false} muted loop />
+          <Video ref={rightVideoRef} src={rightVideoURL} autoPlay={false} muted loop />
           <TextContainer>
-            <Title2>Bôite à momes</Title2>
+            <Title2>Boite à mômes</Title2>
             <Text>Entrez dans le monde magique du théâtre avec La Boîte à Mômes ! Que vous soyez débutant, amateur ou professionnel, nos ateliers de théâtre vous offrent l'opportunité unique de développer vos talents d'acteurs.</Text>
             <Link to="/boiteamomes">
               <Button>Voir Plus</Button>

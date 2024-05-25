@@ -227,9 +227,9 @@ function Header() {
           Boite à momes
           </StyledLink>
           <SubMenu>
-            <SubMenuItem>Magic Theatre</SubMenuItem>
-            <SubMenuItem>Le Collier de perles magiques</SubMenuItem>
-            <SubMenuItem> Vol au manoir de la Comtesse Douchka</SubMenuItem>
+            <SubMenuItem>Atélier Enfants</SubMenuItem>
+            <SubMenuItem>Atélier Adultes</SubMenuItem>
+            <SubMenuItem>Atélier Cinébam</SubMenuItem>
           </SubMenu>
         </HeaderItem>
         <HeaderItem>

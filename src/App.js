@@ -8,6 +8,7 @@ import Boiteamomes from './pages/boiteamomes';
 import Quisommesnous from './pages/quisommesnous';
 import Offer from './pages/offer';
 import { createGlobalStyle } from 'styled-components';
+import { VideoURLProvider } from './context/VideoUrlContext';
 
 // Crée un style global pour appliquer la police à toute l'application
 const GlobalStyle = createGlobalStyle`
@@ -23,15 +24,17 @@ function App() {
     <>
       <GlobalStyle /> {/* Incluez le style global ici */}
       <Router> {/* Encadrez votre application avec le composant Router */}
-        <Routes> {/* Encadrez vos routes avec le composant Routes */}
-          <Route exact path="/" element={<Home />} /> {/* Route par défaut vers Home */}
-          <Route path="/cinebam" element={<Cinebam />} /> {/* Route vers Cinebam */}
-          <Route path="/boiteamomes" element={<Boiteamomes />} /> {/* Route vers Boiteamomes */}
-          <Route path="/offer" element={<Offer />} /> {/* Route vers Offer */}
-          <Route path="/login" element={<Login />} /> {/* Route vers Login */}
-          <Route path="/backoffice" element={<Back />} /> {/* Route vers Backoffice */}
-          <Route path="/quisommesnous" element={<Quisommesnous />} /> {/* Route vers Quisommesnous */}
-        </Routes>
+        <VideoURLProvider> {/* Enveloppez votre application avec VideoURLProvider */}
+          <Routes> {/* Encadrez vos routes avec le composant Routes */}
+            <Route exact path="/" element={<Home />} /> {/* Route par défaut vers Home */}
+            <Route path="/cinebam" element={<Cinebam />} /> {/* Route vers Cinebam */}
+            <Route path="/boiteamomes" element={<Boiteamomes />} /> {/* Route vers Boiteamomes */}
+            <Route path="/offer" element={<Offer />} /> {/* Route vers Offer */}
+            <Route path="/login" element={<Login />} /> {/* Route vers Login */}
+            <Route path="/backoffice" element={<Back />} /> {/* Route vers Backoffice */}
+            <Route path="/quisommesnous" element={<Quisommesnous />} /> {/* Route vers Quisommesnous */}
+          </Routes>
+        </VideoURLProvider>
       </Router>
     </>
   );
