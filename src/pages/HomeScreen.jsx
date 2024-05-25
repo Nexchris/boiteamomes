@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import BAMBG from '../images/bambg.jpg';
 import Leftvideo from "../video/soustension.mp4";
 import RightVideo from "../video/boiteamomes.mp4";
+import Header from '../asset/header';
 
 const Container = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const Rightscreen = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, ${(props) => props.isHovered ? '0' : '0.5'});
+    background-color: rgba(0, 0, 0, ${(props) => props.isHovered ? '0' : '0.8'});
     z-index: 1;
     transition: background-color 0.5s ease;
     pointer-events: none; /* Désactiver la réception des événements de pointer */
@@ -54,7 +55,7 @@ const Leftscreen = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, ${(props) => props.isHovered ? '0' : '0.5'});
+    background-color: rgba(0, 0, 0, ${(props) => props.isHovered ? '0' : '0.8'});
     z-index: 1;
     transition: background-color 0.5s ease;
     pointer-events: none; /* Désactiver la réception des événements de pointer */
@@ -77,30 +78,40 @@ const Video = styled.video`
 
 const TextContainer = styled.div`
   position: absolute;
+  width:30vw;
+  height:40vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+  z-index: 2; /* Ensure it sits on top of the video */
+  padding: 20px; /* Add some padding for better visual separation */
+  border-radius: 10px; /* Round the corners for a softer look */
 `;
 
 const Title = styled.h1`
-  font-size: 12vh;
-  color: white;
-  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-  font-weight: bold; /* Ajout de la propriété font-weight */
+  margin:0;
+  font-size: 8vh;
+  color: white; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold; 
 `;
 
-
 const Title2 = styled.h1`
-  font-size: 8vh;
-  color: white;
+  margin:0;
+  font-size: 7vh;
+  color: white; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold; 
 `;
 
 const Text = styled.p`
-  font-size: 3vh;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin:0;
+  margin-bottom:2vh;
+  font-size: 2.5vh;
+  color: #333; /* Dark text color */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Lighter text shadow */
   cursor: pointer;
 
   @media (max-width: 768px) {
@@ -161,28 +172,31 @@ function HomeScreen() {
   };
 
   return (
-    <Container>
-      <Leftscreen expanded={expanded} isHovered={isHovered} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-        <Video ref={videoRef} src={Leftvideo} autoPlay={false} muted loop />
-        <TextContainer>
+    <>
+      <Header />
+      <Container>
+        <Leftscreen expanded={expanded} isHovered={isHovered} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+          <Video ref={videoRef} src={Leftvideo} autoPlay={false} muted loop />
+          <TextContainer>
             <Title>Cinebam</Title>
-          <Text>Suivez vos cours en ligne sur la plateforme Cinebam, vous pourrez apprendre à la manière des pros tout en travaillant sur vos projets. Nos formations sont accessibles et adaptées à tous les niveaux de compétences.</Text>
-          <Link to="/cinebam" onClick={(e) => e.stopPropagation()}>
-            <Button>Voir Plus</Button>
-          </Link>
-        </TextContainer>
-      </Leftscreen>
-      <Rightscreen expanded={isRightExpanded} isHovered={isRightHovered} onMouseOver={handleRightMouseOver} onMouseOut={handleRightMouseOut}>
-        <Video ref={rightVideoRef} src={RightVideo} autoPlay={false} muted loop />
-        <TextContainer>
-          <Title2>Boite à momes</Title2>
-          <Text>Entrez dans le monde magique du théâtre avec La Boîte à Mômes ! Que vous soyez débutant, amateur ou professionnel, nos ateliers de théâtre vous offrent l'opportunité unique de développer vos talents d'acteurs.</Text>
-          <Link to="/boiteamomes">
-            <Button>Voir Plus</Button>
-          </Link>
-        </TextContainer>
-      </Rightscreen>
-    </Container>
+            <Text>Suivez vos cours en ligne sur la plateforme Cinebam, vous pourrez apprendre à la manière des pros tout en travaillant sur vos projets. Nos formations sont accessibles et adaptées à tous les niveaux de compétences.</Text>
+            <Link to="/cinebam" onClick={(e) => e.stopPropagation()}>
+              <Button>Voir Plus</Button>
+            </Link>
+          </TextContainer>
+        </Leftscreen>
+        <Rightscreen expanded={isRightExpanded} isHovered={isRightHovered} onMouseOver={handleRightMouseOver} onMouseOut={handleRightMouseOut}>
+          <Video ref={rightVideoRef} src={RightVideo} autoPlay={false} muted loop />
+          <TextContainer>
+            <Title2>Boite à momes</Title2>
+            <Text>Entrez dans le monde magique du théâtre avec La Boîte à Mômes ! Que vous soyez débutant, amateur ou professionnel, nos ateliers de théâtre vous offrent l'opportunité unique de développer vos talents d'acteurs.</Text>
+            <Link to="/boiteamomes">
+              <Button>Voir Plus</Button>
+            </Link>
+          </TextContainer>
+        </Rightscreen>
+      </Container>
+    </>
   );
 }
 

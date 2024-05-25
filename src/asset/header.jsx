@@ -11,7 +11,7 @@ const StyledHeader = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+
   @media (min-width: 600px) and (max-width: 1600px)
  {
     height: 20vh;
