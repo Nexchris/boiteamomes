@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { firestore } from '../firebaseConfig'; // Assurez-vous que le chemin est correct
 import { Link } from 'react-router-dom';
@@ -16,17 +16,14 @@ const StyledHeader = styled.div`
  {
     height: 20vh;
   }
-  
-
 `;
 
 const Logo = styled.img`
-  height: 10vh;
-  width: fit-content;
+  height: 100%;
+  width: 20vw;
   @media (max-width: 500px) {
     margin-right: 1vh;
   }
-
 `;
 
 const HeaderList = styled.ul`
@@ -35,32 +32,6 @@ const HeaderList = styled.ul`
   margin: 0;
   padding: 0;
   z-index: 1000; 
-  
-
-  @media (max-width: 500px) {
-    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-    animation: fadeInDown 0.5s;
-    height: max-content;
-    flex-direction: column;
-    position: absolute;
-    top: 9vh; /* Adjust top based on header height */
-    right: 0;
-    background-color: white;
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  @media (min-width: 600px) and (max-width: 1600px) {
-    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-    flex-direction: column;
-    position: absolute;
-    top: 20vh; /* Adjust top based on header height */
-    right: 0;
-    background-color: white;
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   
-  }
 `;
 
 const HeaderItem = styled.li`
@@ -78,10 +49,7 @@ const HeaderItem = styled.li`
     font-size: 1.2rem;
     margin-left: 1vh;
   }
-
-  
 `;
-
 
 const Headertitle = styled.h1`
   margin: 0;
@@ -97,9 +65,6 @@ const Headertitle = styled.h1`
     font-size: 4vh;
     margin-right:0vw;
   }
-
-
-
 `;
 
 const StyledLink = styled(Link)`
@@ -130,18 +95,12 @@ const HeaderContact = styled.li`
     margin-bottom: 2vh;
   }
 
-  
-
   @media (max-width: 768px) {
     margin: 0;
     width: 45vw; 
     margin-left:1vh;
     margin-bottom: 2vh;
   }
-
-  }
-
-  
 `;
 
 const SubMenu = styled.ul`
@@ -167,11 +126,8 @@ const SubMenu = styled.ul`
     ${HeaderItem}:hover & {
       display: contents;
       color: black;
-      
     }
   }
-
-
 `;
 
 const SubMenuItem = styled.li`
@@ -207,16 +163,32 @@ const Hamburger = styled.div`
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false); // État pour indiquer si les données sont chargées depuis Firebase
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Charger les données depuis Firebase
+        // Par exemple :
+        const data = await firestore.collection('votreCollection').get();
+        // Une fois les données chargées, définir dataLoaded à true
+        setDataLoaded(true);
+      } catch (error) {
+        console.error("Erreur lors du chargement des données depuis Firebase : ", error);
+      }
+    };
 
-  const [headerTitle, setHeaderTitle] = useState(''); // Titre par défaut
+    fetchData();
+  }, []); // Assurez-vous de spécifier une dépendance vide pour que cela ne se déclenche qu'une seule fois
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-
-
+  if (!dataLoaded) {
+    // Si les données ne sont pas encore chargées, afficher un message de chargement
+    return <div>Chargement en cours...</div>;
+  }
 
   return (
     <StyledHeader>
@@ -225,15 +197,11 @@ function Header() {
         <div></div>
         <div></div>
       </Hamburger>
-      <StyledLink to="">
-      <Logo src={BAM} alt="Logo" />
+      <StyledLink to="/">
+        <Logo src={BAM} alt="Logo" />
       </StyledLink>
       <Headertitle>Bôite à mômes</Headertitle>
       <HeaderList isOpen={isOpen}>
-
-        
-
-    
         <HeaderItem>
           Boite à momes
           <SubMenu>
@@ -243,8 +211,8 @@ function Header() {
           </SubMenu>
         </HeaderItem>
         <HeaderItem>
-        <StyledLink to="cinebam">
-          Cinébam
+          <StyledLink to="cinebam">
+            Cinébam
           </StyledLink>
           <SubMenu>
             <SubMenuItem>La Rixe</SubMenuItem>
