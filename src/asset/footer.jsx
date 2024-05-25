@@ -6,7 +6,7 @@ import { storage } from '../firebaseConfig'; // Assurez-vous que le chemin est c
 const FooterContainer = styled.footer`
   background-color: #333;
   color: #fff;
-  padding: 20px;
+  padding: 1vh;
   text-align: center;
 `;
 
@@ -59,18 +59,7 @@ const Footer = () => {
 
   return (
     <FooterContainer>
-      <IconContainer>
-        <a href="https://www.facebook.com/BoitAMomes/">
-        <Icon src={firstIcon} alt="Facebook" />
-        </a>
 
-        <a href="https://twitter.com/boitamomes">
-        <Icon src={secondIcon} alt="Twitter" />
-        </a>
-        
-        <Icon src={thirdIcon} alt="Mail" />
-        <Icon src={fourthIcon} alt="LinkedIn" />
-      </IconContainer>
       <Copyright>&copy; 2024 Boite a momes. Tous droits réservés.</Copyright>
     </FooterContainer>
   );

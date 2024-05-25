@@ -34,6 +34,7 @@ const HeaderList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+  z-index: 1000; 
   
 
   @media (max-width: 500px) {

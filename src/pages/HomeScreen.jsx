@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import BAMBG from '../images/bambg.jpg';
 import Header from '../asset/header';
+import Footer from '../asset/footer';
+
 import { storage } from '../firebaseConfig'; 
 import { ref, getDownloadURL } from "firebase/storage";
-import { useVideoURL } from '../context/VideoUrlContext';
 
 
 const Container = styled.div`
@@ -240,6 +240,7 @@ function HomeScreen() {
           </TextContainer>
         </Rightscreen>
       </Container>
+      <Footer/>
     </>
   );
 }

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { AiOutlineHome, AiOutlineInfoCircle, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
+import { ref, getDownloadURL } from 'firebase/storage'; // Assurez-vous d'importer ces fonctionnalités depuis la bonne bibliothèque Firebase
+import { storage } from '../firebaseConfig'; // Assurez-vous que le chemin est correct
 
 const FooterContainer = styled.footer`
   background-color: #333;
@@ -15,8 +16,9 @@ const IconContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const Icon = styled.div`
-  font-size: 24px;
+const Icon = styled.img`
+  width: 24px;
+  height: 24px;
 `;
 
 const Copyright = styled.p`
@@ -54,13 +56,20 @@ const Footer = () => {
 
     fetchIcons();
   }, []);
+
   return (
     <FooterContainer>
       <IconContainer>
-        <Icon><AiOutlineHome /></Icon>
-        <Icon><AiOutlineInfoCircle /></Icon>
-        <Icon><AiOutlineMail /></Icon>
-        <Icon><AiOutlinePhone /></Icon>
+        <a href="https://www.facebook.com/BoitAMomes/">
+        <Icon src={firstIcon} alt="Facebook" />
+        </a>
+
+        <a href="https://twitter.com/boitamomes">
+        <Icon src={secondIcon} alt="Twitter" />
+        </a>
+        
+        <Icon src={thirdIcon} alt="Mail" />
+        <Icon src={fourthIcon} alt="LinkedIn" />
       </IconContainer>
       <Copyright>&copy; 2024 Boite a momes. Tous droits réservés.</Copyright>
     </FooterContainer>
@@ -68,4 +77,3 @@ const Footer = () => {
 }
 
 export default Footer;
-
