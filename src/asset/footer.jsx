@@ -67,6 +67,7 @@ const Footer = () => {
         <a href="https://twitter.com/boitamomes">
         <Icon src={secondIcon} alt="Twitter" />
         </a>
+        
         <Icon src={thirdIcon} alt="Mail" />
         <Icon src={fourthIcon} alt="LinkedIn" />
       </IconContainer>

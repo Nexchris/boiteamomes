@@ -181,7 +181,8 @@ const Hamburger = styled.div`
 
   @media (max-width: 1000px) {
     display: flex;
-    margin-right: 3vh;
+    margin-right: 5vh;
+    margin-left: 5vh;
   }
 
   div {

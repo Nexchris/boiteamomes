@@ -91,8 +91,13 @@ const TextContainer = styled.div`
   padding: 20px; /* Add some padding for better visual separation */
   border-radius: 10px; /* Round the corners for a softer look */
   @media (max-width: 768px) {
-    width: 75vw;
-    height: 25vh;
+    width: -webkit-fill-available;
+        height: auto;
+    }
+    @media (min-width: 800px) and (max-width: 1400px) {
+      width: fit-content;
+      height: max-content;
+    }
   }
   
 `;
@@ -103,6 +108,12 @@ const Title = styled.h1`
   color: white; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold; 
+  @media (max-width: 768px) {
+    font-size:4vh;
+  }
+  @media (min-width: 800px) and (max-width: 1400px) {
+    font-size: 4vh;
+  }
 `;
 
 const Title2 = styled.h1`
@@ -111,8 +122,8 @@ const Title2 = styled.h1`
   color: white; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold; 
-  @media (max-width: 768px) {
-    font-size:5.5vh;
+  @media (max-width: 1000px) {
+    font-size:4vh;
   }
   
 `;
@@ -126,6 +137,10 @@ const Text = styled.p`
   cursor: pointer;
 
   @media (max-width: 768px) {
+    display:none;
+  }
+
+  @media (min-width: 800px) and (max-width: 1400px) {
     display:none;
   }
 `;
