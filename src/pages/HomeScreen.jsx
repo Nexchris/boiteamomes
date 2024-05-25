@@ -102,6 +102,12 @@ const TextContainer = styled.div`
   
 `;
 
+const Href = styled.a`
+  text-decoration: none;
+  color:black;
+`;
+
+
 const Title = styled.h1`
   margin:0;
   font-size: 7vh;
@@ -224,9 +230,9 @@ function HomeScreen() {
           <TextContainer>
             <Title>Cinebam</Title>
             <Text>Suivez vos cours en ligne sur la plateforme Cinebam, vous pourrez apprendre à la manière des pros tout en travaillant sur vos projets. Nos formations sont accessibles et adaptées à tous les niveaux de compétences.</Text>
-            <Link to="/cinebam" onClick={(e) => e.stopPropagation()}>
-              <Button>Voir Plus</Button>
-            </Link>
+            <Href href="/cinebam">
+<Button>Voir Plus</Button>
+</Href>
           </TextContainer>
         </Leftscreen>
         <Rightscreen expanded={isRightExpanded} isHovered={isRightHovered} onMouseOver={handleRightMouseOver} onMouseOut={handleRightMouseOut}>
@@ -234,9 +240,9 @@ function HomeScreen() {
           <TextContainer>
             <Title2>Boite à mômes</Title2>
             <Text>Entrez dans le monde magique du théâtre avec La Boîte à Mômes ! Que vous soyez débutant, amateur ou professionnel, nos ateliers de théâtre vous offrent l'opportunité unique de développer vos talents d'acteurs.</Text>
-            <Link to="/boiteamomes">
+            <Href href="/boiteamomes">
               <Button>Voir Plus</Button>
-            </Link>
+            </Href>
           </TextContainer>
         </Rightscreen>
       </Container>

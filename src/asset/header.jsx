@@ -23,6 +23,7 @@ const StyledHeader = styled.div`
 const Logo = styled.img`
   height: 10vh;
   width: fit-content;
+  margin-left:3vh;
   @media (max-width: 500px) {
     margin-right: 1vh;
   }
@@ -205,6 +206,12 @@ const Hamburger = styled.div`
   }
 `;
 
+const Href = styled.a`
+  text-decoration: none;
+  color:black;
+`;
+
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -225,17 +232,22 @@ function Header() {
         <div></div>
         <div></div>
       </Hamburger>
-      <StyledLink to="">
+      <Href href="/">
       <Logo src={BAM} alt="Logo" />
-      </StyledLink>
-      <Headertitle>Bôite à mômes</Headertitle>
+</Href>
+<Href href="/">
+<Headertitle>Bôite à mômes</Headertitle>
+</Href>
+  
       <HeaderList isOpen={isOpen}>
 
         
 
     
         <HeaderItem>
-          Boite à momes
+        <Href href="/boiteamomes">
+        Boite à momes
+</Href>
           <SubMenu>
             <SubMenuItem>Atélier Enfants</SubMenuItem>
             <SubMenuItem>Atélier Adultes</SubMenuItem>
@@ -243,9 +255,10 @@ function Header() {
           </SubMenu>
         </HeaderItem>
         <HeaderItem>
-        <StyledLink to="cinebam">
-          Cinébam
-          </StyledLink>
+        <Href href="/cinebam">
+  Cinébam
+</Href>
+
           <SubMenu>
             <SubMenuItem>La Rixe</SubMenuItem>
             <SubMenuItem>Fausses Rumeurs</SubMenuItem>
