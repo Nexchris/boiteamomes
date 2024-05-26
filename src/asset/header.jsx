@@ -4,37 +4,40 @@ import { firestore } from '../firebaseConfig'; // Assurez-vous que le chemin est
 import { Link } from 'react-router-dom';
 import 'animate.css';
 import BAM from '../images/logo.png';
-
 const StyledHeader = styled.div`
   width: 99vw;
   height: 10vh;
   background-color: white;
   display: flex;
   align-items: center;
-  justify-content:space-between;
+ 
 
   @media (max-width: 1600px)
  {
+  
     width:100vw;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 999;
+    justify-content: center; /* Correction ici */
   }
   
 
 `;
 
+
+
 const Logo = styled.img`
   height: 10vh;
   width: fit-content;
   margin-left: 3vh;
+  
 
   @media (max-width: 500px) {
-    margin-left: auto;
+    margin-left: 2vh;
     margin-right: auto;
-    padding-right: 3vh;
     display: block; /* Assurez-vous que l'image est affichée comme un bloc pour appliquer les marges automatiques */
   }
 `;
@@ -49,7 +52,7 @@ const HeaderList = styled.ul`
   z-index: 1000; 
   
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
     animation: fadeInDown 0.5s;
     height: max-content;
@@ -66,7 +69,7 @@ const HeaderList = styled.ul`
     display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
     flex-direction: column;
     position: absolute;
-    top: 20vh; /* Adjust top based on header height */
+    top: 10vh; /* Adjust top based on header height */
     right: 0;
     background-color: white;
     width: 100%;
@@ -100,17 +103,13 @@ const Headertitle = styled.h1`
   font-size: 1.5rem;
   margin-right:40vw;
 
-  @media (max-width: 500px) {
+  @media (max-width: 1300px) {
     display:none;
     font-size: 3vh;
     margin-right:0vw;
   }
 
-  @media (min-width: 600px) and (max-width: 1000px) {
-    display:none;
-    font-size: 4vh;
-    margin-right:0vw;
-  }
+
 
 
 
@@ -201,12 +200,15 @@ const SubMenuItem = styled.li`
 
 const Hamburger = styled.div`
   display: none;
+  position: absolute;
   flex-direction: column;
   cursor: pointer;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1600px) {
     display: flex;
     margin-left: 3vh;
+    left: 2%;
+    position: absolute;
   }
 
   div {

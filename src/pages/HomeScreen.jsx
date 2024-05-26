@@ -79,7 +79,7 @@ const Video = styled.video`
 const TextContainer = styled.div`
   position: absolute;
   width:30vw;
-  height:40vh;
+  height:auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -113,7 +113,7 @@ const Title = styled.h1`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold; 
   @media (max-width: 768px) {
-    font-size:4vh;
+    font-size: x-large;
   }
   @media (min-width: 800px) and (max-width: 1400px) {
     font-size: 4vh;
@@ -127,7 +127,7 @@ const Title2 = styled.h1`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold; 
   @media (max-width: 1000px) {
-    font-size:4vh;
+    font-size: x-large;
   }
   
 `;
