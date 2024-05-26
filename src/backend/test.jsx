@@ -9,6 +9,12 @@ const BlueText = styled.p`
   color: blue;
 `;
 
+
+const StyledInputContainer = styled.div`
+  max-height: 150px; /* ou la hauteur maximale souhaitée pour le défilement */
+  overflow-y: auto; /* Pour activer le défilement vertical si le contenu dépasse la hauteur maximale */
+`;
+
 const StyledInput = styled.input`
   padding: 10px;
   margin: 10px 0;
@@ -48,7 +54,11 @@ const StyledButton = styled.button`
 
 const InputGroup = styled.div`
   margin-bottom: 20px;
-  display:flex;
+background-color:#f9f9f9;
+width:30vw;
+text-align:center;
+border-radius: 1vh;
+
 `;
 
 const Label = styled.label`

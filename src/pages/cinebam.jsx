@@ -51,13 +51,14 @@ const Maintitle = styled.h1`
 `;
 
 const Secondscreen = styled.div`
-  background-color: royalblue;
+  background-color: black;
   width: 100vw;
 `;
 
 const Secondtitle = styled.h2`
   font-size: 14vh;
   padding-top: 10vh;
+  color:white;
   font-weight: 500;
   text-align: center;
   margin: 0;
@@ -70,6 +71,7 @@ const Secondtitle = styled.h2`
 
 const Secondtext = styled.div`
   margin-left: 30vh;
+  color:white;
   font-size: 3vh;
   width: 70%;
   text-align: center;
@@ -140,13 +142,15 @@ const Offerboldtext = styled.div`
 font-size: 3.5vh;
 padding-bottom:1vh;
 font-weight: 600;
+padding-top: 1vh;
 `;
 
 const Offertext = styled.div`
-font-size: 2.5vh;
-width: 30vw;
-text-align:start;
-margin-left:3vh;
+font-size: 1.9vh;
+width: 28vw;
+text-align:center;
+margin-left:10vh;
+margin-bottom:2vh;
 @media (max-width: 768px) {
   width: 62vw;
   font-size: 1.8vh;
@@ -155,9 +159,9 @@ margin-left:3vh;
 
 const Offerbutton = styled.button`
   font-size: 2.5vh;
+  width:18vw;
   padding: 10px 3vw;
   font-weight:bold;
-  margin-left:24vw;
   background-color: white;
   color: black;
   border: none;
@@ -267,8 +271,10 @@ function Cinebam() {
             <Prodimage src={thirdProd} alt="" />
           )}
           <Offerdiv>
-            <Offerboldtext>1. Offre numéro 3</Offerboldtext>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam distinctio ex repellendus, dicta eveniet suscipit iure voluptas placeat aspernatur architecto sapiente <br />
+            <Offerboldtext>Sous Tension</Offerboldtext>
+            <Offertext>
+            Carole et Paul vivent avec leurs 3 enfants dans un magnifique appartement parisien. Au fil des années, Carole découvre ...<br />
+            </Offertext>
             <Link to="/offer">
               <Offerbutton>Cliquer</Offerbutton>
             </Link>
@@ -282,8 +288,10 @@ function Cinebam() {
             <ReverseProdimage src={fourthProd} alt="" />
           )}
           <Reverseofferdiv>
-            <Offerboldtext>1. Offre numéro 4</Offerboldtext>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam distinctio ex repellendus, dicta eveniet suscipit iure voluptas placeat aspernatur architecto sapiente <br />
+            <Offerboldtext>Happy Birthday</Offerboldtext>
+            <Offertext>
+            C’est le jour J. L’Happy Birthday d’Éva, ses 15 ans. Tout le monde s’éclate et le buffet est parfait. Seulement Eva est la grande absente...<br />
+            </Offertext>
             <Link to="/offer">
               <Offerbutton>Cliquer</Offerbutton>
             </Link>
@@ -297,8 +305,10 @@ function Cinebam() {
             <Prodimage src={fifthProd} alt="" />
           )}
           <Offerdiv>
-            <Offerboldtext>1. Offre numéro 5</Offerboldtext>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam distinctio ex repellendus, dicta eveniet suscipit iure voluptas placeat aspernatur architecto sapiente <br />
+            <Offerboldtext>Un Jour comme un autre... ou presque</Offerboldtext>
+            <Offertext>
+            Vendredi soir. Un soir de détente, on boit un verre, on règle nos comptes en se disant ... <br />
+            </Offertext>
             <Link to="/offer">
               <Offerbutton>Cliquer</Offerbutton>
             </Link>
