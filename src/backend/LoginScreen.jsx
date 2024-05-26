@@ -96,7 +96,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log('Signed in as:', user.email);
-        navigate('/');
+        navigate('/test');
       })
       .catch((error) => {
         console.error('Erreur:', error.message);

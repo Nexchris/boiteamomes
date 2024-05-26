@@ -6,13 +6,13 @@ import { storage } from '../firebaseConfig'; // Assurez-vous que le chemin est c
 const FooterContainer = styled.footer`
   background-color: #333;
   color: #fff;
-  padding: 1vh;
+  padding: 2vh;
   text-align: center;
 `;
 
 const IconContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-bottom: 10px;
 `;
 
@@ -34,19 +34,19 @@ const Footer = () => {
   useEffect(() => {
     const fetchIcons = async () => {
       try {
-        const firstRef = ref(storage, 'socialicons/facebookicon.png');
+        const firstRef = ref(storage, 'socialicons/fblogo.png');
         const firstUrl = await getDownloadURL(firstRef);
         setFirstIcon(firstUrl);
 
-        const secondRef = ref(storage, 'socialicons/twittericon.png');
+        const secondRef = ref(storage, 'socialicons/twlogo.png');
         const secondUrl = await getDownloadURL(secondRef);
         setSecondIcon(secondUrl);
 
-        const thirdRef = ref(storage, 'socialicons/mailicon.png');
+        const thirdRef = ref(storage, 'socialicons/ytlogo.png');
         const thirdUrl = await getDownloadURL(thirdRef);
         setThirdIcon(thirdUrl);
 
-        const fourthRef = ref(storage, 'socialicons/linkedinlogo.png');
+        const fourthRef = ref(storage, 'socialicons/inlogo.png');
         const fourthUrl = await getDownloadURL(fourthRef);
         setFourthIcon(fourthUrl);
       } catch (error) {
@@ -59,10 +59,29 @@ const Footer = () => {
 
   return (
     <FooterContainer>
+      <IconContainer>
+        {/* Affichage des logos */}
+        <a href="https://www.facebook.com/BoitAMomes/">
+        <Icon src={firstIcon} alt="Facebook Logo" />
+        </a>
 
+        <a href="https://twitter.com/boitamomes/">
+        <Icon src={secondIcon} alt="Twitter Logo" />
+        </a>
+
+        <a href="https://www.youtube.com/user/boitamomes">
+        <Icon src={thirdIcon} alt="YouTube Logo" />
+        </a>
+
+        <a href="https://www.linkedin.com/company/la-boite-a-momes/">
+        <Icon src={fourthIcon} alt="LinkedIn Logo" />
+        </a>
+
+      </IconContainer>
       <Copyright>&copy; 2024 Boite a momes. Tous droits réservés.</Copyright>
     </FooterContainer>
   );
 }
+
 
 export default Footer;

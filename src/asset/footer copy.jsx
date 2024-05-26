@@ -34,19 +34,19 @@ const Footer = () => {
   useEffect(() => {
     const fetchIcons = async () => {
       try {
-        const firstRef = ref(storage, 'socialicons/facebookicon.png');
+        const firstRef = ref(storage, 'socialicons/fblogo.png');
         const firstUrl = await getDownloadURL(firstRef);
         setFirstIcon(firstUrl);
 
-        const secondRef = ref(storage, 'socialicons/twittericon.png');
+        const secondRef = ref(storage, 'socialicons/twlogo.png');
         const secondUrl = await getDownloadURL(secondRef);
         setSecondIcon(secondUrl);
 
-        const thirdRef = ref(storage, 'socialicons/mailicon.png');
+        const thirdRef = ref(storage, 'socialicons/ytlogo.png');
         const thirdUrl = await getDownloadURL(thirdRef);
         setThirdIcon(thirdUrl);
 
-        const fourthRef = ref(storage, 'socialicons/linkedinlogo.png');
+        const fourthRef = ref(storage, 'socialicons/inlogo.png');
         const fourthUrl = await getDownloadURL(fourthRef);
         setFourthIcon(fourthUrl);
       } catch (error) {

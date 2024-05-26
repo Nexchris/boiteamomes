@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Header from '../asset/header';
 import Footer from '../asset/footer';
-
-import { storage } from '../firebaseConfig'; 
-import { ref, getDownloadURL } from "firebase/storage";
-
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { firestore } from '../firebaseConfig';
 
 const Container = styled.div`
   display: flex;
@@ -177,20 +175,46 @@ function HomeScreen() {
   const [leftVideoURL, setLeftVideoURL] = useState("");
   const [rightVideoURL, setRightVideoURL] = useState("");
 
-  useEffect(() => {
-    const leftVideoStorageRef = ref(storage, 'video/soustension.mp4');
-    getDownloadURL(leftVideoStorageRef).then((url) => {
-      setLeftVideoURL(url);
-    }).catch((error) => {
-      console.error("Error getting left video URL:", error);
-    });
+  const [data, setData] = useState(null);
+  const [leftTitle, setLeftTitle] = useState('');
+  const [rightTitle, setRightTitle] = useState('');
+  const [buttonText, setButtonText] = useState('');
+  const [urlVideoLeft, setUrlVideoLeft] = useState('');
+  const [urlVideoRight, setUrlVideoRight] = useState('');
+  const [leftContent, setLeftContent] = useState('');
+  const [rightContent, setRightContent] = useState('');
 
-    const rightVideoStorageRef = ref(storage, 'video/boiteamomes.mp4');
-    getDownloadURL(rightVideoStorageRef).then((url) => {
-      setRightVideoURL(url);
-    }).catch((error) => {
-      console.error("Error getting right video URL:", error);
-    });
+  useEffect(() => {
+    // Fonction pour récupérer les données de Firestore
+    const fetchData = async () => {
+      const docRef = doc(firestore, "storage", "homescreen");
+      try {
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const documentData = docSnap.data();
+          console.log("Document data:", documentData);
+          setData(documentData);
+          setLeftTitle(documentData["left title"]);
+          setRightTitle(documentData.righttitle);
+          setButtonText(documentData.buttontext);
+          setUrlVideoLeft(documentData.urlvideoleft);
+          setUrlVideoRight(documentData.urlvideoright);
+          setLeftContent(documentData.leftcontent)
+          setRightContent(documentData.rightcontent)
+
+          // Set video URLs from Firestore data
+          setLeftVideoURL(documentData.urlvideoleft);
+          setRightVideoURL(documentData.urlvideoright);
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching document:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleMouseOver = () => {
@@ -228,25 +252,25 @@ function HomeScreen() {
         <Leftscreen expanded={expanded} isHovered={isHovered} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
           <Video ref={videoRef} src={leftVideoURL} autoPlay={false} muted loop />
           <TextContainer>
-            <Title>Cinebam</Title>
-            <Text>Suivez vos cours en ligne sur la plateforme Cinebam, vous pourrez apprendre à la manière des pros tout en travaillant sur vos projets. Nos formations sont accessibles et adaptées à tous les niveaux de compétences.</Text>
+            <Title>{leftTitle}</Title>
+            <Text>{leftContent}</Text>
             <Href href="/cinebam">
-<Button>Voir Plus</Button>
-</Href>
+              <Button>Voir Plus</Button>
+            </Href>
           </TextContainer>
         </Leftscreen>
         <Rightscreen expanded={isRightExpanded} isHovered={isRightHovered} onMouseOver={handleRightMouseOver} onMouseOut={handleRightMouseOut}>
           <Video ref={rightVideoRef} src={rightVideoURL} autoPlay={false} muted loop />
           <TextContainer>
-            <Title2>Boite à mômes</Title2>
-            <Text>Entrez dans le monde magique du théâtre avec La Boîte à Mômes ! Que vous soyez débutant, amateur ou professionnel, nos ateliers de théâtre vous offrent l'opportunité unique de développer vos talents d'acteurs.</Text>
+            <Title2>{rightTitle}</Title2>
+            <Text>{rightContent}</Text>
             <Href href="/boiteamomes">
               <Button>Voir Plus</Button>
             </Href>
           </TextContainer>
         </Rightscreen>
       </Container>
-      <Footer/>
+      <Footer />
     </>
   );
 }
