@@ -11,10 +11,16 @@ const StyledHeader = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
+  justify-content:space-between;
 
-  @media (min-width: 600px) and (max-width: 1600px)
+  @media (max-width: 1600px)
  {
-    height: 20vh;
+    width:100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
   }
   
 
@@ -23,12 +29,17 @@ const StyledHeader = styled.div`
 const Logo = styled.img`
   height: 10vh;
   width: fit-content;
-  margin-left:3vh;
-  @media (max-width: 500px) {
-    margin-right: 1vh;
-  }
+  margin-left: 3vh;
 
+  @media (max-width: 500px) {
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 3vh;
+    display: block; /* Assurez-vous que l'image est affichée comme un bloc pour appliquer les marges automatiques */
+  }
 `;
+
+
 
 const HeaderList = styled.ul`
   display: flex;
@@ -44,7 +55,7 @@ const HeaderList = styled.ul`
     height: max-content;
     flex-direction: column;
     position: absolute;
-    top: 9vh; /* Adjust top based on header height */
+    top: 10vh; /* Adjust top based on header height */
     right: 0;
     background-color: white;
     width: 100%;
@@ -90,11 +101,13 @@ const Headertitle = styled.h1`
   margin-right:40vw;
 
   @media (max-width: 500px) {
+    display:none;
     font-size: 3vh;
     margin-right:0vw;
   }
 
   @media (min-width: 600px) and (max-width: 1000px) {
+    display:none;
     font-size: 4vh;
     margin-right:0vw;
   }
@@ -193,8 +206,7 @@ const Hamburger = styled.div`
 
   @media (max-width: 1000px) {
     display: flex;
-    margin-right: 5vh;
-    margin-left: 5vh;
+    margin-left: 3vh;
   }
 
   div {
