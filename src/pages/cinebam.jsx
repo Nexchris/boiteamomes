@@ -315,7 +315,7 @@ function Cinebam() {
       <AnimatedTitle text="Productions" />
       <InView threshold={0.5}>
           {({ ref, inView }) => (
-            <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0 }}>
+            <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
               {/* Add the style prop here */}
               Découvrez le cœur créatif de CinéBAM : une vitrine de nos productions
               cinématographiques les plus captivantes. Chaque œuvre est le fruit de
