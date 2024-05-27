@@ -80,8 +80,11 @@ const Secondtext = styled.div`
   opacity: 0; /* Add this line */
   transition: opacity 0.5s ease-in-out; /* Add this line */
 
+
   @media (max-width: 768px) {
     margin-left: 15%;
+    font-size: medium;
+    margin-bottom: 3vh;
   }
 `;
 
@@ -245,21 +248,27 @@ const AnimatedText = ({ text }) => {
     <InView threshold={0.5}>
       {({ ref, inView }) => (
         <Secondtext ref={ref}>
-          {text.split('').map((letter, index) => (
-            <Letter
-              key={index}
-              style={{
-                animationDelay: `${inView ? index * 0.05 : 0}s`,
-              }}
-            >
-              {letter}
-            </Letter>
+          {text.split(' ').map((word, wordIndex) => (
+            <div key={wordIndex}>
+              {word.split('').map((letter, index) => (
+                <Letter
+                  key={index}
+                  style={{
+                    animationDelay: `${inView ? index * 0.05 : 0}s`,
+                  }}
+                >
+                  {letter}
+                </Letter>
+              ))}
+              {' '}
+            </div>
           ))}
         </Secondtext>
       )}
     </InView>
   );
 };
+
 
 
 function Cinebam() {

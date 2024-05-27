@@ -7,7 +7,7 @@ import BAM from '../images/logo.png';
 const StyledHeader = styled.div`
   width: 99vw;
   height: 10vh;
-  background-color: white;
+  background-color: black;
   display: flex;
   align-items: center;
  
@@ -50,6 +50,7 @@ const HeaderList = styled.ul`
   margin: 0;
   padding: 0;
   z-index: 1000; 
+  background-color: black;
   
 
   @media (max-width: 600px) {
@@ -60,7 +61,7 @@ const HeaderList = styled.ul`
     position: absolute;
     top: 10vh; /* Adjust top based on header height */
     right: 0;
-    background-color: white;
+    background-color: black;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
@@ -71,7 +72,7 @@ const HeaderList = styled.ul`
     position: absolute;
     top: 10vh; /* Adjust top based on header height */
     right: 0;
-    background-color: white;
+    background-color: black;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
    
@@ -82,6 +83,7 @@ const HeaderItem = styled.li`
   position: relative;
   margin-left: 20px;
   font-size: 1.5rem;
+  color:white;
   
   &:hover {
     cursor: pointer;
@@ -102,6 +104,7 @@ const Headertitle = styled.h1`
   margin: 0;
   font-size: 1.5rem;
   margin-right:40vw;
+  color:white;
 
   @media (max-width: 1300px) {
     display:none;
@@ -214,7 +217,7 @@ const Hamburger = styled.div`
   div {
     width: 25px;
     height: 3px;
-    background-color: black;
+    background-color: white;
     margin: 4px 0;
     transition: 0.4s;
   }
@@ -222,7 +225,7 @@ const Hamburger = styled.div`
 
 const Href = styled.a`
   text-decoration: none;
-  color:black;
+  color:white;
 `;
 
 
