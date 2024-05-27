@@ -65,7 +65,7 @@ const Secondtitle = styled.h2`
   margin: 0;
 
   @media (max-width: 768px) {
-    margin: 0;
+    padding: 0;
     font-size: 6vh;
     font-weight: 700;
   }
@@ -91,7 +91,7 @@ const Prodcontainer = styled.div`
 
   @media (max-width: 768px) {
     margin: 0;
-    margin-bottom: 10vh;
+    
   }
 `;
 
@@ -104,7 +104,7 @@ const Prodimage = styled.img`
     border-radius: 15%;
     width: 90vw;
     margin-left: 3vh;
-    height: 35vh;
+    height: fit-content;
   }
 `;
 
@@ -116,7 +116,8 @@ const ReverseProdimage = styled(Prodimage)`
     border-radius: 15%;
     width: 90vw;
     margin-left: 3vh;
-    height: 35vh;}
+    height: fit-content;
+  }
 `;
 
 const Offerdiv = styled.div`
@@ -129,10 +130,13 @@ const Offerdiv = styled.div`
   margin-left: -40vh;
   margin-top: 35vh;
   border-radius: 5vh;
+  margin-bottom:5vh;
 
   @media (max-width: 768px) {
     width: 85vw;
-    margin-left: -40vh;
+    margin-left: -88vw;
+    margin-top: 15vh;
+    height: fit-content;
   }
 `;
 
@@ -140,7 +144,10 @@ const Reverseofferdiv = styled(Offerdiv)`
   margin-left: -120vh;
 
   @media (max-width: 768px) {
-    margin-left: -40vh;
+    width: 85vw;
+    margin-left: -88vw;
+    margin-top: 15vh;
+    height: fit-content;
   }
 `;
 
@@ -149,6 +156,9 @@ const Offerboldtext = styled.div`
   padding-bottom: 1vh;
   font-weight: 600;
   padding-top: 1vh;
+  @media (max-width: 768px) {
+    padding-bottom: 0;
+  }
 `;
 
 const Offertext = styled.div`
@@ -159,8 +169,9 @@ const Offertext = styled.div`
   margin-bottom: 2vh;
 
   @media (max-width: 768px) {
-    width: 62vw;
-    font-size: 1.8vh;
+    width: 60vw;
+    font-size: small;
+    margin-left: 6vh;
   }
 `;
 
@@ -177,7 +188,11 @@ const Offerbutton = styled.button`
   transition: background-color 0.3s ease;
 
   @media (max-width: 768px) {
-    margin-top: -1vh;
+    margin-top: -10vh;
+    width: 30vw;
+    margin-bottom: 2vh;
+
+
   }
 
   &:hover {
@@ -216,7 +231,7 @@ function Cinebam() {
         const fourthUrl = await getDownloadURL(fourthRef);
         setFourthProd(fourthUrl);
 
-        const fifthRef = ref(storage, 'productionimage/unjourcommeunautreresize.jpg');
+        const fifthRef = ref(storage, 'productionimage/unjourcommeunautreoupresque.png');
         const fifthUrl = await getDownloadURL(fifthRef);
         setFifthProd(fifthUrl);
       } catch (error) {
