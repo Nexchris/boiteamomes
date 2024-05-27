@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { storage } from '../firebaseConfig'; 
 import { ref, getDownloadURL } from "firebase/storage";
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import Header from '../asset/header';
 import Footer from '../asset/footer';
@@ -77,6 +77,8 @@ const Secondtext = styled.div`
   font-size: 3vh;
   width: 70%;
   text-align: center;
+  opacity: 0; /* Add this line */
+  transition: opacity 0.5s ease-in-out; /* Add this line */
 
   @media (max-width: 768px) {
     margin-left: 15%;
@@ -200,6 +202,66 @@ const Offerbutton = styled.button`
   }
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const Letter = styled.span`
+  display: inline-block;
+  opacity: 0;
+  animation: ${fadeIn} 0.5s forwards;
+`;
+
+const AnimatedTitle = ({ text }) => {
+  return (
+    <InView threshold={0.5}>
+      {({ ref, inView }) => (
+        <Secondtitle ref={ref}>
+          {text.split('').map((letter, index) => (
+            <Letter
+              key={index}
+              style={{
+                animationDelay: `${inView ? index * 0.05 : 0}s`,
+              }}
+            >
+              {letter}
+            </Letter>
+          ))}
+        </Secondtitle>
+      )}
+    </InView>
+  );
+};
+
+const AnimatedText = ({ text }) => {
+  return (
+    <InView threshold={0.5}>
+      {({ ref, inView }) => (
+        <Secondtext ref={ref}>
+          {text.split('').map((letter, index) => (
+            <Letter
+              key={index}
+              style={{
+                animationDelay: `${inView ? index * 0.05 : 0}s`,
+              }}
+            >
+              {letter}
+            </Letter>
+          ))}
+        </Secondtext>
+      )}
+    </InView>
+  );
+};
+
+
 function Cinebam() {
   const [background, setBackground] = useState('');
   const [firstProd, setFirstProd] = useState('');
@@ -250,165 +312,176 @@ function Cinebam() {
       </Mainscreen>
 
       <Secondscreen>
-        <Secondtitle>Productions</Secondtitle>
-        <Secondtext>
-          Découvrez le cœur créatif de CinéBAM : une vitrine de nos productions
-          cinématographiques les plus captivantes. Chaque œuvre est le fruit de
-          notre passion pour le cinéma et l'excellence dans la formation de jeunes
-          talents.
-        </Secondtext>
+      <AnimatedTitle text="Productions" />
+      <InView threshold={0.5}>
+          {({ ref, inView }) => (
+            <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0 }}>
+              {/* Add the style prop here */}
+              Découvrez le cœur créatif de CinéBAM : une vitrine de nos productions
+              cinématographiques les plus captivantes. Chaque œuvre est le fruit de
+              notre passion pour le cinéma et l'excellence dans la formation de jeunes
+              talents.
+            </Secondtext>
+          )}
+        </InView>
 
-        <Prodcontainer>
-          <InView threshold={0.5}>
-            {({ ref, inView, entry }) => (
-              <>
-                {firstProd && (
-                  <Prodimage
-                    src={firstProd}
-                    alt=""
-                    ref={ref}
-                    style={{
-                      opacity: inView ? 1 : 0,
-                      transition: 'opacity 0.5s ease-in-out',
-                    }}
-                  />
-                )}
-                <Offerdiv>
-                  <Offerboldtext>La Rixe</Offerboldtext>
-                  <Offertext>
-                    Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville
-                    fait sa rentrée scolaire en compagnie de sa petite copine Leila...
-                  </Offertext>
-                  <Link to="/offer">
-                    <Offerbutton>Voir plus</Offerbutton>
-                  </Link>
-                </Offerdiv>
-              </>
-            )}
-          </InView>
-        </Prodcontainer>
 
-        <Prodcontainer>
-          <InView threshold={0.5}>
-            {({ ref, inView, entry }) => (
-              <>
-                {secondProd && (
-                  <ReverseProdimage
-                    src={secondProd}
-                    alt=""
-                    ref={ref}
-                    style={{
-                      opacity: inView ? 1 : 0,
-                      transition: 'opacity 0.5s ease-in-out',
-                    }}
-                  />
-                )}
-                <Reverseofferdiv>
-                  <Offerboldtext>Fausse Rumeurs</Offerboldtext>
-                  <Offertext>
-                    Issam, 16 ans, rêve de devenir un grand danseur. Entouré de son
-                    coach et de ses amis, il prépare une audition pour...
-                  </Offertext>
-                  <Link to="/offer">
-                    <Offerbutton>Voir Plus</Offerbutton>
-                  </Link>
-                </Reverseofferdiv>
-              </>
-            )}
-          </InView>
-        </Prodcontainer>
+        <InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      {firstProd && (
+        <Prodimage
+          src={firstProd}
+          alt=""
+        />
+      )}
+      <Offerdiv>
+        <Offerboldtext>La Rixe</Offerboldtext>
+        <Offertext>
+          Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville
+          fait sa rentrée scolaire en compagnie de sa petite copine Leila...
+        </Offertext>
+        <Link to="/offer">
+          <Offerbutton>Voir plus</Offerbutton>
+        </Link>
+      </Offerdiv>
+    </Prodcontainer>
+  )}
+</InView>
 
-        <Prodcontainer>
-          <InView threshold={0.5}>
-            {({ ref, inView, entry }) => (
-              <>
-                {thirdProd && (
-                  <Prodimage
-                    src={thirdProd}
-                    alt=""
-                    ref={ref}
-                    style={{
-                      opacity: inView ? 1 : 0,
-                      transition: 'opacity 0.5s ease-in-out',
-                    }}
-                  />
-                )}
-                <Offerdiv>
-                  <Offerboldtext>Sous Tension</Offerboldtext>
-                  <Offertext>
-                    Carole et Paul vivent avec leurs 3 enfants dans un magnifique
-                    appartement parisien. Au fil des années, Carole découvre ...
-                    <br />
-                  </Offertext>
-                  <Link to="/offer">
-                    <Offerbutton>Cliquer</Offerbutton>
-                  </Link>
-                </Offerdiv>
-              </>
-            )}
-          </InView>
-        </Prodcontainer>
 
-        <Prodcontainer>
-          <InView threshold={0.5}>
-            {({ ref, inView, entry }) => (
-              <>
-                {fourthProd && (
-<ReverseProdimage
-                    src={fourthProd}
-                    alt=""
-                    ref={ref}
-                    style={{
-                      opacity: inView ? 1 : 0,
-                      transition: 'opacity 0.5s ease-in-out',
-                    }}
-                  />
-                )}
-                <Reverseofferdiv>
-                  <Offerboldtext>Happy Birthday</Offerboldtext>
-                  <Offertext>
-                    C’est le jour J. L’Happy Birthday d’Éva, ses 15 ans. Tout le monde
-                    s’éclate et le buffet est parfait. Seulement Eva est la grande
-                    absente...<br />
-                  </Offertext>
-                  <Link to="/offer">
-                    <Offerbutton>Voir plus</Offerbutton>
-                  </Link>
-                </Reverseofferdiv>
-              </>
-            )}
-          </InView>
-        </Prodcontainer>
+<InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      {secondProd && (
+        <ReverseProdimage
+          src={secondProd}
+          alt=""
+        />
+      )}
+      <Reverseofferdiv>
+        <Offerboldtext>Fausse Rumeurs</Offerboldtext>
+        <Offertext>
+          Issam, 16 ans, rêve de devenir un grand danseur. Entouré de son
+          coach et de ses amis, il prépare une audition pour...
+        </Offertext>
+        <Link to="/offer">
+          <Offerbutton>Voir Plus</Offerbutton>
+        </Link>
+      </Reverseofferdiv>
+    </Prodcontainer>
+  )}
+</InView>
 
-        <Prodcontainer>
-          <InView threshold={0.5}>
-            {({ ref, inView, entry }) => (
-              <>
-                {fifthProd && (
-                  <Prodimage
-                    src={fifthProd}
-                    alt=""
-                    ref={ref}
-                    style={{
-                      opacity: inView ? 1 : 0,
-                      transition: 'opacity 0.5s ease-in-out',
-                    }}
-                  />
-                )}
-                <Offerdiv>
-                  <Offerboldtext>Un Jour comme un autre... ou presque</Offerboldtext>
-                  <Offertext>
-                    Vendredi soir. Un soir de détente, on boit un verre, on règle
-                    nos comptes en se disant ... <br />
-                  </Offertext>
-                  <Link to="/offer">
-                    <Offerbutton>Voir Plus</Offerbutton>
-                  </Link>
-                </Offerdiv>
-              </>
-            )}
-          </InView>
-        </Prodcontainer>
+
+<InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      {thirdProd && (
+        <Prodimage
+          src={thirdProd}
+          alt=""
+        />
+      )}
+      <Offerdiv>
+        <Offerboldtext>Sous Tension</Offerboldtext>
+        <Offertext>
+          Carole et Paul vivent avec leurs 3 enfants dans un magnifique
+          appartement parisien. Au fil des années, Carole découvre ...
+          <br />
+        </Offertext>
+        <Link to="/offer">
+          <Offerbutton>Cliquer</Offerbutton>
+        </Link>
+      </Offerdiv>
+    </Prodcontainer>
+  )}
+</InView>
+
+
+<InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      {fourthProd && (
+        <ReverseProdimage
+          src={fourthProd}
+          alt=""
+        />
+      )}
+      <Reverseofferdiv>
+        <Offerboldtext>Happy Birthday</Offerboldtext>
+        <Offertext>
+          C’est le jour J. L’Happy Birthday d’Éva, ses 15 ans. Tout le monde
+          s’éclate et le buffet est parfait. Seulement Eva est la grande
+          absente...<br />
+        </Offertext>
+        <Link to="/offer">
+          <Offerbutton>Voir plus</Offerbutton>
+        </Link>
+      </Reverseofferdiv>
+    </Prodcontainer>
+  )}
+</InView>
+
+
+<InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      {fifthProd && (
+        <Prodimage
+          src={fifthProd}
+          alt=""
+        />
+      )}
+      <Offerdiv>
+        <Offerboldtext>Un Jour comme un autre... ou presque</Offerboldtext>
+        <Offertext>
+          Vendredi soir. Un soir de détente, on boit un verre, on règle
+          nos comptes en se disant ... <br />
+        </Offertext>
+        <Link to="/offer">
+          <Offerbutton>Voir Plus</Offerbutton>
+        </Link>
+      </Offerdiv>
+    </Prodcontainer>
+  )}
+</InView>
+
       </Secondscreen>
       <Footer />
     </Container>
