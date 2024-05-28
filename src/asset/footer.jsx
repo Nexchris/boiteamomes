@@ -17,8 +17,8 @@ const IconContainer = styled.div`
 `;
 
 const Icon = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 50px;
+  height: 50px;
 `;
 
 const Copyright = styled.p`

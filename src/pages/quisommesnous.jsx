@@ -1,13 +1,18 @@
-import React from 'react';
 import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import { firestore } from '../firebaseConfig';
+import { storage } from '../firebaseConfig'; 
+import { ref, getDownloadURL } from "firebase/storage";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import Imagetemplate from '../images/image.png';
 import Imagetemplate2 from '../images/image2.png';
 import { Link } from 'react-router-dom';
 import Header from '../asset/header'
 import Footer from '../asset/footer'
+import { InView } from 'react-intersection-observer';
 
 const Container = styled.div`
-  background-color: #F36C97;
+  background-color: #black;
   width: 100vw;
   height: 100vh;
 `;
@@ -24,27 +29,32 @@ const Secondscreen = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex; 
-  background-color: royalblue;
+  background-color: black;
 `;
 
 const Thirdscreen = styled.div`
-background-color: royalblue;
+background-color: black;
   width: 100vw;
+  margin-top: -10vh;
+  padding-bottom:5vh;
 
 `;
 
 const Maintitle = styled.h1`
   font-size: 20vh;
+
   padding-top: 5vh;
   text-align: center;
   margin:0;
 `;
 
 const Secondtitle = styled.h2`
-font-size: 25vh;
+font-size: 8vh;
 text-align: left;
+color: white;
 margin:0;
-margin-left: 10vh;
+margin-left: 15vh;
+margin-top:5vh;
 `;
 
 const Thirdtitle = styled.h3`
@@ -52,6 +62,7 @@ const Thirdtitle = styled.h3`
   padding-top: 10vh;
   font-weight: 500;
   text-align: center;
+
   margin:0;
 `;
 
@@ -67,15 +78,20 @@ const Secondtext = styled.div`
   margin-left: 15vh;
   font-size: 3vh;
   width: 70%;
+  color: white;
  
 `;
 
 const Thirdtext = styled.div`
-  margin-left: 30vh;
+background-color:black;
+  margin-left: 5vh;
   font-size: 3vh;
-  width: 70%;
-  text-align:center;
+  color: white;
+  width: 80vw;
+  text
+ 
 `;
+
 
 
 const Secondcontent = styled.div`
@@ -85,16 +101,14 @@ const Secondcontent = styled.div`
 
 
 const Image = styled.img`
-  width: 70%; /* Vous pouvez ajuster cette valeur selon vos besoins */
+  width: 100%; /* Vous pouvez ajuster cette valeur selon vos besoins */
   
-  margin-right:20vh;
+  margin-right:0vh;
 `;
 
 const ImageContainer = styled.div`
-  flex: 1; /* Pour que l'image occupe la même quantité d'espace que le texte */
-  display: flex;
-  justify-content: flex-end; /* Pour aligner l'image à droite */
-  align-items: center; /* Pour aligner l'image verticalement */
+margin-left: 10vh;
+margin-top: 5vh;
 `;
 
 const Offercontainer = styled.div`
@@ -142,6 +156,33 @@ font-size: 2.5vh;
 
 
 function Quisommesnous() {
+
+const [Image1, setImage1 ] = useState(""); 
+const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // Fonction pour récupérer les données de Firestore
+    const fetchData = async () => {
+      const docRef = doc(firestore, "storage", "quisommesnous");
+      try {
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const documentData = docSnap.data();
+          console.log("Document data:", documentData);
+          setData(documentData);
+          setImage1(documentData.image1);
+          
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching document:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <Container>
     <Header />
@@ -151,69 +192,38 @@ function Quisommesnous() {
 
 
       <Secondscreen>
-      <Secondcontent>
-      <Secondtitle>{"< H2 >"}</Secondtitle>
-        <Secondtext>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio atque iure similique illum harum dolores totam quos recusandae delectus ad maxime assumenda, eos doloremque, dicta reprehenderit placeat, sequi esse voluptatum? Lorem ipsum dolor sit amet consectetur adipisicing elit. At dignissimos quos praesentium! Magnam enim eligendi quibusdam illo veritatis sequi, consequuntur possimus deserunt aspernatur a saepe debitis dolor voluptatem praesentium laborum!</Secondtext>
-        </Secondcontent>
-        <ImageContainer>
-          <Image src={Imagetemplate} alt="" />
-        </ImageContainer>
-      </Secondscreen>
-
-      <Thirdscreen>
-        <Thirdtitle>Les Offres</Thirdtitle>
-        <Thirdtext>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi beatae id enim itaque odio culpa est asperiores non. Mollitia saepe sequi ex provident natus ad voluptates excepturi maxime molestiae non!</Thirdtext>
-
-
-
-        <Offercontainer>
-        <Offerimage src={Imagetemplate2} alt="" />
-        <Offerdiv>
-        <Offerboldtext> 1. Offre numéro 1 </Offerboldtext> 
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam distinctio ex repellendus, dicta eveniet suscipit iure voluptas placeat aspernatur architecto sapiente <br />
-        <Link to="/offer">
-        <Offerbutton>Cliquer</Offerbutton>
-        </Link>
-
-
-        </Offerdiv>
-        </Offercontainer>
-
-<br />
-
-<Offercontainer>
-        <Reverseofferimage src={Imagetemplate2} alt="" />
-        <Reverseofferdiv>
-        <Offerboldtext> 1. Offre numéro 2 </Offerboldtext> 
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam distinctio ex repellendus, dicta eveniet suscipit iure voluptas placeat aspernatur architecto sapiente <br />
-        <Link to="/offer">
-        <Offerbutton>Cliquer</Offerbutton>
-        </Link>
-
-
-        </Reverseofferdiv>
-        </Offercontainer>
-
-<br />
-
-<Offercontainer>
-        <Offerimage src={Imagetemplate2} alt="" />
-        <Offerdiv>
-        <Offerboldtext> 1. Offre numéro 3 </Offerboldtext> 
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam distinctio ex repellendus, dicta eveniet suscipit iure voluptas placeat aspernatur architecto sapiente <br />
-        <Link to="/offer">
-        <Offerbutton>Cliquer</Offerbutton>
-        </Link>
-
-
-        </Offerdiv>
-        </Offercontainer>
         
+      <ImageContainer>
+          <Image src={Image1} alt="" />
+        </ImageContainer>
+        <Secondcontent>
+      <Secondtitle>{"La Boite a Momes"}</Secondtitle>
+      <InView threshold={0.5}>
+          {({ ref, inView }) => (
+            <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
+              {/* Add the style prop here */}
+              La Boîte à Mômes est une association et compagnie de théâtre créée par Mireille FIEVET en 1998 à l’attention des enfants à partir de 4 ans, des adolescents et des adultes, qu’ils soient débutants, confirmés, amateurs ou professionnels. 
+            </Secondtext>
+          )}
+        </InView>
 
 
-    </Thirdscreen>
-
-
+        <br />
+        <Secondtext>Depuis 2016, l'association a créé CinéBAM, à la fois atelier de cinéma à destination des adolescents et structure de production de courts-métrages professionnels.</Secondtext>
+        <br />
+        <Secondtext>L’association a pour objet l’enseignement du théâtre, de l'actorat et du tournage en ateliers inspirés par les méthodes de Constantin STANISLAVSKI et revisitées par Lee STRASBERG à l’Actors Studio.</Secondtext>
+        <br />
+        
+        </Secondcontent>
+      </Secondscreen>
+      <Thirdscreen>
+      <Thirdtext> Chaque année, la Boîte à Mômes et CinéBam s’engagent à créer et produire des spectacles et films courts originaux. L'objectif donné est d'initier ses élèves aux conditions réelles et professionnelles (costumes, décors, salles, plateaux, matériels) d'une représentation ou d'un tournage en fin d’année.
+           </Thirdtext> <br />
+        <Thirdtext>  Depuis sa création, la Boîte à Mômes a formé quelques centaines de comédiens amateurs, certains devenus professionnels au sein de ses ateliers, comme des écoles communales, collèges et lycées.
+           </Thirdtext>
+      </Thirdscreen>
+        
+     
 <Footer/>
 
 

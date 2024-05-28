@@ -105,6 +105,7 @@ const Headertitle = styled.h1`
   font-size: 1.5rem;
   margin-right:40vw;
   color:white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 1300px) {
     display:none;
@@ -126,18 +127,17 @@ const StyledLink = styled(Link)`
 const HeaderContact = styled.li`
   margin-left: 20px;
   padding-top: 0.3vw;
-  background-color: #F36C97;
+  background-color: white;
   width: 10vw;
   text-align: center;
   border-radius: 1vw;
-  color: white;
+  color: black;
   font-size: 1.2rem;
   transition: background-color 0.3s ease;
 
   &:hover {
     cursor: pointer;
-    background-color: #F9004F;
-    font-weight: bold;
+opacity:0.5;
   }
 
   @media (min-width: 600px) and (max-width: 1600px) {
@@ -165,7 +165,7 @@ const SubMenu = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: white;
+  background-color:black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   list-style: none;
   margin: 0;
@@ -196,9 +196,11 @@ const SubMenuItem = styled.li`
   font-size: 1rem;
 
   &:hover {
-    background-color: #f0f0f0;
     cursor: pointer;
+    opacity:0.5;
   }
+
+  color:white;
 `;
 
 const Hamburger = styled.div`
@@ -283,7 +285,9 @@ function Header() {
           </SubMenu>
         </HeaderItem>
         <HeaderItem>
+        <Href href="/quisommesnous">
           Qui sommes nous ?
+          </Href>
           <SubMenu>
             <SubMenuItem>Fondatrice</SubMenuItem>
             <SubMenuItem>Nos Valeurs</SubMenuItem>

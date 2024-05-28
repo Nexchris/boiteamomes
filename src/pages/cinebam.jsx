@@ -6,11 +6,43 @@ import { Link } from 'react-router-dom';
 import Header from '../asset/header';
 import Footer from '../asset/footer';
 import { InView } from 'react-intersection-observer';
+import Offer from './offer'
+
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
 `;
+
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Ajout d'un fond semi-transparent */
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  &.disabled-pointer-events {
+    pointer-events: none;
+  }
+`;
+
+
+const CloseButton = styled.span`
+  color: white;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 250px;
+  cursor: pointer;
+  z-index:99;
+`;
+
 
 const Mainscreen = styled.div`
   position: relative;
@@ -50,6 +82,7 @@ const Maintitle = styled.h1`
     padding-top: 20vh;
   }
 `;
+
 
 const Secondscreen = styled.div`
   background-color: black;
@@ -201,7 +234,7 @@ const Offerbutton = styled.button`
   }
 
   &:hover {
-    background-color: #45a049;
+    opacity: 0.5;
   }
 `;
 
@@ -278,7 +311,20 @@ function Cinebam() {
   const [thirdProd, setThirdProd] = useState('');
   const [fourthProd, setFourthProd] = useState('');
   const [fifthProd, setFifthProd] = useState('');
+  const [overlayOpen, setOverlayOpen] = useState(false);
+  const [currentOverlay, setCurrentOverlay] = useState(null);
 
+  const openOverlay = (overlayComponent) => {
+    setOverlayOpen(true);
+    setCurrentOverlay(overlayComponent);
+  };
+
+  const closeOverlay = () => {
+    setOverlayOpen(false);
+    setCurrentOverlay(null);
+  };
+
+  
   useEffect(() => {
     const fetchIcons = async () => {
       try {
@@ -357,9 +403,13 @@ function Cinebam() {
           Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville
           fait sa rentrée scolaire en compagnie de sa petite copine Leila...
         </Offertext>
-        <Link to="/offer">
-          <Offerbutton>Voir plus</Offerbutton>
-        </Link>
+          <Offerbutton onClick={() => openOverlay(<Offer />)}>Voir plus</Offerbutton>
+          {overlayOpen && (
+  <Overlay isOpen={overlayOpen} className={overlayOpen ? 'disabled-pointer-events' : ''}>
+    {currentOverlay}
+    <CloseButton onClick={closeOverlay}>&times;</CloseButton>
+  </Overlay>
+)}
       </Offerdiv>
     </Prodcontainer>
   )}
