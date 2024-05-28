@@ -1,0 +1,28 @@
+[debug] [2024-05-28T21:54:43.051Z] ----------------------------------------------------------------------
+[debug] [2024-05-28T21:54:43.057Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ngaba\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init functions
+[debug] [2024-05-28T21:54:43.058Z] CLI Version:   13.10.2
+[debug] [2024-05-28T21:54:43.059Z] Platform:      win32
+[debug] [2024-05-28T21:54:43.059Z] Node Version:  v20.11.1
+[debug] [2024-05-28T21:54:43.059Z] Time:          Tue May 28 2024 23:54:43 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2024-05-28T21:54:43.060Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-28T21:54:43.083Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-28T21:54:43.085Z] > authorizing via signed-in user (ngabalachris@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\ngaba\OneDrive\Documents\WORK\boiteamomes
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 

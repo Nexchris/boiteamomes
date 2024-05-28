@@ -471,7 +471,7 @@ function Cinebam() {
           <br />
         </Offertext>
         <Link to="/offer">
-          <Offerbutton>Cliquer</Offerbutton>
+          <Offerbutton>Voir Plus</Offerbutton>
         </Link>
       </Offerdiv>
     </Prodcontainer>

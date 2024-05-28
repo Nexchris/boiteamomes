@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/HomeScreen';
 import Login from './backend/LoginScreen';
+import Contact from './pages/ContactScreen'
 import Test from './backend/test';
 import Back from './backend/Backoffice';
 import Cinebam from './pages/cinebam';
@@ -35,6 +36,7 @@ function App() {
             <Route path="/backoffice" element={<Back />} /> {/* Route vers Backoffice */}
             <Route path="/quisommesnous" element={<Quisommesnous />} /> {/* Route vers Quisommesnous */}
             <Route path="/test" element={<Test />} /> {/* Route vers Quisommesnous */}
+            <Route path="/contact" element={<Contact />} /> {/* Route vers Quisommesnous */}
           </Routes>
         </VideoURLProvider>
       </Router>

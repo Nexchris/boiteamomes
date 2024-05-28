@@ -293,7 +293,9 @@ function Header() {
             <SubMenuItem>Nos Valeurs</SubMenuItem>
           </SubMenu>
         </HeaderItem>
+        <Href href="/Contact">
         <HeaderContact>Nous Contacter</HeaderContact>
+        </Href>
       </HeaderList>
     </StyledHeader>
   );
