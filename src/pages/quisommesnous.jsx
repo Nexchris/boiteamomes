@@ -22,6 +22,9 @@ const Mainscreen = styled.div`
 background-color: #F36C97;
   width: 100vw;
   height: 100vh;
+  @media (max-width: 768px) {
+    height: 50vh;
+  }
 `;
 
 
@@ -30,6 +33,10 @@ const Secondscreen = styled.div`
   height: 100vh;
   display: flex; 
   background-color: black;
+  @media (max-width: 768px) {
+    display:block;
+    height: auto; 
+  }
 `;
 
 const Thirdscreen = styled.div`
@@ -37,15 +44,23 @@ background-color: black;
   width: 100vw;
   margin-top: -10vh;
   padding-bottom:5vh;
+  @media (max-width: 768px) {
+   margin: 0;
+   
+  }
+  
 
 `;
 
 const Maintitle = styled.h1`
   font-size: 20vh;
-
   padding-top: 5vh;
   text-align: center;
   margin:0;
+  @media (max-width: 768px) {
+    font-size: xxx-large;
+  padding-top: 20vh;
+  }
 `;
 
 const Secondtitle = styled.h2`
@@ -55,6 +70,11 @@ color: white;
 margin:0;
 margin-left: 15vh;
 margin-top:5vh;
+@media (max-width: 768px) {
+  font-size: xx-large;
+  margin-left: 6vh;
+
+}
 `;
 
 const Thirdtitle = styled.h3`
@@ -79,7 +99,13 @@ const Secondtext = styled.div`
   font-size: 3vh;
   width: 70%;
   color: white;
- 
+  @media (max-width: 768px) {
+    margin-left: 6vh;
+    font-size: larger;
+    width: 80%;
+    text-align: center;
+  
+  }
 `;
 
 const Thirdtext = styled.div`
@@ -88,7 +114,14 @@ background-color:black;
   font-size: 3vh;
   color: white;
   width: 80vw;
-  text
+  @media (max-width: 768px) {
+    margin-left: 6vh;
+    font-size: larger;
+    width: 80%;
+    text-align: center;
+  
+  }
+
  
 `;
 
@@ -104,11 +137,21 @@ const Image = styled.img`
   width: 100%; /* Vous pouvez ajuster cette valeur selon vos besoins */
   
   margin-right:0vh;
+  @media (max-width: 768px) {
+    margin-left: 7vw;
+    margin-top: 5vh;
+    width: 85%;
+  }
+
+
 `;
 
 const ImageContainer = styled.div`
 margin-left: 10vh;
 margin-top: 5vh;
+@media (max-width: 768px) {
+  margin:0;
+}
 `;
 
 const Offercontainer = styled.div`
@@ -184,6 +227,7 @@ const [data, setData] = useState(null);
     fetchData();
   }, []);
   return (
+    <>
     <Container>
     <Header />
       <Mainscreen>
@@ -192,10 +236,18 @@ const [data, setData] = useState(null);
 
 
       <Secondscreen>
-        
-      <ImageContainer>
-          <Image src={Image1} alt="" />
-        </ImageContainer>
+      
+      <InView threshold={0.5}>
+  {({ ref, inView }) => (
+    <ImageContainer
+      ref={ref}
+      style={{ opacity: inView ? 1 : 0, transition: 'opacity 1.5s ease-in-out' }}
+    >
+      <Image src={Image1} alt="" />
+    </ImageContainer>
+  )}
+</InView>
+
         <Secondcontent>
       <Secondtitle>{"La Boite a Momes"}</Secondtitle>
       <InView threshold={0.5}>
@@ -209,18 +261,48 @@ const [data, setData] = useState(null);
 
 
         <br />
-        <Secondtext>Depuis 2016, l'association a créé CinéBAM, à la fois atelier de cinéma à destination des adolescents et structure de production de courts-métrages professionnels.</Secondtext>
+        <InView threshold={0.5}>
+          {({ ref, inView }) => (
+            <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
+              {/* Add the style prop here */}
+              Depuis 2016, l'association a créé CinéBAM, à la fois atelier de cinéma à destination des adolescents et structure de production de courts-métrages professionnels.
+            </Secondtext>
+          )}
+        </InView>
+
         <br />
-        <Secondtext>L’association a pour objet l’enseignement du théâtre, de l'actorat et du tournage en ateliers inspirés par les méthodes de Constantin STANISLAVSKI et revisitées par Lee STRASBERG à l’Actors Studio.</Secondtext>
+
+        <InView threshold={0.5}>
+          {({ ref, inView }) => (
+            <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
+              {/* Add the style prop here */}
+              L’association a pour objet l’enseignement du théâtre, de l'actorat et du tournage en ateliers inspirés par les méthodes de Constantin STANISLAVSKI et revisitées par Lee STRASBERG à l’Actors Studio.
+            </Secondtext>
+          )}
+        </InView>
+       
         <br />
         
         </Secondcontent>
       </Secondscreen>
       <Thirdscreen>
-      <Thirdtext> Chaque année, la Boîte à Mômes et CinéBam s’engagent à créer et produire des spectacles et films courts originaux. L'objectif donné est d'initier ses élèves aux conditions réelles et professionnelles (costumes, décors, salles, plateaux, matériels) d'une représentation ou d'un tournage en fin d’année.
-           </Thirdtext> <br />
-        <Thirdtext>  Depuis sa création, la Boîte à Mômes a formé quelques centaines de comédiens amateurs, certains devenus professionnels au sein de ses ateliers, comme des écoles communales, collèges et lycées.
-           </Thirdtext>
+      <InView threshold={0.5}>
+          {({ ref, inView }) => (
+            <Thirdtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
+              {/* Add the style prop here */}
+              Chaque année, la Boîte à Mômes et CinéBam s’engagent à créer et produire des spectacles et films courts originaux. L'objectif donné est d'initier ses élèves aux conditions réelles et professionnelles (costumes, décors, salles, plateaux, matériels) d'une représentation ou d'un tournage en fin d’année.
+            </Thirdtext>
+          )}
+        </InView>
+       <br />
+       <InView threshold={0.5}>
+          {({ ref, inView }) => (
+            <Thirdtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
+              {/* Add the style prop here */}
+              Depuis sa création, la Boîte à Mômes a formé quelques centaines de comédiens amateurs, certains devenus professionnels au sein de ses ateliers, comme des écoles communales, collèges et lycées.
+            </Thirdtext>
+          )}
+        </InView>
       </Thirdscreen>
         
      
@@ -228,6 +310,7 @@ const [data, setData] = useState(null);
 
 
     </Container>
+    </>
   );
 }
 
