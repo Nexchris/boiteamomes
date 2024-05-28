@@ -73,6 +73,7 @@ margin-top:5vh;
 @media (max-width: 768px) {
   font-size: xx-large;
   margin-left: 6vh;
+  display: none;
 
 }
 `;
@@ -140,6 +141,7 @@ const Image = styled.img`
   @media (max-width: 768px) {
     margin-left: 7vw;
     margin-top: 5vh;
+    margin-bottom: 3vh;
     width: 85%;
   }
 
@@ -237,16 +239,12 @@ const [data, setData] = useState(null);
 
       <Secondscreen>
       
-      <InView threshold={0.5}>
-  {({ ref, inView }) => (
+ 
     <ImageContainer
-      ref={ref}
-      style={{ opacity: inView ? 1 : 0, transition: 'opacity 1.5s ease-in-out' }}
+      
     >
       <Image src={Image1} alt="" />
     </ImageContainer>
-  )}
-</InView>
 
         <Secondcontent>
       <Secondtitle>{"La Boite a Momes"}</Secondtitle>
