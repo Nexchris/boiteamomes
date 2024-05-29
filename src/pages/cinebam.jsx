@@ -403,13 +403,9 @@ function Cinebam() {
           Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville
           fait sa rentrée scolaire en compagnie de sa petite copine Leila...
         </Offertext>
-          <Offerbutton onClick={() => openOverlay(<Offer />)}>Voir plus</Offerbutton>
-          {overlayOpen && (
-  <Overlay isOpen={overlayOpen} className={overlayOpen ? 'disabled-pointer-events' : ''}>
-    {currentOverlay}
-    <CloseButton onClick={closeOverlay}>&times;</CloseButton>
-  </Overlay>
-)}
+          <Link to="/offer">
+          <Offerbutton>Voir Plus</Offerbutton>
+        </Link>
       </Offerdiv>
     </Prodcontainer>
   )}

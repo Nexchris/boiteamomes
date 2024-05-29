@@ -87,7 +87,7 @@ font-weight:bold;
 font-size:1.5vw;
 color:white;
 top:72%;
-left:25%;
+left:45%;
 animation: ${fadeIn} 2s;
 `
 const LinkButton = styled.button`
@@ -230,13 +230,14 @@ function Offer() {
 
   return (
 <>
-<Title>La Rixe</Title>
-<Date>2023</Date>
+<Title>Sous Tension</Title>
+<Date>2022</Date>
 <Author>Mireille Fiévet</Author>
-<Story>Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville, fait sa rentrée scolaire en compagnie de sa petite copine Leïla. Devant la grille du lycée, Djibril, l’ex de Leïla, vient provoquer le jeune couple sous le regard de sa bande. Une rixe s’impose…</Story>
-<State>[ En post-production] <br />
-Court-métrage — 11mn — Drame — 2024 </State>
+<Story>Carole et Paul vivent avec leurs 3 enfants dans un magnifique appartement parisien. Au fil des années, Carole découvre un mari devenu possessif, jaloux et paranoiaque. Résister au joug et à l’autoritarisme du père est de plus en plus difficile et dangereux pour l’équilibre de la famille, mais Carole envisage de se séparer de lui.</Story>
+<State style ={{width:'25vw'}}>Court-métrage — 20mn — Drame familial - 2022
+    <br /> ( déconseillé aux -12 ans )</State>
       <LinkButton>Voir le Making-Of</LinkButton>
+      <LinkButton style={{ top: '90vh', left: '79vw' }}>Voir la Vidéo</LinkButton>
       <Slider images={sliderImages} />
 
     </>
