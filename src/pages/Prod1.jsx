@@ -46,52 +46,58 @@ const CloseButton = styled.div`
   }
 `;
 
-const Title = styled.div`
+const Titleprod = styled.div`
 position: absolute;
 z-index:1;
 font-weight:bold;
-font-size:5vw;
+font-size:8vw;
 color:white;
-top:65%;
+top:55%;
 left:5%;
 animation: ${fadeIn} 2s; // Appliquer l'animation fade-in
 `
-const Story = styled.div`
+
+
+const Titleanddate = styled.div`
+display: flex;
+`
+const Storyprod = styled.div`
 position: absolute;
 z-index:1;
 font-weight:bold;
-font-size:1vw;
-width:45%;
+font-size:1.2vw;
+width:55%;
 color:white;
-top:85%;
+top:83%;
 left:5%;
 animation: ${fadeIn} 2s;
 `
 
-const Author = styled.div`
+const Authorprod = styled.div`
 position: absolute;
 z-index:1;
 font-weight:bold;
-font-size:1.5vw;
+font-size:2.5vw;
 color:white;
-top:79%;
+top:75%;
 left:5%;
 animation: ${fadeIn} 2s;
 `
 
 
-const Date = styled.div`
+const Dateprod = styled.div`
 position: absolute;
 z-index:1;
 font-weight:bold;
-font-size:1.5vw;
+font-size:3vw;
 color:white;
-top:72%;
-left:25%;
+top:65%;
+left:80%;
 animation: ${fadeIn} 2s;
 `
 const LinkButton = styled.button`
 position: absolute;
+cursor: pointer;
 z-index:1;
 font-weight:bold;
 font-size:2vw;
@@ -100,8 +106,8 @@ padding-left:1vw;
 padding-right:1vw;
 background-color: black;
 color:white;
-top:82%;
-left:77%;
+top:87%;
+left:75%;
 animation: ${fadeIn} 2s;
 &:hover{
   opacity:0.6;
@@ -125,8 +131,11 @@ font-weight:bold;
 font-size:1vw;
 color:white;
 text-align:center;
-top:72%;
-left:75%`
+top:75%;
+left: 76%;
+width: 15%;
+`
+
 
 
 
@@ -188,8 +197,15 @@ position: absolute;
   z-index:1;
 `
 
-function Offer() {
+function Prod1() {
   const [sliderImages, setSliderImages] = useState([]);
+  const [Title, setTitle] = useState('');
+  const [Date, setDate] = useState('');
+  const [Author, setAuthor] = useState('');
+  const [Info, setInfo] = useState('');
+  const [Data, setData] = useState('');
+  const [Buttontext, setButtontext] = useState('');
+  const [Urlbutton, setUrlButton] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -211,6 +227,14 @@ function Offer() {
           ];
           setSliderImages(images);
 
+          setTitle(documentData.title);
+          setDate(documentData.date);
+          setAuthor(documentData.author);
+          setInfo(documentData.info);
+          setData(documentData.metadata);
+          setButtontext(documentData.buttontext);
+          setUrlButton(documentData.urlbutton)
+
           // Log each image URL for debugging
           console.log("Slider 1 URL:", documentData.slide1);
           console.log("Slider 2 URL:", documentData.slide2);
@@ -230,17 +254,18 @@ function Offer() {
 
   return (
 <>
-<Title>La Rixe</Title>
-<Date>2023</Date>
-<Author>Mireille Fiévet</Author>
-<Story>Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville, fait sa rentrée scolaire en compagnie de sa petite copine Leïla. Devant la grille du lycée, Djibril, l’ex de Leïla, vient provoquer le jeune couple sous le regard de sa bande. Une rixe s’impose…</Story>
-<State>[ En post-production] <br />
-Court-métrage — 11mn — Drame — 2024 </State>
-      <LinkButton>Voir le Making-Of</LinkButton>
+<Titleprod>{Title}</Titleprod>
+<Dateprod>{Date}</Dateprod>
+<Authorprod>{Author}</Authorprod>
+<Storyprod>{Info}</Storyprod>
+<State>{Data}</State>
+<a href={Urlbutton}>
+      <LinkButton>{Buttontext}</LinkButton>
+      </a>
       <Slider images={sliderImages} />
 
     </>
   
   );
 }
-export default Offer;
+export default Prod1;

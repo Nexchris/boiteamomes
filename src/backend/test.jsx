@@ -67,6 +67,16 @@ const Label = styled.label`
   margin-bottom: 5px;
 `;
 
+
+const HomeContainer = styled.div`
+display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+`
+
+
 const Test = () => {
   const [data, setData] = useState(null);
   const [inputs, setInputs] = useState({
@@ -77,6 +87,7 @@ const Test = () => {
     urlvideoright: '',
     leftcontent: '',
     rightcontent: ''
+
   });
   const [user, setUser] = useState(null);
 
@@ -141,7 +152,7 @@ const Test = () => {
         Ceci est un texte en bleu.
       </BlueText>
       {data ? (
-        <div>
+        <HomeContainer>
           {Object.keys(inputs).map((key) => (
             <InputGroup key={key}>
               <Label>{key}</Label> {/* Ajout du label */}
@@ -155,7 +166,7 @@ const Test = () => {
               <StyledButton onClick={() => handleUpdate(key)}>Change</StyledButton>
             </InputGroup>
           ))}
-        </div>
+        </HomeContainer>
       ) : (
         <p>Loading data...</p>
       )}

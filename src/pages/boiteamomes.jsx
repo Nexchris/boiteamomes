@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { storage } from '../firebaseConfig'; 
 import { ref, getDownloadURL } from "firebase/storage";
 import styled, { keyframes } from 'styled-components';
+
 import { Link } from 'react-router-dom';
 import Header from '../asset/header';
 import Footer from '../asset/footer';
 import { InView } from 'react-intersection-observer';
-import Offer from './offer'
+import Prod1 from './Prod1'
 
 
 const Container = styled.div`
@@ -403,7 +404,7 @@ function Boiteamomes() {
           Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville
           fait sa rentrée scolaire en compagnie de sa petite copine Leila...
         </Offertext>
-          <Offerbutton onClick={() => openOverlay(<Offer />)}>Voir plus</Offerbutton>
+        
           {overlayOpen && (
   <Overlay isOpen={overlayOpen} className={overlayOpen ? 'disabled-pointer-events' : ''}>
     {currentOverlay}

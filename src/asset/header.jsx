@@ -275,7 +275,7 @@ function Header() {
         </HeaderItem>
         <HeaderItem>
         <Href href="/cinebam">
-  Cinébam
+  CinéBAM
 </Href>
 
           <SubMenu>

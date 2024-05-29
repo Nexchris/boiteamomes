@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import Header from '../asset/header';
 import Footer from '../asset/footer';
 import { InView } from 'react-intersection-observer';
-import Offer from './offer'
+import Prod1 from './Prod1'
+import Prod2 from './Prod2'
 
 
 const Container = styled.div`
@@ -363,7 +364,7 @@ function Cinebam() {
 <Container>
       <Header />
       <Mainscreen backgroundImage={background}>
-        <Maintitle>Cinebam</Maintitle>
+        <Maintitle>CinéBAM</Maintitle>
       </Mainscreen>
 
       <Secondscreen>
@@ -403,7 +404,7 @@ function Cinebam() {
           Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville
           fait sa rentrée scolaire en compagnie de sa petite copine Leila...
         </Offertext>
-          <Link to="/offer">
+          <Link to="/prod1">
           <Offerbutton>Voir Plus</Offerbutton>
         </Link>
       </Offerdiv>
@@ -434,7 +435,7 @@ function Cinebam() {
           Issam, 16 ans, rêve de devenir un grand danseur. Entouré de son
           coach et de ses amis, il prépare une audition pour...
         </Offertext>
-        <Link to="/offer">
+        <Link to="/prod2">
           <Offerbutton>Voir Plus</Offerbutton>
         </Link>
       </Reverseofferdiv>
