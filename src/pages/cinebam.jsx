@@ -467,7 +467,7 @@ function Cinebam() {
           appartement parisien. Au fil des années, Carole découvre ...
           <br />
         </Offertext>
-        <Link to="/offer">
+        <Link to="/prod3">
           <Offerbutton>Voir Plus</Offerbutton>
         </Link>
       </Offerdiv>
@@ -499,7 +499,7 @@ function Cinebam() {
           s’éclate et le buffet est parfait. Seulement Eva est la grande
           absente...<br />
         </Offertext>
-        <Link to="/offer">
+        <Link to="/prod4">
           <Offerbutton>Voir plus</Offerbutton>
         </Link>
       </Reverseofferdiv>
@@ -530,7 +530,7 @@ function Cinebam() {
           Vendredi soir. Un soir de détente, on boit un verre, on règle
           nos comptes en se disant ... <br />
         </Offertext>
-        <Link to="/offer">
+        <Link to="/prod5">
           <Offerbutton>Voir Plus</Offerbutton>
         </Link>
       </Offerdiv>

@@ -23,6 +23,9 @@ const StyledFullWidthImage = styled.img`
   object-fit: cover;
   height:100vh;
   width:100vw;
+  @media (max-width: 768px) {
+    height: fit-content;
+  }
 `;
 
 const CloseButton = styled.div`
@@ -50,9 +53,9 @@ const Titleprod = styled.div`
 position: absolute;
 z-index:1;
 font-weight:bold;
-font-size:8vw;
+font-size:100px;
 color:white;
-top:55%;
+top:62%;
 left:5%;
 animation: ${fadeIn} 2s; // Appliquer l'animation fade-in
 `
@@ -96,23 +99,24 @@ left:80%;
 animation: ${fadeIn} 2s;
 `
 const LinkButton = styled.button`
-position: absolute;
-cursor: pointer;
-z-index:1;
-font-weight:bold;
-font-size:2vw;
-border-radius:2vh;
-padding-left:1vw;
-padding-right:1vw;
-background-color: black;
-color:white;
-top:87%;
-left:75%;
-animation: ${fadeIn} 2s;
-&:hover{
-  opacity:0.6;
-}
-`
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+  font-weight: bold;
+  font-size: 2vw;
+  border-radius: 2vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  background-color: black;
+  color: white;
+  top: 87%;
+  left: 76%;
+  animation: ${fadeIn} 2s;
+  &:hover {
+    opacity: 0.6;
+  }
+`;
+
 const StyledOverlay = styled.div`
   position: absolute;
   top: 0;

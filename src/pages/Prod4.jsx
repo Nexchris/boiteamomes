@@ -14,15 +14,14 @@ const fadeIn = keyframes`
   }
 `;
 
-
 const StyledMainscreen = styled.div`
   position: fixed;
 `;
 
 const StyledFullWidthImage = styled.img`
   object-fit: cover;
-  height:100vh;
-  width:100vw;
+  height: 100vh;
+  width: 100vw;
   @media (max-width: 768px) {
     height: fit-content;
   }
@@ -43,7 +42,7 @@ const CloseButton = styled.div`
   font-weight: bold;
   cursor: pointer;
   border-radius: 50%;
-  z-index:1;
+  z-index: 1;
   &:before {
     content: '✕';
   }
@@ -59,11 +58,10 @@ top:62%;
 left:5%;
 animation: ${fadeIn} 2s; // Appliquer l'animation fade-in
 `
-
-
 const Titleanddate = styled.div`
-display: flex;
-`
+  display: flex;
+`;
+
 const Storyprod = styled.div`
   position: absolute;
   z-index: 1;
@@ -77,45 +75,44 @@ const Storyprod = styled.div`
 `;
 
 const Authorprod = styled.div`
-position: absolute;
-z-index:1;
-font-weight:bold;
-font-size:2.5vw;
-color:white;
-top:75%;
-left:5%;
-animation: ${fadeIn} 2s;
-`
-
-
-const Dateprod = styled.div`
-position: absolute;
-z-index:1;
-font-weight:bold;
-font-size:3vw;
-color:white;
-top:65%;
-left:80%;
-animation: ${fadeIn} 2s;
-`
-
-const LinkButton = styled.button`
   position: absolute;
-  cursor: pointer;
   z-index: 1;
   font-weight: bold;
-  font-size: 2vw;
-  border-radius: 2vh;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  background-color: black;
+  font-size: 2.5vw;
   color: white;
-  top: 87%;
-  left: 76%;
+  top: 76%;
+  left: 5%;
   animation: ${fadeIn} 2s;
-  &:hover {
-    opacity: 0.6;
-  }
+`;
+
+const Dateprod = styled.div`
+  position: absolute;
+  z-index: 1;
+  font-weight: bold;
+  font-size: 3vw;
+  color: white;
+  top: 65%;
+  left: 80%;
+  animation: ${fadeIn} 2s;
+`;
+
+const LinkButton = styled.button`
+position: absolute;
+cursor: pointer;
+z-index: 1;
+font-weight: bold;
+font-size: 2vw;
+border-radius: 2vh;
+padding-left: 2vw;
+padding-right: 2vw;
+background-color: black;
+color: white;
+top: 87%;
+left: 76%;
+animation: ${fadeIn} 2s;
+&:hover {
+  opacity: 0.6;
+}
 `;
 
 const StyledOverlay = styled.div`
@@ -124,25 +121,22 @@ const StyledOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); // Adjust the opacity by changing the fourth parameter of rgba()
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 `;
 
 const State = styled.div`
-position: absolute;
-z-index:1;
-animation: ${fadeIn} 2s;
-font-weight:bold;
-font-size:1vw;
-color:white;
-text-align:center;
-top:75%;
-left: 76%;
-width: 15%;
-`
-
-
-
+  position: absolute;
+  z-index: 1;
+  animation: ${fadeIn} 2s;
+  font-weight: bold;
+  font-size: 1vw;
+  color: white;
+  text-align: center;
+  top: 75%;
+  left: 76%;
+  width: 15%;
+`;
 
 const Slider = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -162,8 +156,8 @@ const Slider = ({ images }) => {
       <StyledFullWidthImage src={images[currentImageIndex]} alt={`Slide ${currentImageIndex + 1}`} />
       <StyledOverlay />
       <Href href="/cinebam">
-      <CloseButton/>
-          </Href>
+        <CloseButton />
+      </Href>
       <LeftBack onClick={goToPreviousImage}>{"<"}</LeftBack>
       <RightBack onClick={goToNextImage}>{">"}</RightBack>
     </StyledMainscreen>
@@ -180,17 +174,16 @@ const LeftBack = styled.div`
   font-weight: 600;
   color: white;
   cursor: pointer;
-  z-index:1;
+  z-index: 1;
 `;
-
 
 const Href = styled.a`
   text-decoration: none;
-  color:white;
+  color: white;
 `;
 
 const RightBack = styled.div`
-position: absolute;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
   margin-left: 95vw;
@@ -199,10 +192,10 @@ position: absolute;
   font-weight: 600;
   color: white;
   cursor: pointer;
-  z-index:1;
-`
+  z-index: 1;
+`;
 
-function Prod1() {
+function Prod4() {
   const [sliderImages, setSliderImages] = useState([]);
   const [Title, setTitle] = useState('');
   const [Date, setDate] = useState('');
@@ -214,7 +207,7 @@ function Prod1() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(firestore, "storage", "prodcontent1");
+      const docRef = doc(firestore, "storage", "prodcontent4");
       try {
         const docSnap = await getDoc(docRef);
 
@@ -238,7 +231,7 @@ function Prod1() {
           setInfo(documentData.info);
           setData(documentData.metadata);
           setButtontext(documentData.buttontext);
-          setUrlButton(documentData.urlbutton)
+          setUrlButton(documentData.urlbutton);
 
           // Log each image URL for debugging
           console.log("Slider 1 URL:", documentData.slide1);
@@ -258,20 +251,20 @@ function Prod1() {
   }, []);
 
   return (
-<>
-<Titleprod>{Title}</Titleprod>
-<Dateprod>{Date}</Dateprod>
-<Authorprod>{Author}</Authorprod>
-<Storyprod>{Info}</Storyprod>
-<State>{Data}</State>
-<a href={Urlbutton}>
-      <LinkButton>{Buttontext}</LinkButton>
-      </a>
+    <>
+      <Titleprod>{Title}</Titleprod>
+      <Dateprod>{Date}</Dateprod>
+      <Authorprod>{Author}</Authorprod>
+      <Storyprod>{Info}</Storyprod>
+      <State>{Data}</State>
+      {Buttontext && Urlbutton && (
+        <a href={Urlbutton}>
+          <LinkButton>{Buttontext}</LinkButton>
+        </a>
+      )}
       <Slider images={sliderImages} />
-
     </>
-  
   );
 }
-export default Prod1;
 
+export default Prod4;
