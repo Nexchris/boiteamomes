@@ -13,6 +13,7 @@ import Prod2 from './Prod2'
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 `;
 
 

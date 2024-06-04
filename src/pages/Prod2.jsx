@@ -15,9 +15,17 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
+overflow-x: hidden;
   @media (min-width: 768px) {
     flex-direction: row; /* En ligne pour les écrans plus larges */
   }
+`;
+
+const Headercontainer = styled.div`
+margin-bottom: 10vh;
+@media (min-width: 768px) {
+ display:none;
+}
 `;
 
 const SliderWrapper = styled.div`
@@ -132,6 +140,8 @@ const Storyprod = styled.div`
   @media (max-width: 768px) {
     width:auto;
     font-size:larger;
+    padding-right: 3vh;
+    padding-left: 3vh;
   }
 `;
 
@@ -224,13 +234,9 @@ const LeftBack = styled.div`
   color: white;
   cursor: pointer;
   z-index: 1;
-`;
-
-
-
-const Href = styled.a`
-  text-decoration: none;
-  color: white;
+  @media (max-width: 768px) {
+    margin-left: 2vh;
+  }
 `;
 
 const RightBack = styled.div`
@@ -244,7 +250,17 @@ const RightBack = styled.div`
   color: white;
   cursor: pointer;
   z-index: 1;
+  @media (max-width: 768px) {
+    margin-left: 88vw;
+  }
 `;
+
+
+const Href = styled.a`
+  text-decoration: none;
+  color: white;
+`;
+
 
 const StyledContainer = styled.div`
   display: flex;
@@ -309,6 +325,9 @@ function Prod4() {
 
   return (
     <>
+    <Headercontainer>
+    <Header />
+    </Headercontainer>
  <Container>
     <LeftZone>
       <Titleprod>{Title}</Titleprod>
