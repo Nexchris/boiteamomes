@@ -1,32 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
-import { firestore } from '../firebaseConfig'; // Assurez-vous que le chemin est correct
+import { doc, getDoc } from "firebase/firestore";
+import { firestore } from "../firebaseConfig";
 import { Link } from 'react-router-dom';
 import 'animate.css';
 import BAM from '../images/logo.png';
+
+
 const StyledHeader = styled.div`
-  width: 99vw;
+  width: auto;
   height: 10vh;
-  background-color: black;
+  background-color: ${props => props.bgColor || 'black'};
   display: flex;
   align-items: center;
- 
-
-  @media (max-width: 1600px)
- {
-  
-    width:100vw;
+  @media (max-width: 1600px) {
+    width: 100vw;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 999;
-    justify-content: center; /* Correction ici */
+    justify-content: center;
   }
-  
-
 `;
-
 
 
 const Logo = styled.img`
@@ -231,9 +227,56 @@ const Href = styled.a`
 `;
 
 
-function Header() {
+function Header({ bgColor }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [Title, setTitle] = useState('');
+  const [Menu1, setMenu1] = useState('');
+  const [Menu2, setMenu2] = useState('');
+  const [Menu3, setMenu3] = useState('');
+  const [Prod1, setProd1] = useState('');
+  const [Prod2, setProd2] = useState('');
+  const [Prod3, setProd3] = useState('');
+  const [Prod4, setProd4] = useState('');
+  const [Prod5, setProd5] = useState('');
 
+  const [ContactButton, setContactButton] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const docRef = doc(firestore, "storage", "header");
+      try {
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const documentData = docSnap.data();
+          console.log("Document data:", documentData);
+
+          setTitle(documentData.title);
+          setMenu1(documentData.menu1);
+
+
+          setMenu2(documentData.menu2);
+          setProd1(documentData.prod1);
+          setProd2(documentData.prod2);
+          setProd3(documentData.prod3);
+          setProd4(documentData.prod4);
+          setProd5(documentData.prod5);
+
+
+
+          setMenu3(documentData.menu3);
+          
+          setContactButton(documentData.contactbutton);
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching document:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const [headerTitle, setHeaderTitle] = useState(''); // Titre par défaut
 
@@ -245,7 +288,7 @@ function Header() {
 
 
   return (
-    <StyledHeader>
+    <StyledHeader bgColor={bgColor}>
       <Hamburger onClick={toggleMenu}>
         <div></div>
         <div></div>
@@ -255,7 +298,7 @@ function Header() {
       <Logo src={BAM} alt="Logo" />
 </Href>
 <Href href="/">
-<Headertitle>Bôite à mômes</Headertitle>
+<Headertitle>{Title}</Headertitle>
 </Href>
   
       <HeaderList isOpen={isOpen}>
@@ -265,7 +308,7 @@ function Header() {
     
         <HeaderItem>
         <Href href="/boiteamomes">
-        Boite à momes
+       {Menu1}
 </Href>
           <SubMenu>
             <SubMenuItem>Atélier Enfants</SubMenuItem>
@@ -275,18 +318,38 @@ function Header() {
         </HeaderItem>
         <HeaderItem>
         <Href href="/cinebam">
-  CinéBAM
+{Menu2}
 </Href>
 
           <SubMenu>
-            <SubMenuItem>La Rixe</SubMenuItem>
-            <SubMenuItem>Fausses Rumeurs</SubMenuItem>
-            <SubMenuItem>Happy Birthday</SubMenuItem>
+            <Href href="./Prod1">
+            <SubMenuItem>{Prod1}</SubMenuItem>
+            </Href>
+
+
+
+            <Href href="./Prod2">
+            <SubMenuItem>{Prod2}</SubMenuItem>
+            </Href>
+
+
+            <Href href="./Prod3">
+            <SubMenuItem>{Prod3}</SubMenuItem>
+            </Href>
+
+            <Href href="./Prod4">
+            <SubMenuItem>{Prod4}</SubMenuItem>
+            </Href>
+
+            <Href href="./Prod5">
+            <SubMenuItem>{Prod5}</SubMenuItem>
+            </Href>
+
           </SubMenu>
         </HeaderItem>
         <HeaderItem>
         <Href href="/quisommesnous">
-          Qui sommes nous ?
+      {Menu3}
           </Href>
           <SubMenu>
             <SubMenuItem>Fondatrice</SubMenuItem>

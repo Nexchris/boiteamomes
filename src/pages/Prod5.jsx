@@ -48,26 +48,42 @@ const CloseButton = styled.div`
   }
 `;
 
+const LeftZone = styled.div`
+position: absolute;
+z-index: 1;
+top: 65%;
+left: 5%;
+`;
+
+const RightZone = styled.div`
+position: absolute;
+z-index: 1;
+top: 64%;
+left: 75%;
+text-align:center;
+width:15vw;
+`;
+
 const Titleprod = styled.div`
-  position: absolute;
-  z-index: 1;
+
+font-weight:bold;
+font-size:6vh;
+color:white;
+top:62%;
+left:5%;
+animation: ${fadeIn} 2s; // Appliquer l'animation fade-in
+`
+const Authorprod = styled.div`
   font-weight: bold;
-  font-size: 55px;
+  font-size: 4vh;
   color: white;
-  top: 65%;
+  top: 76%;
   left: 5%;
   animation: ${fadeIn} 2s;
 `;
 
-const Titleanddate = styled.div`
-  display: flex;
-`;
-
 const Storyprod = styled.div`
-  position: absolute;
-  z-index: 1;
-  font-weight: bold;
-  font-size: 1.2vw;
+  font-size: 2.5vh;
   width: 55%;
   color: white;
   top: 83%;
@@ -75,45 +91,38 @@ const Storyprod = styled.div`
   animation: ${fadeIn} 2s;
 `;
 
-const Authorprod = styled.div`
-  position: absolute;
-  z-index: 1;
+const Dateprod = styled.div`
   font-weight: bold;
-  font-size: 2.5vw;
+  font-size: 6vh;
   color: white;
-  top: 75%;
-  left: 5%;
+  margin-bottom:1vh;
   animation: ${fadeIn} 2s;
 `;
 
-const Dateprod = styled.div`
-  position: absolute;
-  z-index: 1;
-  font-weight: bold;
-  font-size: 3vw;
-  color: white;
-  top: 65%;
-  left: 80%;
+const State = styled.div`
   animation: ${fadeIn} 2s;
+  font-weight: bold;
+  font-size: 2.5vh;
+  color: white;
+  margin-bottom:1vh;
 `;
 
 const LinkButton = styled.button`
-  position: absolute;
-  cursor: pointer;
-  z-index: 1;
-  font-weight: bold;
-  font-size: 2vw;
-  border-radius: 2vh;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  background-color: black;
-  color: white;
-  top: 87%;
-  left: 76%;
-  animation: ${fadeIn} 2s;
-  &:hover {
-    opacity: 0.6;
-  }
+cursor: pointer;
+font-weight: bold;
+font-size: 2vw;
+border-radius: 2vh;
+margin-top:1vh;
+padding-left: 1vw;
+padding-right: 1vw;
+background-color: black;
+color: white;
+top: 87%;
+left: 76%;
+animation: ${fadeIn} 2s;
+&:hover {
+  opacity: 0.6;
+}
 `;
 
 const StyledOverlay = styled.div`
@@ -126,18 +135,6 @@ const StyledOverlay = styled.div`
   z-index: 1;
 `;
 
-const State = styled.div`
-  position: absolute;
-  z-index: 1;
-  animation: ${fadeIn} 2s;
-  font-weight: bold;
-  font-size: 1vw;
-  color: white;
-  text-align: center;
-  top: 75%;
-  left: 76%;
-  width: 15%;
-`;
 
 const Slider = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -178,6 +175,8 @@ const LeftBack = styled.div`
   z-index: 1;
 `;
 
+
+
 const Href = styled.a`
   text-decoration: none;
   color: white;
@@ -196,7 +195,7 @@ const RightBack = styled.div`
   z-index: 1;
 `;
 
-function Prod5() {
+function Prod4() {
   const [sliderImages, setSliderImages] = useState([]);
   const [Title, setTitle] = useState('');
   const [Date, setDate] = useState('');
@@ -253,18 +252,24 @@ function Prod5() {
 
   return (
     <>
-    <Titleprod>{Title}</Titleprod>
-    <Dateprod>{Date}</Dateprod>
-    <Authorprod>{Author}</Authorprod>
-    <Storyprod>{Info}</Storyprod>
-    <State>{Data}</State>
-    <a href={Urlbutton}>
+    <LeftZone>
+      <Titleprod>{Title}</Titleprod>
+      <Authorprod>{Author}</Authorprod>
+      <Storyprod>{Info}</Storyprod>
+      </LeftZone>
+
+      <RightZone>
+      <Dateprod>{Date}</Dateprod>
+      <State>{Data}</State>
+      {Buttontext && Urlbutton && (
+        <a href={Urlbutton}>
           <LinkButton>{Buttontext}</LinkButton>
-          </a>
-          <Slider images={sliderImages} />
-    
-        </>
-      
-      );
-    }
-    export default Prod5;
+        </a>
+      )}
+            </RightZone>
+      <Slider images={sliderImages} />
+    </>
+  );
+}
+
+export default Prod4;

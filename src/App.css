@@ -24,6 +24,28 @@
   color: white;
 }
 
+::-webkit-scrollbar {
+  width: 6px; /* Largeur de la barre de défilement */
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+/* Poignée de la barre de défilement */
+::-webkit-scrollbar-thumb {
+  background-color: white; /* Couleur de la poignée */
+  border-radius: 10px; /* Bordure arrondie de la poignée */
+}
+
+/* Barre de défilement de piste */
+::-webkit-scrollbar-track {
+  background-color: gray; /* Couleur de la piste */
+  border-radius: 10px; /* Bordure arrondie de la poignée */
+}
+
+
 .App-link {
   color: #61dafb;
 }
