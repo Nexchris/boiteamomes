@@ -5,6 +5,12 @@ import { firestore } from "../firebaseConfig";
 import Header from "../asset/header";
 import Footer from "../asset/footer";
 
+const Container = styled.div`
+background-color:black;
+width:100vw;
+height:100vh;
+`
+
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -252,6 +258,7 @@ function Prod4() {
 
   return (
     <>
+    <Container>
     <LeftZone>
       <Titleprod>{Title}</Titleprod>
       <Authorprod>{Author}</Authorprod>
@@ -268,6 +275,7 @@ function Prod4() {
       )}
             </RightZone>
       <Slider images={sliderImages} />
+      </Container>
     </>
   );
 }

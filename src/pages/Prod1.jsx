@@ -14,8 +14,27 @@ const fadeIn = keyframes`
   }
 `;
 
+const Container = styled.div`
+  @media (min-width: 768px) {
+    flex-direction: row; /* En ligne pour les écrans plus larges */
+  }
+`;
+
+const SliderWrapper = styled.div`
+  flex: 1;
+  order: 2; /* Ordre par défaut */
+  @media (max-width: 768px) {
+    order: 2; /* Deuxième élément en mobile */
+  }
+`;
+
+
+
 const StyledMainscreen = styled.div`
   position: fixed;
+  @media (max-width: 768px) {
+    position: relative;
+  }
 `;
 
 const StyledFullWidthImage = styled.img`
@@ -53,6 +72,13 @@ position: absolute;
 z-index: 1;
 top: 65%;
 left: 5%;
+@media (max-width: 768px) {
+  order: 1; /* Premier élément en mobile */
+  position: relative;
+  left:0%;
+  text-align: left;
+  margin-bottom: 2vh;
+}
 `;
 
 const RightZone = styled.div`
@@ -62,6 +88,14 @@ top: 64%;
 left: 75%;
 text-align:center;
 width:15vw;
+@media (max-width: 768px) {
+  order: 3;
+  position: relative;
+  text-align: center;
+  margin-bottom: 2vh;
+  left: 0%;
+  width: auto;
+}
 `;
 
 const Titleprod = styled.div`
@@ -72,6 +106,9 @@ color:white;
 top:62%;
 left:5%;
 animation: ${fadeIn} 2s; // Appliquer l'animation fade-in
+@media (max-width: 768px) {
+  font-size: xxx-large;
+}
 `
 const Authorprod = styled.div`
   font-weight: bold;
@@ -80,6 +117,9 @@ const Authorprod = styled.div`
   top: 76%;
   left: 5%;
   animation: ${fadeIn} 2s;
+  @media (max-width: 768px) {
+    font-size: xx-large;
+  }
 `;
 
 const Storyprod = styled.div`
@@ -89,6 +129,10 @@ const Storyprod = styled.div`
   top: 83%;
   left: 5%;
   animation: ${fadeIn} 2s;
+  @media (max-width: 768px) {
+    width:90%;
+    font-size:larger;
+  }
 `;
 
 const Dateprod = styled.div`
@@ -97,6 +141,10 @@ const Dateprod = styled.div`
   color: white;
   margin-bottom:1vh;
   animation: ${fadeIn} 2s;
+  @media (max-width: 768px) {
+    display:none;
+  }
+  
 `;
 
 const State = styled.div`
@@ -122,6 +170,9 @@ left: 76%;
 animation: ${fadeIn} 2s;
 &:hover {
   opacity: 0.6;
+}
+@media (max-width: 768px) {
+  font-size: xx-large;
 }
 `;
 
@@ -195,6 +246,12 @@ const RightBack = styled.div`
   z-index: 1;
 `;
 
+const StyledContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+
 function Prod4() {
   const [sliderImages, setSliderImages] = useState([]);
   const [Title, setTitle] = useState('');
@@ -252,13 +309,18 @@ function Prod4() {
 
   return (
     <>
+ <Container>
     <LeftZone>
       <Titleprod>{Title}</Titleprod>
       <Authorprod>{Author}</Authorprod>
       <Storyprod>{Info}</Storyprod>
-      </LeftZone>
+    </LeftZone>
 
-      <RightZone>
+    <SliderWrapper>
+      <Slider images={sliderImages} />
+    </SliderWrapper>
+
+    <RightZone>
       <Dateprod>{Date}</Dateprod>
       <State>{Data}</State>
       {Buttontext && Urlbutton && (
@@ -266,8 +328,8 @@ function Prod4() {
           <LinkButton>{Buttontext}</LinkButton>
         </a>
       )}
-            </RightZone>
-      <Slider images={sliderImages} />
+    </RightZone>
+  </Container>
     </>
   );
 }
