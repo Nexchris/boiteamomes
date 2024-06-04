@@ -73,6 +73,9 @@ const CloseButton = styled.div`
   &:before {
     content: '✕';
   }
+  @media (max-width: 768px) {
+   display:none;
+  }
 `;
 
 const LeftZone = styled.div`
@@ -182,7 +185,10 @@ animation: ${fadeIn} 2s;
   opacity: 0.6;
 }
 @media (max-width: 768px) {
+  background-color: #0c0c0c;
   font-size: xx-large;
+  padding-left: 2vh;
+  padding-right: 2vh;
 }
 `;
 

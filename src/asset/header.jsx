@@ -10,7 +10,7 @@ import BAM from '../images/logo.png';
 const StyledHeader = styled.div`
   width: auto;
   height: 10vh;
-  background-color: ${props => props.bgColor || 'black'};
+  background-color: #0c0c0c;
   display: flex;
   align-items: center;
   @media (max-width: 1600px) {
