@@ -257,6 +257,11 @@ const Letter = styled.span`
   animation: ${fadeIn} 0.5s forwards;
 `;
 
+const Href = styled.a`
+  text-decoration: none;
+  color:white;
+`;
+
 const AnimatedTitle = ({ text }) => {
   return (
     <InView threshold={0.5}>
@@ -405,9 +410,9 @@ function Cinebam() {
           Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville
           fait sa rentrée scolaire en compagnie de sa petite copine Leila...
         </Offertext>
-          <Link to="/prod1">
-          <Offerbutton>Voir Plus</Offerbutton>
-        </Link>
+        <Href href="/prod1">
+        <Offerbutton>Voir Plus</Offerbutton>
+        </Href>
       </Offerdiv>
     </Prodcontainer>
   )}
@@ -436,9 +441,9 @@ function Cinebam() {
           Issam, 16 ans, rêve de devenir un grand danseur. Entouré de son
           coach et de ses amis, il prépare une audition pour...
         </Offertext>
-        <Link to="/prod2">
-          <Offerbutton>Voir Plus</Offerbutton>
-        </Link>
+        <Href href="/prod2">
+        <Offerbutton>Voir Plus</Offerbutton>
+        </Href>
       </Reverseofferdiv>
     </Prodcontainer>
   )}
@@ -468,9 +473,9 @@ function Cinebam() {
           appartement parisien. Au fil des années, Carole découvre ...
           <br />
         </Offertext>
-        <Link to="/prod3">
-          <Offerbutton>Voir Plus</Offerbutton>
-        </Link>
+        <Href href="/prod3">
+        <Offerbutton>Voir Plus</Offerbutton>
+        </Href>
       </Offerdiv>
     </Prodcontainer>
   )}
@@ -500,9 +505,9 @@ function Cinebam() {
           s’éclate et le buffet est parfait. Seulement Eva est la grande
           absente...<br />
         </Offertext>
-        <Link to="/prod4">
-          <Offerbutton>Voir plus</Offerbutton>
-        </Link>
+        <Href href="/prod4">
+        <Offerbutton>Voir Plus</Offerbutton>
+        </Href>
       </Reverseofferdiv>
     </Prodcontainer>
   )}
@@ -531,9 +536,9 @@ function Cinebam() {
           Vendredi soir. Un soir de détente, on boit un verre, on règle
           nos comptes en se disant ... <br />
         </Offertext>
-        <Link to="/prod5">
-          <Offerbutton>Voir Plus</Offerbutton>
-        </Link>
+        <Href href="/prod5">
+        <Offerbutton>Voir Plus</Offerbutton>
+        </Href>
       </Offerdiv>
     </Prodcontainer>
   )}

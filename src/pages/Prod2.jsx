@@ -15,9 +15,20 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
-overflow-x: hidden;
+  overflow-x: hidden;
+  animation: fadeIn 4s forwards;
+
   @media (min-width: 768px) {
     flex-direction: row; /* En ligne pour les écrans plus larges */
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 `;
 

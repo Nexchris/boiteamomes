@@ -10,10 +10,11 @@ import BAM from '../images/logo.png';
 const StyledHeader = styled.div`
   width: auto;
   height: 10vh;
-  background-color: #0c0c0c;
+  background-color: black;
   display: flex;
   align-items: center;
   @media (max-width: 1600px) {
+    background-color: #0c0c0c;
     width: 100vw;
     position: fixed;
     top: 0;
