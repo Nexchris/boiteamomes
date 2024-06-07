@@ -17,7 +17,6 @@ const fadeIn = keyframes`
 
 const ContactContainer = styled.div`
   display: flex;
-  background-color: blue;
   animation: ${fadeIn} 2s;
 `;
 
@@ -151,6 +150,7 @@ function Contact() {
     background-image: url(${backgroundImage});
     background-size: cover;
     width: 50vw;
+    animation: ${fadeIn} 2s;
     @media (max-width: 500px) {
       display: none; }
   `;
