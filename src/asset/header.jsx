@@ -352,10 +352,6 @@ function Header({ bgColor }) {
         <Href href="/quisommesnous">
       {Menu3}
           </Href>
-          <SubMenu>
-            <SubMenuItem>Fondatrice</SubMenuItem>
-            <SubMenuItem>Nos Valeurs</SubMenuItem>
-          </SubMenu>
         </HeaderItem>
         <Href href="/Contact">
         <HeaderContact>Nous Contacter</HeaderContact>
