@@ -399,7 +399,7 @@ function Boiteamomes() {
         />
       )}
       <Offerdiv>
-        <Offerboldtext>La Rixe</Offerboldtext>
+        <Offerboldtext>Atélier Enfants</Offerboldtext>
         <Offertext>
           Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville
           fait sa rentrée scolaire en compagnie de sa petite copine Leila...
@@ -434,7 +434,7 @@ function Boiteamomes() {
         />
       )}
       <Reverseofferdiv>
-        <Offerboldtext>Fausse Rumeurs</Offerboldtext>
+        <Offerboldtext>Atélier Adultes</Offerboldtext>
         <Offertext>
           Issam, 16 ans, rêve de devenir un grand danseur. Entouré de son
           coach et de ses amis, il prépare une audition pour...
@@ -465,7 +465,7 @@ function Boiteamomes() {
         />
       )}
       <Offerdiv>
-        <Offerboldtext>Sous Tension</Offerboldtext>
+        <Offerboldtext>Atélier Cinébam</Offerboldtext>
         <Offertext>
           Carole et Paul vivent avec leurs 3 enfants dans un magnifique
           appartement parisien. Au fil des années, Carole découvre ...
@@ -480,67 +480,9 @@ function Boiteamomes() {
 </InView>
 
 
-<InView threshold={0.5}>
-  {({ ref, inView, entry }) => (
-    <Prodcontainer
-      ref={ref}
-      style={{
-        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(50%)',
-        opacity: inView ? 1 : 0,
-        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
-      }}
-    >
-      {fourthProd && (
-        <ReverseProdimage
-          src={fourthProd}
-          alt=""
-        />
-      )}
-      <Reverseofferdiv>
-        <Offerboldtext>Happy Birthday</Offerboldtext>
-        <Offertext>
-          C’est le jour J. L’Happy Birthday d’Éva, ses 15 ans. Tout le monde
-          s’éclate et le buffet est parfait. Seulement Eva est la grande
-          absente...<br />
-        </Offertext>
-        <Link to="/offer">
-          <Offerbutton>Voir plus</Offerbutton>
-        </Link>
-      </Reverseofferdiv>
-    </Prodcontainer>
-  )}
-</InView>
 
 
-<InView threshold={0.5}>
-  {({ ref, inView, entry }) => (
-    <Prodcontainer
-      ref={ref}
-      style={{
-        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
-        opacity: inView ? 1 : 0,
-        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
-      }}
-    >
-      {fifthProd && (
-        <Prodimage
-          src={fifthProd}
-          alt=""
-        />
-      )}
-      <Offerdiv>
-        <Offerboldtext>Un Jour comme un autre... ou presque</Offerboldtext>
-        <Offertext>
-          Vendredi soir. Un soir de détente, on boit un verre, on règle
-          nos comptes en se disant ... <br />
-        </Offertext>
-        <Link to="/offer">
-          <Offerbutton>Voir Plus</Offerbutton>
-        </Link>
-      </Offerdiv>
-    </Prodcontainer>
-  )}
-</InView>
+
 
       </Secondscreen>
       <Footer />

@@ -100,7 +100,7 @@ const HeaderItem = styled.li`
 const Headertitle = styled.h1`
   margin: 0;
   font-size: 1.5rem;
-  margin-right:40vw;
+  margin-right:38vw;
   color:white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
