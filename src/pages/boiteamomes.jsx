@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { storage } from '../firebaseConfig'; 
 import { ref, getDownloadURL } from "firebase/storage";
 import styled, { keyframes } from 'styled-components';
-
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { firestore } from '../firebaseConfig';
 import { Link } from 'react-router-dom';
 import Header from '../asset/header';
 import Footer from '../asset/footer';
@@ -306,58 +307,50 @@ const AnimatedText = ({ text }) => {
 
 
 function Boiteamomes() {
+  const [data, setData] = useState(null);
   const [background, setBackground] = useState('');
   const [firstProd, setFirstProd] = useState('');
   const [secondProd, setSecondProd] = useState('');
   const [thirdProd, setThirdProd] = useState('');
-  const [fourthProd, setFourthProd] = useState('');
-  const [fifthProd, setFifthProd] = useState('');
-  const [overlayOpen, setOverlayOpen] = useState(false);
-  const [currentOverlay, setCurrentOverlay] = useState(null);
-
-  const openOverlay = (overlayComponent) => {
-    setOverlayOpen(true);
-    setCurrentOverlay(overlayComponent);
-  };
-
-  const closeOverlay = () => {
-    setOverlayOpen(false);
-    setCurrentOverlay(null);
-  };
-
+  const [title1, setTitle1] = useState('');
+  const [title2, setTitle2] = useState('');
+  const [title3, setTitle3] = useState('');
+  const [content1, setContent1] = useState('');
+  const [content2, setContent2] = useState('');
+  const [content3, setContent3] = useState('');
+  const [button, setButton] = useState('');
   
   useEffect(() => {
-    const fetchIcons = async () => {
+    const fetchData = async () => {
+      const docRef = doc(firestore, "storage", "bamscreen");
       try {
-        const Backgroundimage = ref(storage, 'background/soustension4.jpg');
-        const BackgroundUrl = await getDownloadURL(Backgroundimage);
-        setBackground(BackgroundUrl);
-
-        const firstRef = ref(storage, 'productionimage/larixe.png');
-        const firstUrl = await getDownloadURL(firstRef);
-        setFirstProd(firstUrl);
-
-        const secondRef = ref(storage, 'productionimage/fausserumeur.jpg');
-        const secondUrl = await getDownloadURL(secondRef);
-        setSecondProd(secondUrl);
-
-        const thirdRef = ref(storage, 'productionimage/soustension.jpg');
-        const thirdUrl = await getDownloadURL(thirdRef);
-        setThirdProd(thirdUrl);
-
-        const fourthRef = ref(storage, 'productionimage/happybirthday.png');
-        const fourthUrl = await getDownloadURL(fourthRef);
-        setFourthProd(fourthUrl);
-
-        const fifthRef = ref(storage, 'productionimage/unjourcommeunautreoupresque.png');
-        const fifthUrl = await getDownloadURL(fifthRef);
-        setFifthProd(fifthUrl);
+        const docSnap = await getDoc(docRef);
+  
+        if (docSnap.exists()) {
+          const documentData = docSnap.data();
+          console.log("Document data:", documentData);
+  
+          setBackground(documentData.background);
+          setFirstProd(documentData.prodimage1);
+          setSecondProd(documentData.prodimage2);
+          setThirdProd(documentData.thirdProd);
+          setTitle1(documentData.title1);
+          setTitle2(documentData.title2);
+          setTitle3(documentData.title3);
+          setContent1(documentData.content1);
+          setContent2(documentData.content2);
+          setContent3(documentData.content3);
+          setButton(documentData.button);
+  
+        } else {
+          console.log("No such document!");
+        }
       } catch (error) {
-        console.error("Error fetching image URLs:", error);
+        console.error("Error fetching document:", error);
       }
     };
-
-    fetchIcons();
+  
+    fetchData();
   }, []);
 
   return (
@@ -372,11 +365,7 @@ function Boiteamomes() {
       <InView threshold={0.5}>
           {({ ref, inView }) => (
             <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
-              {/* Add the style prop here */}
-              Découvrez le cœur créatif de CinéBAM : une vitrine de nos productions
-              cinématographiques les plus captivantes. Chaque œuvre est le fruit de
-              notre passion pour le cinéma et l'excellence dans la formation de jeunes
-              talents.
+Rejoignez nos ateliers pour enfants où chaque session est une aventure, explorant le théâtre à travers des jeux, des histoires et la performance. Idéal pour les jeunes esprits créatifs prêts à exprimer leur potentiel
             </Secondtext>
           )}
         </InView>
@@ -401,16 +390,9 @@ function Boiteamomes() {
       <Offerdiv>
         <Offerboldtext>Atélier Enfants</Offerboldtext>
         <Offertext>
-          Septembre. Après un bel été, Jimmy, 16 ans, nouveau dans la ville
-          fait sa rentrée scolaire en compagnie de sa petite copine Leila...
+        Rejoignez nos ateliers pour enfants où chaque session est une aventure, explorant le théâtre à travers des jeux, des histoires et la performance. Idéal pour les jeunes esprits créatifs prêts à exprimer leur potentiel
         </Offertext>
-        
-          {overlayOpen && (
-  <Overlay isOpen={overlayOpen} className={overlayOpen ? 'disabled-pointer-events' : ''}>
-    {currentOverlay}
-    <CloseButton onClick={closeOverlay}>&times;</CloseButton>
-  </Overlay>
-)}
+        <Offerbutton>{button}</Offerbutton>
       </Offerdiv>
     </Prodcontainer>
   )}
@@ -436,11 +418,10 @@ function Boiteamomes() {
       <Reverseofferdiv>
         <Offerboldtext>Atélier Adultes</Offerboldtext>
         <Offertext>
-          Issam, 16 ans, rêve de devenir un grand danseur. Entouré de son
-          coach et de ses amis, il prépare une audition pour...
+        Participez à nos ateliers pour adultes, où vous explorerez l'expression théâtrale à travers improvisation et performances en groupe. Idéal pour les acteurs à tous niveaux désirant affiner leur art. 
         </Offertext>
         <Link to="/offer">
-          <Offerbutton>Voir Plus</Offerbutton>
+        <Offerbutton>{button}</Offerbutton>
         </Link>
       </Reverseofferdiv>
     </Prodcontainer>
@@ -467,12 +448,11 @@ function Boiteamomes() {
       <Offerdiv>
         <Offerboldtext>Atélier Cinébam</Offerboldtext>
         <Offertext>
-          Carole et Paul vivent avec leurs 3 enfants dans un magnifique
-          appartement parisien. Au fil des années, Carole découvre ...
+        Rejoignez CinéBAM pour apprendre la réalisation cinématographique en pratique. Parfait pour les jeunes passionnés par le storytelling visuel, désireux de créer et partager leurs propres films.
           <br />
         </Offertext>
         <Link to="/offer">
-          <Offerbutton>Cliquer</Offerbutton>
+          <Offerbutton>{button}</Offerbutton>
         </Link>
       </Offerdiv>
     </Prodcontainer>

@@ -5,6 +5,7 @@ import Login from './backend/LoginScreen';
 import Backs from './backend/back'
 import Contact from './pages/ContactScreen'
 import Test from './backend/test';
+import Storage from './backend/storage';
 import Back from './backend/Backoffice';
 import './App.css';
 import Cinebam from './pages/cinebam';
@@ -37,6 +38,7 @@ function App() {
           <Routes> {/* Encadrez vos routes avec le composant Routes */}
             <Route exact path="/" element={<Home />} /> {/* Route par défaut vers Home */}
             <Route exact path="/backs" element={<Backs />} /> {/* Route par défaut vers Home */}
+            <Route path="/storage" element={<Storage />} /> {/* Route vers Offer */}
             <Route path="/cinebam" element={<Cinebam />} /> {/* Route vers Cinebam */}
             <Route path="/boiteamomes" element={<Boiteamomes />} /> {/* Route vers Boiteamomes */}
             <Route path="/prod1" element={<Prod1 />} /> {/* Route vers Offer */}
