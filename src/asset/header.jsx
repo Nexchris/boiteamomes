@@ -110,6 +110,10 @@ const Headertitle = styled.h1`
     margin-right:0vw;
   }
 
+ @media (min-width: 1700px) {
+  margin-right: 35vw;
+}
+
 
 
 

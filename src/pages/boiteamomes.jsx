@@ -128,6 +128,7 @@ const Prodcontainer = styled.div`
   display: flex;
   margin-top: 5vh;
   margin-left: 10vh;
+  
 
   @media (max-width: 768px) {
     margin: 0;
@@ -161,16 +162,16 @@ const ReverseProdimage = styled(Prodimage)`
 `;
 
 const Offerdiv = styled.div`
-  text-align: center;
-  background-color: #0b0b0b;
-  color: white;
-  width: 40%;
-  font-size: 2vh;
-  height: 25vh;
-  margin-left: -40vh;
-  margin-top: 35vh;
-  border-radius: 5vh;
-  margin-bottom:5vh;
+text-align: center;
+    background-color: #0b0b0b;
+    color: white;
+    width: 40%;
+    font-size: 2vh;
+    height: 30vh;
+    margin-left: -40vh;
+    margin-top: 30vh;
+    border-radius: 5vh;
+    margin-bottom: 5vh;
 
   @media (max-width: 768px) {
     width: 85vw;
@@ -333,7 +334,7 @@ function Boiteamomes() {
           setBackground(documentData.background);
           setFirstProd(documentData.prodimage1);
           setSecondProd(documentData.prodimage2);
-          setThirdProd(documentData.thirdProd);
+          setThirdProd(documentData.prodimage3);
           setTitle1(documentData.title1);
           setTitle2(documentData.title2);
           setTitle3(documentData.title3);
@@ -361,7 +362,7 @@ function Boiteamomes() {
       </Mainscreen>
 
       <Secondscreen>
-      <AnimatedTitle text="Les&nbsp;Offres" />
+      <AnimatedTitle text="Nos&nbsp;Atéliers" />
       <InView threshold={0.5}>
           {({ ref, inView }) => (
             <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
