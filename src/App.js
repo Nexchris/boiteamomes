@@ -17,8 +17,10 @@ import Prod3 from './pages/Prod3';
 import Prod4 from './pages/Prod4';
 import Prod5 from './pages/Prod5';
 import Offer2 from './pages/offer2';
+import Backend from './backend/Backend';
 import { createGlobalStyle } from 'styled-components';
 import { VideoURLProvider } from './context/VideoUrlContext';
+import AtelierEnfant from './pages/AtelierEnfant';
 
 // Crée un style global pour appliquer la police à toute l'application
 const GlobalStyle = createGlobalStyle`
@@ -37,6 +39,7 @@ function App() {
         <VideoURLProvider> {/* Enveloppez votre application avec VideoURLProvider */}
           <Routes> {/* Encadrez vos routes avec le composant Routes */}
             <Route exact path="/" element={<Home />} /> {/* Route par défaut vers Home */}
+            <Route exact path="/backend" element={<Backend />} /> {/* Route par défaut vers Home */}
             <Route exact path="/backs" element={<Backs />} /> {/* Route par défaut vers Home */}
             <Route path="/storage" element={<Storage />} /> {/* Route vers Offer */}
             <Route path="/cinebam" element={<Cinebam />} /> {/* Route vers Cinebam */}
@@ -46,6 +49,7 @@ function App() {
             <Route path="/prod3" element={<Prod3 />} /> {/* Route vers Offer */}
             <Route path="/prod4" element={<Prod4 />} /> {/* Route vers Offer */}
             <Route path="/prod5" element={<Prod5 />} /> {/* Route vers Offer */}
+            <Route path="/AtelierEnfant" element={<AtelierEnfant />} /> {/* Route vers Offer */}
             <Route path="/offer2" element={<Offer2/>} /> {/* Route vers Offer */}
             <Route path="/login" element={<Login />} /> {/* Route vers Login */}
             <Route path="/backoffice" element={<Back />} /> {/* Route vers Backoffice */}

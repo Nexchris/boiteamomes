@@ -8,43 +8,12 @@ import { Link } from 'react-router-dom';
 import Header from '../asset/header';
 import Footer from '../asset/footer';
 import { InView } from 'react-intersection-observer';
-import Prod1 from './Prod1'
 
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
 `;
-
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Ajout d'un fond semi-transparent */
-  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-
-  &.disabled-pointer-events {
-    pointer-events: none;
-  }
-`;
-
-
-const CloseButton = styled.span`
-  color: white;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 250px;
-  cursor: pointer;
-  z-index:99;
-`;
-
 
 const Mainscreen = styled.div`
   position: relative;
@@ -101,7 +70,7 @@ const Secondtitle = styled.h2`
 
   @media (max-width: 768px) {
     padding: 0;
-    font-size: 6vh;
+    font-size: 4vh;
     font-weight: 700;
   }
 `;
@@ -149,51 +118,31 @@ const Prodimage = styled.img`
   }
 `;
 
-const ReverseProdimage = styled(Prodimage)`
-  width: 40vw;
-  margin-left: 50vw;
 
-  @media (max-width: 768px) {
-    border-radius: 15%;
-    width: 90vw;
-    margin-left: 3vh;
-    height: fit-content;
-  }
-`;
 
-const Offerdiv = styled.div`
+
+
+const InfoContainer = styled.div`
 text-align: center;
-    background-color: #0b0b0b;
     color: white;
-    width: 40%;
+    width: 80vw;
     font-size: 2vh;
-    height: 30vh;
-    margin-left: -40vh;
-    margin-top: 30vh;
+    height: auto;
+
+    margin-left: 7vw;
     border-radius: 5vh;
     margin-bottom: 5vh;
 
   @media (max-width: 768px) {
     width: 85vw;
-    margin-left: -88vw;
+    margin-left: 4vh;
     margin-top: 15vh;
     height: fit-content;
   }
 `;
 
-const Reverseofferdiv = styled(Offerdiv)`
-  margin-left: -120vh;
-
-  @media (max-width: 768px) {
-    width: 85vw;
-    margin-left: -88vw;
-    margin-top: 15vh;
-    height: fit-content;
-  }
-`;
-
-const Offerboldtext = styled.div`
-  font-size: 3.5vh;
+const InfoTitle = styled.div`
+  font-size: 12vh;
   padding-bottom: 1vh;
   font-weight: 600;
   padding-top: 1vh;
@@ -202,42 +151,40 @@ const Offerboldtext = styled.div`
   }
 `;
 
-const Offertext = styled.div`
-  font-size: 1.9vh;
-  width: 28vw;
-  text-align: center;
-  margin-left: 10vh;
-  margin-bottom: 2vh;
-
+const InfoText = styled.div`
+  font-size: 3.5vh;
+  text-align:center;
+  padding-bottom: 1vh;
+  font-weight: 600;
+  padding-top: 1vh;
   @media (max-width: 768px) {
-    width: 60vw;
-    font-size: small;
-    margin-left: 6vh;
+    padding-bottom: 0;
   }
 `;
 
-const Offerbutton = styled.button`
-  font-size: 2.5vh;
-  width: 18vw;
-  padding: 10px 3vw;
-  font-weight: bold;
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+const InfoContainer2 = styled.div`
+display:flex;
+margin-bottom:10vh;
+`
+const InfoText2 = styled.p`
+    font-size: 3vh;
+    margin-right: 5vw;
+    margin-top: 15vh;
+`
+
+const InfoImage = styled.img`
+width:30%;
+`
+
+
+const RevInfoContainer = styled(InfoContainer)`
+  margin-left: -120vh;
 
   @media (max-width: 768px) {
-    margin-top: -10vh;
-    width: 30vw;
-    margin-bottom: 2vh;
-
-
-  }
-
-  &:hover {
-    opacity: 0.5;
+    width: 85vw;
+    margin-left: -88vw;
+    margin-top: 15vh;
+    height: fit-content;
   }
 `;
 
@@ -305,26 +252,50 @@ const AnimatedText = ({ text }) => {
   );
 };
 
+const SubmitButton = styled.button`
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 1vh;
+  margin-top:3vh;
+  width: 20vw;
+  background-color: gray;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins';
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 500px) {
+    margin-left: 10vw;
+    width: 65vw
+  }
+`;
 
 
 function Boiteamomes() {
   const [data, setData] = useState(null);
   const [background, setBackground] = useState('');
-  const [firstProd, setFirstProd] = useState('');
-  const [secondProd, setSecondProd] = useState('');
-  const [thirdProd, setThirdProd] = useState('');
   const [title1, setTitle1] = useState('');
   const [title2, setTitle2] = useState('');
   const [title3, setTitle3] = useState('');
+  const [title4, setTitle4] = useState('');
   const [content1, setContent1] = useState('');
   const [content2, setContent2] = useState('');
   const [content, setContent] = useState('');
   const [content3, setContent3] = useState('');
-  const [button, setButton] = useState('');
+  const [image1, setImage1] = useState('');
+  const [image2, setImage2] = useState('');
+  const [intervenante1, setIntervenante1] = useState('');
+  const [intervenante2, setIntervenante2] = useState('');
+  const [intervenante1info, setIntervenante1Info] = useState('');
+  const [intervenante2info, setIntervenante2Info] = useState('');
   
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(firestore, "storage", "bamscreen");
+      const docRef = doc(firestore, "storage", "atelier");
       try {
         const docSnap = await getDoc(docRef);
   
@@ -332,18 +303,21 @@ function Boiteamomes() {
           const documentData = docSnap.data();
           console.log("Document data:", documentData);
   
+          setImage1(documentData.image1);
+          setImage2(documentData.image2);
           setBackground(documentData.background);
-          setFirstProd(documentData.prodimage1);
-          setSecondProd(documentData.prodimage2);
-          setThirdProd(documentData.prodimage3);
           setTitle1(documentData.title1);
           setTitle2(documentData.title2);
           setTitle3(documentData.title3);
+          setTitle4(documentData.title4);
           setContent(documentData.content);
           setContent1(documentData.content1);
           setContent2(documentData.content2);
           setContent3(documentData.content3);
-          setButton(documentData.button);
+          setIntervenante1(documentData.intervenante1);
+          setIntervenante2(documentData.intervenante2);
+          setIntervenante1Info(documentData.intervenante1info);
+          setIntervenante2Info(documentData.intervenante2info);
   
         } else {
           console.log("No such document!");
@@ -360,77 +334,10 @@ function Boiteamomes() {
 <Container>
       <Header />
       <Mainscreen backgroundImage={background}>
-        <Maintitle>Boite à Momes</Maintitle>
+        <Maintitle>Atelier Enfants</Maintitle>
       </Mainscreen>
 
       <Secondscreen>
-      <AnimatedTitle text="Nos&nbsp;Atéliers" />
-      <InView threshold={0.5}>
-          {({ ref, inView }) => (
-            <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
-{content}
-            </Secondtext>
-          )}
-        </InView>
-
-
-        <InView threshold={0.5}>
-  {({ ref, inView, entry }) => (
-    <Prodcontainer
-      ref={ref}
-      style={{
-        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
-        opacity: inView ? 1 : 0,
-        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
-      }}
-    >
-      {firstProd && (
-        <Prodimage
-          src={firstProd}
-          alt=""
-        />
-      )}
-      <Offerdiv>
-        <Offerboldtext>Atélier Enfants</Offerboldtext>
-        <Offertext>
-        {content1}
-        </Offertext>
-        <Offerbutton>{button}</Offerbutton>
-      </Offerdiv>
-    </Prodcontainer>
-  )}
-</InView>
-
-
-<InView threshold={0.5}>
-  {({ ref, inView, entry }) => (
-    <Prodcontainer
-      ref={ref}
-      style={{
-        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(50%)',
-        opacity: inView ? 1 : 0,
-        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
-      }}
-    >
-      {secondProd && (
-        <ReverseProdimage
-          src={secondProd}
-          alt=""
-        />
-      )}
-      <Reverseofferdiv>
-        <Offerboldtext>Atélier Adultes</Offerboldtext>
-        <Offertext>
-        {content2}
-        </Offertext>
-        <Link to="/offer">
-        <Offerbutton>{button}</Offerbutton>
-        </Link>
-      </Reverseofferdiv>
-    </Prodcontainer>
-  )}
-</InView>
-
 
 <InView threshold={0.5}>
   {({ ref, inView, entry }) => (
@@ -442,24 +349,134 @@ function Boiteamomes() {
         transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
       }}
     >
-      {thirdProd && (
-        <Prodimage
-          src={thirdProd}
-          alt=""
-        />
-      )}
-      <Offerdiv>
-        <Offerboldtext>Atélier Cinébam</Offerboldtext>
-        <Offertext>
-   {content3}
-        </Offertext>
-        <Link to="/offer">
-          <Offerbutton>{button}</Offerbutton>
-        </Link>
-      </Offerdiv>
+      
+      <InfoContainer>
+      <InfoTitle>{title1}</InfoTitle>
+        <InfoText>
+        Les ateliers théâtre enfants sont répartis en différents horaires et lieux en fonction des tranches d'âge :</InfoText>
+        <InfoText>
+        De 5 à 6 ans : <br />
+Mercredi de 11h à 12h <br />
+à l'Espace Henry Miller <br />
+3 rue du Docteur Calmette, 92110 Clichy-La-Garenne <br /> <br />
+
+De 7 à 9 ans : <br />
+le mardi de 17h à 18h15 <br />
+à l'Espace Jeunesse Patrick VIÉ <br />
+22 rue Curton, 92110 Clichy-La-Garenne <br /> <br />
+
+De 9 à 12 ans : <br />
+le samedi de 11h à 12h15 <br />
+à l'École Victor Hugo <br />
+17 Rue d’Alsace, 92110 Clichy-La-Garenne
+        </InfoText>
+        
+      </InfoContainer>
     </Prodcontainer>
   )}
 </InView>
+
+<InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      
+      <InfoContainer>
+        <InfoTitle>{title2}</InfoTitle>
+        <InfoText>
+        L'inscription nécessite une adhésion à l'année de 30 € par fratrie et un forfait de 130 € par trimestre.
+
+ 
+
+Avant toute inscription, l'association propose à vos enfants un premier cours d'essai gratuit !
+
+ 
+
+Pour inscrire votre enfant, merci de télécharger le formulaire ci-dessous et de le renvoyer rempli à : boitamomes@gmail.com
+        </InfoText>
+        <a href="/2024-2025-Fiche.pdf" download="2024-2025-Fiche définitive.pdf">
+  <SubmitButton>Télécharger</SubmitButton>
+</a>
+
+      </InfoContainer>
+    </Prodcontainer>
+  )}
+</InView>
+
+
+<InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      <InfoContainer>
+        <InfoContainer2>
+      <InfoText2><h1>{intervenante1}</h1> 
+      {intervenante1info}
+      </InfoText2>
+    <InfoImage src={image1} alt="" />
+        </InfoContainer2>
+        <InfoText>
+        </InfoText>
+      </InfoContainer>
+    </Prodcontainer>
+  )}
+</InView>
+
+<InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      <InfoContainer>
+        <InfoContainer2>
+        <InfoText2><h1>{intervenante2}</h1> 
+{intervenante2info}
+</InfoText2>
+    <InfoImage src={image2} alt="" />
+        </InfoContainer2>
+        <InfoText>
+        </InfoText>
+      </InfoContainer>
+    </Prodcontainer>
+  )}
+</InView>
+
+<InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      <InfoContainer>
+        <InfoTitle>{title4}</InfoTitle>
+      
+      </InfoContainer>
+    </Prodcontainer>
+  )}
+</InView>
+
+
 
 
 

@@ -197,11 +197,12 @@ function HomeScreen() {
           setData(documentData);
           setLeftTitle(documentData["left title"]);
           setRightTitle(documentData.righttitle);
-          setButtonText(documentData.buttontext);
+          setButtonText(documentData.buttonText);
           setUrlVideoLeft(documentData.urlvideoleft);
           setUrlVideoRight(documentData.urlvideoright);
           setLeftContent(documentData.leftcontent)
           setRightContent(documentData.rightcontent)
+          setButtonText(documentData.buttontext);
 
           // Set video URLs from Firestore data
           setLeftVideoURL(documentData.urlvideoleft);
@@ -255,7 +256,7 @@ function HomeScreen() {
             <Title>{leftTitle}</Title>
             <Text>{leftContent}</Text>
             <Href href="/cinebam">
-              <Button>Voir Plus</Button>
+              <Button>{buttonText}</Button>
             </Href>
           </TextContainer>
         </Leftscreen>
@@ -265,7 +266,7 @@ function HomeScreen() {
             <Title2>{rightTitle}</Title2>
             <Text>{rightContent}</Text>
             <Href href="/boiteamomes">
-              <Button>Voir Plus</Button>
+            <Button>{buttonText}</Button>
             </Href>
           </TextContainer>
         </Rightscreen>
