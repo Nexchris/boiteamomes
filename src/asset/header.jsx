@@ -316,9 +316,15 @@ function Header({ bgColor }) {
        {Menu1}
 </Href>
           <SubMenu>
+          <Href href="./AtelierEnfant">
             <SubMenuItem>Atélier Enfants</SubMenuItem>
+            </Href>
+            <Href href="./AtelierAdultes">
             <SubMenuItem>Atélier Adultes</SubMenuItem>
+            </Href>
+            <Href href="./AtelierCinebam">
             <SubMenuItem>Atélier Cinébam</SubMenuItem>
+            </Href>
           </SubMenu>
         </HeaderItem>
         <HeaderItem>
