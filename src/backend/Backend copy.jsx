@@ -125,57 +125,7 @@ const Backend = () => {
 
   return (
     <>
-      <Title onClick={toggleContent}>Zone de la page d'accueil</Title>
-      <hr />
-      <StyledContainer visible={contentVisible}>
-        <Flex>
-          <VideoContainer>
-            <StyledTitle>Vidéo de Gauche</StyledTitle>
-            <StyledVideo src={leftVideo} controls />
-            <StyledInput value={leftVideo} onChange={(e) => setLeftVideo(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('urlvideoleft', leftVideo)}>Changer la Vidéo</StyledButton>
-          </VideoContainer>
-
-          <VideoContainer>
-            <StyledTitle>Vidéo de Droite</StyledTitle>
-            <StyledVideo src={rightVideo} controls />
-            <StyledInput value={rightVideo} onChange={(e) => setRightVideo(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('urlvideoright', rightVideo)}>Changer la Vidéo</StyledButton>
-          </VideoContainer>
-        </Flex>
-
-        <Flex>
-          <TextContainer>
-            <StyledTitle>Titre de Gauche</StyledTitle>
-            <StyledInput value={leftTitle} onChange={(e) => setLeftTitle(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('left title', leftTitle)}>Changer le texte</StyledButton>
-          </TextContainer>
-
-          <TextContainer>
-            <StyledTitle>Titre de Droite</StyledTitle>
-            <StyledInput value={rightTitle} onChange={(e) => setRightTitle(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('righttitle', rightTitle)}>Changer le texte</StyledButton>
-          </TextContainer>
-
-          <TextContainer>
-            <StyledTitle>Contenu de Gauche</StyledTitle>
-            <StyledInput value={leftContent} onChange={(e) => setLeftContent(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('leftcontent', leftContent)}>Changer le texte</StyledButton>
-          </TextContainer>
-
-          <TextContainer>
-            <StyledTitle>Contenu de Droite</StyledTitle>
-            <StyledInput value={rightContent} onChange={(e) => setRightContent(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('rightcontent', rightContent)}>Changer le texte</StyledButton>
-          </TextContainer>
-
-          <TextContainer>
-            <StyledTitle>Texte du Bouton</StyledTitle>
-            <StyledInput value={buttonText} onChange={(e) => setButtonText(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('buttontext', buttonText)}>Changer le texte</StyledButton>
-          </TextContainer>
-        </Flex>
-      </StyledContainer>
+      chris
     </>
   );
 };

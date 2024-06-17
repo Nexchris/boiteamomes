@@ -69,39 +69,33 @@ const StyledButton = styled.button`
 `;
 
 const Backend = () => {
-  const [Title, setTitle] = useState('');
-  const [Menu1, setMenu1] = useState('');
-  const [Menu2, setMenu2] = useState('');
-  const [Menu3, setMenu3] = useState('');
-  const [Prod1, setProd1] = useState('');
-  const [Prod2, setProd2] = useState('');
-  const [Prod3, setProd3] = useState('');
-  const [Prod4, setProd4] = useState('');
-  const [Prod5, setProd5] = useState('');
-  const [ContactButton, setContactButton] = useState('');
-
+  const [leftVideo, setLeftVideo] = useState('');
+  const [rightVideo, setRightVideo] = useState('');
+  const [leftTitle, setLeftTitle] = useState('');
+  const [rightTitle, setRightTitle] = useState('');
+  const [leftContent, setLeftContent] = useState('');
+  const [rightContent, setRightContent] = useState('');
+  const [buttonText, setButtonText] = useState('');
   const [contentVisible, setContentVisible] = useState(false); // État pour gérer la visibilité du contenu
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(firestore, "storage", "header");
+      const docRef = doc(firestore, "storage", "homescreen");
       try {
         const docSnap = await getDoc(docRef);
-  
+
         if (docSnap.exists()) {
           const documentData = docSnap.data();
           console.log("Document data:", documentData);
-  
-          setTitle(documentData.title);
-          setMenu1(documentData.menu1);
-          setMenu2(documentData.menu2);
-          setProd1(documentData.prod1);
-          setProd2(documentData.prod2);
-          setProd3(documentData.prod3);
-          setProd4(documentData.prod4);
-          setProd5(documentData.prod5);
-          setMenu3(documentData.menu3);
-          setContactButton(documentData.contactbutton);
+
+          setLeftVideo(documentData.urlvideoleft);
+          setRightVideo(documentData.urlvideoright);
+          setLeftTitle(documentData["left title"]);
+          setRightTitle(documentData.righttitle);
+          setLeftContent(documentData.leftcontent);
+          setRightContent(documentData.rightcontent);
+          setButtonText(documentData.buttontext);
+
         } else {
           console.log("No such document!");
         }
@@ -109,23 +103,19 @@ const Backend = () => {
         console.error("Error fetching document:", error);
       }
     };
-  
-    fetchData(); // Appel de la fonction fetchData directement dans useEffect
-  
-    // Ajout de dependencies vides pour exécuter useEffect une seule fois au montage
-  }, []);
-  
 
+    fetchData();
+  }, []);
 
   const handleUpdate = async (field, value) => {
-    const docRef = doc(firestore, "storage", "header");
+    const docRef = doc(firestore, "storage", "homescreen");
     try {
       await updateDoc(docRef, {
         [field]: value
       });
-      console.log(`Mis à jour ${field} ${value}`);
+      console.log(`Updated ${field} with value: ${value}`);
     } catch (error) {
-      console.error("Il y a eu une erreur en changant la valeur du document:", error);
+      console.error("Error updating document:", error);
     }
   };
 
@@ -135,30 +125,55 @@ const Backend = () => {
 
   return (
     <>
-      <Title onClick={toggleContent}>Zone du Header</Title>
+      <Title onClick={toggleContent}>Zone de la page d'accueil</Title>
       <hr />
       <StyledContainer visible={contentVisible}>
+        <Flex>
+          <VideoContainer>
+            <StyledTitle>Vidéo de Gauche</StyledTitle>
+            <StyledVideo src={leftVideo} controls />
+            <StyledInput value={leftVideo} onChange={(e) => setLeftVideo(e.target.value)} />
+            <StyledButton onClick={() => handleUpdate('urlvideoleft', leftVideo)}>Changer la Vidéo</StyledButton>
+          </VideoContainer>
+
+          <VideoContainer>
+            <StyledTitle>Vidéo de Droite</StyledTitle>
+            <StyledVideo src={rightVideo} controls />
+            <StyledInput value={rightVideo} onChange={(e) => setRightVideo(e.target.value)} />
+            <StyledButton onClick={() => handleUpdate('urlvideoright', rightVideo)}>Changer la Vidéo</StyledButton>
+          </VideoContainer>
+        </Flex>
 
         <Flex>
           <TextContainer>
-            <StyledTitle>Menu1</StyledTitle>
-            <StyledInput value={Menu1} onChange={(e) => setMenu1(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('menu1', setMenu1)}>Changer le texte</StyledButton>
+            <StyledTitle>Titre de Gauche</StyledTitle>
+            <StyledInput value={leftTitle} onChange={(e) => setLeftTitle(e.target.value)} />
+            <StyledButton onClick={() => handleUpdate('left title', leftTitle)}>Changer le texte</StyledButton>
           </TextContainer>
 
           <TextContainer>
-            <StyledTitle>Menu2</StyledTitle>
-            <StyledInput value={Menu2} onChange={(e) => setMenu2(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('menu2', setMenu2)}>Changer le texte</StyledButton>
+            <StyledTitle>Titre de Droite</StyledTitle>
+            <StyledInput value={rightTitle} onChange={(e) => setRightTitle(e.target.value)} />
+            <StyledButton onClick={() => handleUpdate('righttitle', rightTitle)}>Changer le texte</StyledButton>
           </TextContainer>
 
           <TextContainer>
-            <StyledTitle>Menu3</StyledTitle>
-            <StyledInput value={Menu3} onChange={(e) => setMenu3(e.target.value)} />
-            <StyledButton onClick={() => handleUpdate('menu3', setMenu3)}>Changer le texte</StyledButton>
+            <StyledTitle>Contenu de Gauche</StyledTitle>
+            <StyledInput value={leftContent} onChange={(e) => setLeftContent(e.target.value)} />
+            <StyledButton onClick={() => handleUpdate('leftcontent', leftContent)}>Changer le texte</StyledButton>
           </TextContainer>
 
-         
+          <TextContainer>
+            <StyledTitle>Contenu de Droite</StyledTitle>
+            <StyledInput value={rightContent} onChange={(e) => setRightContent(e.target.value)} />
+            <StyledButton onClick={() => handleUpdate('rightcontent', rightContent)}>Changer le texte</StyledButton>
+          </TextContainer>
+
+          <TextContainer>
+            <StyledTitle>Texte du Bouton</StyledTitle>
+            <StyledInput value={buttonText} onChange={(e) => setButtonText(e.target.value)} />
+            <StyledButton onClick={() => handleUpdate('buttontext', buttonText)}>Changer le texte</StyledButton>
+          </TextContainer>
         </Flex>
       </StyledContainer>
     </>

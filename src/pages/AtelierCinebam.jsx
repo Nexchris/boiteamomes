@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Modal from 'react-modal';
 import { storage } from '../firebaseConfig'; 
 import { ref, getDownloadURL } from "firebase/storage";
 import styled, { keyframes } from 'styled-components';
@@ -8,6 +9,8 @@ import { Link } from 'react-router-dom';
 import Header from '../asset/header';
 import Footer from '../asset/footer';
 import { InView } from 'react-intersection-observer';
+
+Modal.setAppElement('#root'); // Ceci est important pour l'accessibilité, vous devriez le définir sur l'élément racine de votre application
 
 
 const Container = styled.div`
@@ -143,7 +146,6 @@ text-align: center;
 
 const InfoTitle = styled.div`
   font-size: 12vh;
-  padding-bottom: 1vh;
   font-weight: 600;
   padding-top: 1vh;
   @media (max-width: 768px) {
@@ -155,7 +157,6 @@ const InfoText = styled.div`
   font-size: 3.5vh;
   text-align:center;
   padding-bottom: 1vh;
-  font-weight: 600;
   padding-top: 1vh;
   @media (max-width: 768px) {
     padding-bottom: 0;
@@ -203,6 +204,32 @@ const Letter = styled.span`
   display: inline-block;
   opacity: 0;
   animation: ${fadeIn} 0.5s forwards;
+`;
+
+const Bold = styled.a`
+font-weight:600;
+text-decoration:none;
+color:white;
+&:hover{
+opacity:0.7;
+}
+`
+
+const VideoFrame = styled.div`
+  cursor: pointer;
+  width: 50vw; /* ajustez selon vos besoins */
+  height: 50vh; /* ajustez selon vos besoins */
+  margin-left:15vw;
+    margin-top:3vh;
+  position: relative;
+  overflow: hidden;
+  background-color: black;
+  border: 2px solid #ccc;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const AnimatedTitle = ({ text }) => {
@@ -275,7 +302,10 @@ const SubmitButton = styled.button`
 `;
 
 
-function Boiteamomes() {
+function AtelierCinebam() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
   const [data, setData] = useState(null);
   const [background, setBackground] = useState('');
   const [title1, setTitle1] = useState('');
@@ -295,7 +325,7 @@ function Boiteamomes() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(firestore, "storage", "atelier");
+      const docRef = doc(firestore, "storage", "ateliercinebam");
       try {
         const docSnap = await getDoc(docRef);
   
@@ -334,10 +364,63 @@ function Boiteamomes() {
 <Container>
       <Header />
       <Mainscreen backgroundImage={background}>
-        <Maintitle>Atelier Enfants</Maintitle>
+        <Maintitle>Atelier CinéBAM</Maintitle>
       </Mainscreen>
 
       <Secondscreen>
+
+      <InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      
+      <InfoContainer>
+      <InfoTitle>L'atélier Cinébam</InfoTitle>
+      <div style={{ fontSize: '4vh' }}>De 13 à 17 ans</div>
+        <InfoText  style={{ width: '70vw', marginLeft:'5vw' }}>
+        CinéBAM est la continuité des ateliers théâtre de La Boite à Mômes, orientée vers le jeu cinématographique et audiovisuel. <br /> <br />
+Depuis octobre 2016, l'association propose des ateliers de coaching cinéma à destination des adolescents. À partir de scènes pré-existantes ou écrites en atelier, novices et initiés peuvent découvrir les spécificités du rapport à la caméra, aux décors et aux méthodes de tournage du cinéma. <br /> <br />
+Chaque année, nos élèves ont l'opportunité de tourner avec une équipe et un matériel professionnels, sous la direction de Mireille Fiévet. <br /> <br />
+N'oubliez pas de jeter un œil à leurs créations !
+        </InfoText>
+      </InfoContainer>
+    </Prodcontainer>
+  )}
+</InView>
+
+
+<InView threshold={0.5}>
+  {({ ref, inView, entry }) => (
+    <Prodcontainer
+      ref={ref}
+      style={{
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(50%)',
+        opacity: inView ? 1 : 0,
+        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      }}
+    >
+      
+      <InfoContainer>
+      <InfoTitle>Lieux et Horaires</InfoTitle>
+        <InfoText>
+        Les ateliers cinéma ont lieu : <br />
+        Chaque mardi de 18h15 à 20h <br />
+        <Bold href="https://maps.app.goo.gl/DL2Gzd1SHkcee8mJ8"> à l'Espace Jeunesse Patrick VIÉ <br /></Bold>
+        22 rue Curton, 92110 Clichy-La-Garenne
+   
+        </InfoText>
+
+        
+      </InfoContainer>
+    </Prodcontainer>
+  )}
+</InView>
 
 <InView threshold={0.5}>
   {({ ref, inView, entry }) => (
@@ -351,25 +434,19 @@ function Boiteamomes() {
     >
       
       <InfoContainer>
-      <InfoTitle>{title1}</InfoTitle>
+      <InfoTitle>Tarifs</InfoTitle>
         <InfoText>
-        Les ateliers théâtre enfants sont répartis en différents horaires et lieux en fonction des tranches d'âge :</InfoText>
-        <InfoText>
-        De 5 à 6 ans : <br />
-Mercredi de 11h à 12h <br />
-à l'Espace Henry Miller <br />
-3 rue du Docteur Calmette, 92110 Clichy-La-Garenne <br /> <br />
+        L'inscription à l'atelier cinéma requiert une adhésion annuelle par fratrie de 30 € et un forfait de 200 € par trimestre. L'association propose <Bold> un premier cours d'essai gratuit </Bold> avant toute inscription ! <br /> <br />
+Pour inscrire votre enfant, merci de télécharger le formulaire ci-dessous et de le renvoyer rempli à l'adresse : <Bold> boitamomes@gmail.com </Bold><br /> <br />
+<Bold>
+2024-2025-Formulaire d'Inscription Définitive aux Ateliers de La BAM</Bold> <br /> <br />
+   
+<a href="/2024-2025-Fiche.pdf" download="2024-2025-Fiche définitive.pdf">
+  <SubmitButton>Télécharger</SubmitButton>
+</a>
 
-De 7 à 9 ans : <br />
-le mardi de 17h à 18h15 <br />
-à l'Espace Jeunesse Patrick VIÉ <br />
-22 rue Curton, 92110 Clichy-La-Garenne <br /> <br />
-
-De 9 à 12 ans : <br />
-le samedi de 11h à 12h15 <br />
-à l'École Victor Hugo <br />
-17 Rue d’Alsace, 92110 Clichy-La-Garenne
         </InfoText>
+
         
       </InfoContainer>
     </Prodcontainer>
@@ -394,9 +471,7 @@ le samedi de 11h à 12h15 <br />
         <InfoText>
           {content2}
         </InfoText>
-        <a href="/2024-2025-Fiche.pdf" download="2024-2025-Fiche définitive.pdf">
-  <SubmitButton>Télécharger</SubmitButton>
-</a>
+       
 
       </InfoContainer>
     </Prodcontainer>
@@ -409,7 +484,7 @@ le samedi de 11h à 12h15 <br />
     <Prodcontainer
       ref={ref}
       style={{
-        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(50%)',
         opacity: inView ? 1 : 0,
         transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
       }}
@@ -433,24 +508,69 @@ le samedi de 11h à 12h15 <br />
     <Prodcontainer
       ref={ref}
       style={{
-        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(50%)',
+        transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(-50%)',
         opacity: inView ? 1 : 0,
         transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
       }}
     >
+      
       <InfoContainer>
-        <InfoContainer2>
-        <InfoText2><h1>{intervenante2}</h1> 
-{intervenante2info}
-</InfoText2>
-    <InfoImage src={image2} alt="" />
-        </InfoContainer2>
         <InfoText>
+          <Bold>
+        Une hésitation ? Nos élèves en parlent le mieux ! <br />
+Jetez aussi un œil à leurs créations des années passées !
+</Bold>
         </InfoText>
+        <div>
+      <VideoFrame onClick={openModal}>
+        <iframe
+          src="https://www.youtube.com/embed/4SSb22-uoA8"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="YouTube Video"
+        ></iframe>
+      </VideoFrame>
+      <Modal
+
+        contentLabel="YouTube Video"
+        style={{
+          content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            transform: 'translate(-50%, -50%)',
+            width: '80%',
+            height: '80%',
+          },
+        }}
+      >
+        <button onClick={closeModal}>Fermer</button>
+        <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+          <iframe
+            src="https://www.youtube.com/embed/4SSb22-uoA8"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="YouTube Video"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+          ></iframe>
+        </div>
+      </Modal>
+    </div>
+        
       </InfoContainer>
     </Prodcontainer>
   )}
 </InView>
+
 
 <InView threshold={0.5}>
   {({ ref, inView, entry }) => (
@@ -483,4 +603,4 @@ le samedi de 11h à 12h15 <br />
   );
 }
 
-export default Boiteamomes;
+export default AtelierCinebam;
