@@ -150,6 +150,8 @@ const InfoTitle = styled.div`
   padding-top: 1vh;
   @media (max-width: 768px) {
     padding-bottom: 0;
+      font-size: xx-large;
+
   }
 `;
 
@@ -160,22 +162,35 @@ const InfoText = styled.div`
   padding-top: 1vh;
   @media (max-width: 768px) {
     padding-bottom: 0;
+    font-size:large;
   }
 `;
 
 const InfoContainer2 = styled.div`
 display:flex;
 margin-bottom:10vh;
+  @media (max-width: 1200px) {
+   display:block;
+  }
 `
 const InfoText2 = styled.p`
-    font-size: 3vh;
-    margin-right: 5vw;
-    margin-top: 15vh;
-`
+  font-size: 3vh;
+  margin-right: 5vw;
+  margin-top: 15vh;
+
+  @media (max-width: 768px) {
+    order: 2; /* Change l'ordre pour mobile */
+    margin:0;
+  }
+`;
 
 const InfoImage = styled.img`
-width:30%;
-`
+  width: 95%;
+
+  @media (max-width: 768px) {
+    order: 1; /* Change l'ordre pour mobile */
+  }
+`;
 
 
 const RevInfoContainer = styled(InfoContainer)`
@@ -229,6 +244,14 @@ const VideoFrame = styled.div`
   iframe {
     width: 100%;
     height: 100%;
+  }
+
+  @media (max-width: 768px) {
+  margin: 0;
+    margin-left:3vw;
+      margin-top:3vh;
+  height:25vh;
+width:75vw;
   }
 `;
 
@@ -296,7 +319,6 @@ const SubmitButton = styled.button`
   }
 
   @media (max-width: 500px) {
-    margin-left: 10vw;
     width: 65vw
   }
 `;
@@ -387,7 +409,9 @@ function AtelierCinebam() {
         CinéBAM est la continuité des ateliers théâtre de La Boite à Mômes, orientée vers le jeu cinématographique et audiovisuel. <br /> <br />
 Depuis octobre 2016, l'association propose des ateliers de coaching cinéma à destination des adolescents. À partir de scènes pré-existantes ou écrites en atelier, novices et initiés peuvent découvrir les spécificités du rapport à la caméra, aux décors et aux méthodes de tournage du cinéma. <br /> <br />
 Chaque année, nos élèves ont l'opportunité de tourner avec une équipe et un matériel professionnels, sous la direction de Mireille Fiévet. <br /> <br />
+<Bold href="./cinebam">
 N'oubliez pas de jeter un œil à leurs créations !
+</Bold>
         </InfoText>
       </InfoContainer>
     </Prodcontainer>
@@ -491,10 +515,11 @@ Pour inscrire votre enfant, merci de télécharger le formulaire ci-dessous et d
     >
       <InfoContainer>
         <InfoContainer2>
-      <InfoText2><h1>{intervenante1}</h1> 
-      {intervenante1info}
-      </InfoText2>
-    <InfoImage src={image1} alt="" />
+          <InfoImage src={image1} alt="" />
+          <InfoText2>
+            <h1>{intervenante1}</h1> 
+            {intervenante1info}
+          </InfoText2>
         </InfoContainer2>
         <InfoText>
         </InfoText>
@@ -516,10 +541,9 @@ Pour inscrire votre enfant, merci de télécharger le formulaire ci-dessous et d
       
       <InfoContainer>
         <InfoText>
-          <Bold>
-        Une hésitation ? Nos élèves en parlent le mieux ! <br />
-Jetez aussi un œil à leurs créations des années passées !
-</Bold>
+        Une hésitation ? Nos élèves en parlent le mieux ! <br /> <br />
+Jetez aussi un œil à leurs <Bold href="./cinebam">créations  </Bold>
+des années passées !
         </InfoText>
         <div>
       <VideoFrame onClick={openModal}>
