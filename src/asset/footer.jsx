@@ -6,14 +6,14 @@ import { storage } from '../firebaseConfig'; // Assurez-vous que le chemin est c
 const FooterContainer = styled.footer`
   background-color: #333;
   color: #fff;
-  padding: 2vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
   text-align: center;
 `;
 
 const IconContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 10px;
 `;
 
 const Icon = styled.img`
@@ -22,6 +22,7 @@ const Icon = styled.img`
 `;
 
 const Copyright = styled.p`
+margin:0;
   font-size: 14px;
 `;
 

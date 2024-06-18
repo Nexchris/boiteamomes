@@ -7,7 +7,7 @@ import 'animate.css';
 import BAM from '../images/logo.png';
 
 // Le container qui sert de Header
-const StyledHeader = styled.div` 
+const StyledHeader = styled.header` 
   width: auto;
   height: 10vh;
   background-color: black;
@@ -239,6 +239,7 @@ function Header() {
   };
 
   return (
+    <>
     <StyledHeader>
       <Hamburger onClick={toggleMenu}>
         <div></div>
@@ -300,6 +301,7 @@ function Header() {
         </Href>
       </HeaderList>
     </StyledHeader>
+    </>
   );
 }
 
