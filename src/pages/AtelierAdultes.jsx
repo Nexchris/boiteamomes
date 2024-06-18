@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import Header from '../asset/header';
 import Footer from '../asset/footer';
 import { InView } from 'react-intersection-observer';
-
+import Background from '../images/atelier/atelieradultes.png'
 Modal.setAppElement('#root'); // Ceci est important pour l'accessibilité, vous devriez le définir sur l'élément racine de votre application
 
 
@@ -24,7 +24,7 @@ const Mainscreen = styled.div`
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-image: url(${props => props.backgroundImage});
+  background-image: url(${Background});
   background-size: cover;
   background-position: center;
 
@@ -178,7 +178,7 @@ margin-bottom:10vh;
 `
 const InfoText2 = styled.p`
   font-size: 3vh;
-  margin-right: 5vw;
+  margin-left: 5vw;
   margin-top: 15vh;
 
   @media (max-width: 768px) {
@@ -389,7 +389,7 @@ function AtelierCinebam() {
 <Container>
       <Header />
       <Mainscreen backgroundImage={background}>
-        <Maintitle>Atelier CinéBAM</Maintitle>
+        <Maintitle>Atelier Adultes</Maintitle>
       </Mainscreen>
 
       <Secondscreen>
@@ -406,15 +406,10 @@ function AtelierCinebam() {
     >
       
       <InfoContainer>
-      <InfoTitle>L'atélier Cinébam</InfoTitle>
-      <div style={{ fontSize: '4vh' }}>De 13 à 17 ans</div>
+      <InfoTitle>L'Atelier Théâtre Adultes</InfoTitle>
+      <div style={{ fontSize: '4vh' }}>De 18 et plus ! </div>
         <InfoText  style={{ width: '70vw', marginLeft:'5vw' }}>
-        CinéBAM est la continuité des ateliers théâtre de La Boite à Mômes, orientée vers le jeu cinématographique et audiovisuel. <br /> <br />
-Depuis octobre 2016, l'association propose des ateliers de coaching cinéma à destination des adolescents. À partir de scènes pré-existantes ou écrites en atelier, novices et initiés peuvent découvrir les spécificités du rapport à la caméra, aux décors et aux méthodes de tournage du cinéma. <br /> <br />
-Chaque année, nos élèves ont l'opportunité de tourner avec une équipe et un matériel professionnels, sous la direction de Mireille Fiévet. <br /> <br />
-<Bold href="./cinebam">
-N'oubliez pas de jeter un œil à leurs créations !
-</Bold>
+        A partir du répertoire classique ou contemporain, création d’une pièce de théâtre produite en fin d’année dans des conditions professionnelles. Le premier trimestre de l’année est consacré à l’enseignement, les deux suivants aux répétitions.
         </InfoText>
       </InfoContainer>
     </Prodcontainer>
@@ -437,12 +432,17 @@ N'oubliez pas de jeter un œil à leurs créations !
       <InfoTitle>Lieux et Horaires</InfoTitle>
         <InfoText>
         Les ateliers cinéma ont lieu : <br />
-        Chaque mardi de 18h15 à 20h <br />
+        Chaque mardi de 20h à 22h <br />
         <Bold href="https://maps.app.goo.gl/DL2Gzd1SHkcee8mJ8"> à l'Espace Jeunesse Patrick VIÉ <br /></Bold>
         22 rue Curton, 92110 Clichy-La-Garenne
-   
-        </InfoText>
+        <br /> <br />
+        <div style={{ fontWeight: 600 }}>
+        <InfoText>
+  LES INSCRIPTIONS POUR CET ATELIER SONT OUVERTES JUSQU'À • FIN OCTOBRE 2024 •        </InfoText>
+</div>
 
+
+        </InfoText>
         
       </InfoContainer>
     </Prodcontainer>
@@ -463,12 +463,13 @@ N'oubliez pas de jeter un œil à leurs créations !
       <InfoContainer>
       <InfoTitle>Tarifs</InfoTitle>
         <InfoText>
-        L'inscription à l'atelier cinéma requiert une adhésion annuelle par fratrie de 30 € et un forfait de 200 € par trimestre. L'association propose <Bold> un premier cours d'essai gratuit </Bold> avant toute inscription ! <br /> <br />
+        L'inscription à l'atelier cinéma requiert une adhésion annuelle par fratrie de 30 € et un forfait de 195 € par trimestre. L'association propose <Bold> un premier cours d'essai gratuit </Bold> avant toute inscription ! <br /> <br />
 Pour inscrire votre enfant, merci de télécharger le formulaire ci-dessous et de le renvoyer rempli à l'adresse : <Bold> boitamomes@gmail.com </Bold><br /> <br />
-<Bold>
-2024-2025-Formulaire d'Inscription Définitive aux Ateliers de La BAM</Bold> <br /> <br />
 
 Pour plus d'informations, <Bold href="./contact">N'hésitez pas à nous contacter.</Bold> <br /> <br />
+
+<Bold>
+2024-2025-Formulaire d'Inscription Définitive aux Ateliers de La BAM</Bold> <br /> <br />
    
 <a href="/2024-2025-Fiche.pdf" download="2024-2025-Fiche définitive.pdf">
   <SubmitButton>Télécharger</SubmitButton>
@@ -522,8 +523,9 @@ Pour plus d'informations, <Bold href="./contact">N'hésitez pas à nous contacte
         <InfoContainer2>
           <InfoImage src={image1} alt="" />
           <InfoText2>
-            <h1>{intervenante1}</h1> 
-            {intervenante1info}
+            <h1>Audrey Lazini</h1> 
+            Comédienne, formée au CNSAD (Conservatoire National Supérieur d'Art Dramatique). <br /> <br />
+Elle anime des ateliers collectifs et coaching individuel depuis de nombreuses années auprès de différents publics, enfants, ados, adultes, amateurs et professionnels.
           </InfoText2>
         </InfoContainer2>
         <InfoText>

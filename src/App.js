@@ -21,6 +21,7 @@ import Backend from './backend/Backend';
 import { createGlobalStyle } from 'styled-components';
 import { VideoURLProvider } from './context/VideoUrlContext';
 import AtelierEnfant from './pages/AtelierEnfant';
+import AtelierAdultes from './pages/AtelierAdultes';
 import AtelierCinebam from './pages/AtelierCinebam';
 
 // Crée un style global pour appliquer la police à toute l'application
@@ -51,6 +52,7 @@ function App() {
             <Route path="/prod4" element={<Prod4 />} /> {/* Route vers Offer */}
             <Route path="/prod5" element={<Prod5 />} /> {/* Route vers Offer */}
             <Route path="/AtelierEnfant" element={<AtelierEnfant />} /> {/* Route vers Offer */}
+            <Route path="/AtelierAdultes" element={<AtelierAdultes />} /> {/* Route vers Offer */}
             <Route path="/AtelierCinebam" element={<AtelierCinebam />} /> {/* Route vers Offer */}
             <Route path="/offer2" element={<Offer2/>} /> {/* Route vers Offer */}
             <Route path="/login" element={<Login />} /> {/* Route vers Login */}
