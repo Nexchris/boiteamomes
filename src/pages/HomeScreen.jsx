@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Header from '../asset/header';
 import Footer from '../asset/footer';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { firestore } from '../firebaseConfig';
+import Header from '../asset/Header';
 
 const Container = styled.div`
   display: flex;
@@ -195,7 +195,7 @@ function HomeScreen() {
           const documentData = docSnap.data();
           console.log("Document data:", documentData);
           setData(documentData);
-          setLeftTitle(documentData["left title"]);
+          setLeftTitle(documentData.lefttitle);
           setRightTitle(documentData.righttitle);
           setButtonText(documentData.buttonText);
           setUrlVideoLeft(documentData.urlvideoleft);

@@ -6,7 +6,7 @@ import styled, { keyframes } from 'styled-components';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { firestore } from '../firebaseConfig';
 import { Link } from 'react-router-dom';
-import Header from '../asset/header';
+import Header from '../asset/Header';
 import Footer from '../asset/footer';
 import { InView } from 'react-intersection-observer';
 import Background from '../images/atelier/atelieradultes.png'
@@ -516,7 +516,7 @@ Pour plus d'informations, <Bold href="./contact">N'hésitez pas à nous contacte
       style={{
         transform: inView ? 'scale(1) translateX(0)' : 'scale(0.8) translateX(50%)',
         opacity: inView ? 1 : 0,
-        transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+        transition: 'transform 0.5s ease-in-out, opacity 0.1s ease-in-out',
       }}
     >
       <InfoContainer>

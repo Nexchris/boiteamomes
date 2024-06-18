@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import Header from '../asset/header';
 import emailjs from 'emailjs-com';
 import Footer from '../asset/footer';
 import Test from '../images/test.jpg';
+import Header from '../asset/Header';
 import Test2 from '../images/test2.jpg';
 
 const fadeIn = keyframes`

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { doc, getDoc } from "firebase/firestore";
 import { firestore } from "../firebaseConfig";
-import Header from "../asset/header";
 import Footer from "../asset/footer";
 
 const fadeIn = keyframes`
