@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import emailjs from 'emailjs-com';
 import Footer from '../asset/footer';
 import Test from '../images/test.jpg';
-
 import Test2 from '../images/test2.jpg';
 
 const fadeIn = keyframes`
@@ -308,7 +307,7 @@ function Contact() {
                 <Input
                   type="email"
                   name="email"
-                  placeholder="Adresse Email"
+                  placeholder="Mail"
                   value={formData.email}
                   onChange={handleChange}
                   required
