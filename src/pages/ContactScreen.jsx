@@ -73,6 +73,7 @@ const TextArea = styled.textarea`
   }
       @media (min-width:501px) and (max-width: 1200px) {
  width: 90vw;
+ padding:0;
   }
 `;
 
