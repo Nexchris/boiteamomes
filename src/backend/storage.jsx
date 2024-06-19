@@ -46,7 +46,7 @@ function Storage() {
 
   return (
     <div>
-      <Header />
+
       <h1>Firebase Storage</h1>
       <ul>
         {buckets.map((bucket) => (

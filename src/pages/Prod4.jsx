@@ -343,7 +343,6 @@ function Prod4() {
   return (
     <>
     <Headercontainer>
-    <Header />
     </Headercontainer>
  <Container>
     <LeftZone>

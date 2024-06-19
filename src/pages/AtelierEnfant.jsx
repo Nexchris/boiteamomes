@@ -332,7 +332,6 @@ function Boiteamomes() {
 
   return (
 <Container>
-      <Header />
       <Mainscreen backgroundImage={background}>
         <Maintitle>Atelier Enfants</Maintitle>
       </Mainscreen>

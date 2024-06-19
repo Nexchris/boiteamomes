@@ -90,7 +90,7 @@ function Prod1() {
       </button>
       {headerVisible && (
         <>
-          <Header />
+         
           <Container>
             <Inputcontainer>
               <p>Menu 1</p>

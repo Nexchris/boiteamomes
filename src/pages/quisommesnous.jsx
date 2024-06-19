@@ -231,7 +231,6 @@ const [data, setData] = useState(null);
   return (
     <>
     <Container>
-    <Header />
       <Mainscreen>
         <Maintitle>Qui sommes  <br /> nous ?</Maintitle>
       </Mainscreen>

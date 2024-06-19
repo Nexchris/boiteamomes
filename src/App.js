@@ -40,6 +40,7 @@ function App() {
       <GlobalStyle /> {/* Incluez le style global ici */}
       <Router> {/* Encadrez votre application avec le composant Router */}
         <VideoURLProvider> {/* Enveloppez votre application avec VideoURLProvider */}
+          <Header/>
           <Routes> {/* Encadrez vos routes avec le composant Routes */}
             <Route exact path="/" element={<Home />} /> {/* Route par défaut vers Home */}
             <Route exact path="/backend" element={<Backend />} /> {/* Route par défaut vers Home */}

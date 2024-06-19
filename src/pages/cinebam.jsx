@@ -368,7 +368,6 @@ function Cinebam() {
 
   return (
 <Container>
-      <Header />
       <Mainscreen backgroundImage={background}>
         <Maintitle>CinéBAM</Maintitle>
       </Mainscreen>

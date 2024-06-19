@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Footer from '../asset/footer';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { firestore } from '../firebaseConfig';
-import Header from '../asset/Header';
 
 const Container = styled.div`
   display: flex;
@@ -248,7 +247,6 @@ function HomeScreen() {
 
   return (
     <>
-      <Header />
       <Container>
         <Leftscreen expanded={expanded} isHovered={isHovered} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
           <Video ref={videoRef} src={leftVideoURL} autoPlay={false} muted loop />

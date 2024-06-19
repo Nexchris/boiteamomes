@@ -211,7 +211,6 @@ function Contact() {
 
   return (
     <>
-      <Header />
       <ContactContainer>
         <LeftContainer />
         {showCBForm ? (

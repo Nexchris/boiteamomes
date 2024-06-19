@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { doc, getDoc } from "firebase/firestore";
 import { firestore } from "../firebaseConfig";
-import Header from '../asset/Header';
 import Footer from "../asset/footer";
 
 const fadeIn = keyframes`
@@ -343,7 +342,6 @@ function Prod4() {
   return (
     <>
     <Headercontainer>
-    <Header />
     </Headercontainer>
  <Container>
     <LeftZone>

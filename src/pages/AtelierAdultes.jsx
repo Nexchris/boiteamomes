@@ -387,7 +387,7 @@ function AtelierCinebam() {
 
   return (
 <Container>
-      <Header />
+
       <Mainscreen backgroundImage={background}>
         <Maintitle>Atelier Adultes</Maintitle>
       </Mainscreen>
