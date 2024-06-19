@@ -79,7 +79,7 @@ const Footer = () => {
         </a>
 
       </IconContainer>
-      <Copyright>&copy; 2024 Boite a momes. Tous droits réservés.</Copyright>
+      <Copyright>&copy; 2025 Boite a momes. Tous droits réservés.</Copyright>
     </FooterContainer>
   );
 }

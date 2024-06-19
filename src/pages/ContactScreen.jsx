@@ -28,7 +28,7 @@ const FormContainer = styled.div`
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 2rem;
-  @media (max-width: 500px) {
+  @media (max-width: 1600px) {
     height: auto;
     width: -webkit-fill-available;
 
@@ -71,6 +71,9 @@ const TextArea = styled.textarea`
     width: 80vw;
     height: 40vh;
   }
+      @media (min-width:501px) and (max-width: 1200px) {
+ width: 90vw;
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -92,6 +95,10 @@ const SubmitButton = styled.button`
   @media (max-width: 500px) {
     margin-left: 10vw;
     width: 65vw
+  }
+      @media (min-width:501px) and (max-width: 1200px) {
+  margin-left: 20vw;
+  width: 50vw;
   }
 `;
 
@@ -133,7 +140,7 @@ const Center = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 3vh;
-  @media (max-width: 500px) {
+  @media (max-width: 1000px) {
     margin-top: 10vh;
   }
 `;
@@ -161,7 +168,7 @@ function Contact() {
     background-size: cover;
     width: 50vw;
     animation: ${fadeIn} 2s;
-    @media (max-width: 500px) {
+    @media (max-width: 1000px) {
       display: none; }
   `;
 
