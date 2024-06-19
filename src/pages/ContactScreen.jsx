@@ -21,7 +21,7 @@ const ContactContainer = styled.div`
 `;
 
 const FormContainer = styled.div`
-  height: 68vh;
+  height: 90vh;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -30,8 +30,7 @@ const FormContainer = styled.div`
   padding: 2rem;
   @media (max-width: 500px) {
     height: auto;
-    width: auto;
-    position: relative;
+    width: -webkit-fill-available;
 
   }
 `;
@@ -65,7 +64,7 @@ const TextArea = styled.textarea`
   padding: 0.5rem;
   margin-bottom: 1rem;
   font-size: 1rem;
-  height: 30vh;
+  height: 50vh;
   width: 47vw;
   font-family: 'Poppins';
   @media (max-width: 500px) {
@@ -98,25 +97,36 @@ const SubmitButton = styled.button`
 
 const Title = styled.div`
   text-align: center;
-  font-weight: 700;
+  font-weight: 400;
   font-size: xx-large;
 `;
+
+
+
 
 const Button = styled.button`
   width: fit-content;
   font-size: xx-large;
-  font-weight: 400;
-  border: none;
+  border-radius: 1vh;
+  font-weight: 700;
+  background-color: black;
+  color: white;
 
   &:focus {
-    outline: none;
+    outline: none; /* Pas de contour lors du focus */
   }
 
   &:hover {
     opacity: 0.8;
     cursor: pointer;
   }
+
+  @media (max-width: 500px) {
+  font-size: x-large;
+
+  }
 `;
+
 
 const Center = styled.div`
   display: flex;
@@ -199,7 +209,7 @@ function Contact() {
         {showCBForm ? (
           <FormContainer>
             <Center>
-              <Button onClick={toggleForm}>Boite à Momes</Button>
+              <Button onClick={toggleForm}>  Contact - Boite à Momes</Button>
               <Title>CinéBAM</Title>
             </Center>
             <form onSubmit={handleSubmit}>
@@ -252,7 +262,7 @@ function Contact() {
         ) : (
           <FormContainer>
             <Center>
-              <Button onClick={toggleForm}>Cinébam</Button>
+              <Button onClick={toggleForm}>Contact - Cinébam</Button>
               <Title>Boite à Momes</Title>
             </Center>
             <form onSubmit={handleSubmit}>
