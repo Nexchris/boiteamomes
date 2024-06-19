@@ -47,7 +47,7 @@ const Footer = () => {
         const thirdUrl = await getDownloadURL(thirdRef);
         setThirdIcon(thirdUrl);
 
-        const fourthRef = ref(storage, 'socialicons/inlogo.png');
+        const fourthRef = ref(storage, 'socialicons/inlogo.webp');
         const fourthUrl = await getDownloadURL(fourthRef);
         setFourthIcon(fourthUrl);
       } catch (error) {

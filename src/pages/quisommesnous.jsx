@@ -4,12 +4,11 @@ import { firestore } from '../firebaseConfig';
 import { storage } from '../firebaseConfig'; 
 import { ref, getDownloadURL } from "firebase/storage";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import Imagetemplate from '../images/image.png';
 import Imagetemplate2 from '../images/image2.png';
 import { Link } from 'react-router-dom';
-
 import Footer from '../asset/footer'
 import { InView } from 'react-intersection-observer';
+import Background from '../images/contactbackground.jpg';
 
 const Container = styled.div`
   background-color: #black;
@@ -18,10 +17,30 @@ const Container = styled.div`
 
 
 const Mainscreen = styled.div`
-background-color: #F36C97;
+  position: relative;
+  background-image: url(${Background});
+  background-size: cover;
   width: 100vw;
+  height: 100vh;
   @media (max-width: 768px) {
     height: 50vh;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay noir avec opacité de 50% */
+    z-index: 1; /* Assurez-vous que l'overlay est au-dessus du background */
+  }
+
+  /* Ajoutez cette règle pour que le contenu soit au-dessus de l'overlay */
+  & > * {
+    position: relative;
+    z-index: 2;
   }
 `;
 
@@ -54,11 +73,15 @@ background-color: black;
 
 const Maintitle = styled.h1`
   font-size: 20vh;
-  padding-top: 5vh;
+  padding-top: 25vh;
   text-align: center;
+  color: white;
   margin:0;
   @media (max-width: 768px) {
     font-size: xxx-large;
+  padding-top: 20vh;
+  } @media (min-width: 768px) and (max-width:1400px) {
+    font-size: xx-large;
   padding-top: 20vh;
   }
 `;
@@ -90,6 +113,8 @@ padding-top: 2vh;
 font-size: 4vh;
 }
 @media (min-width: 400px) and (max-width:1200px)  {
+padding-top: 2vh;
+
   font-size: xxx-large;
   margin:0;
 text-align:center;
@@ -119,7 +144,7 @@ const Secondtext = styled.div`
   width: 70%;
   color: white;
   @media (max-width: 768px) {
-    margin-left: 6vh;
+    margin-left: 10vw;
     font-size: larger;
     width: 80%;
     text-align: center;
@@ -158,9 +183,8 @@ const Image = styled.img`
   
   margin-right:0vh;
   @media (max-width: 1200px) {
-    margin-left: 9vw;
     margin-bottom: 3vh;
-    width: 85%;
+    width: 60%;
   }
 
 
@@ -169,8 +193,9 @@ const Image = styled.img`
 const ImageContainer = styled.div`
 margin-left: 10vh;
 margin-top: 5vh;
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   margin:0;
+  text-align:center;
 }
 `;
 
