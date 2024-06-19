@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { firestore } from '../firebaseConfig'; // Assurez-vous que le chemin est correct
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Header from "../asset/Header";
 
 const Container = styled.div`
   display: flex;

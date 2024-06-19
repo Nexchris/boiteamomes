@@ -3,7 +3,6 @@ import { storage } from '../firebaseConfig';
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import Header from '../asset/Header';
 import Footer from '../asset/footer';
 
 function Storage() {

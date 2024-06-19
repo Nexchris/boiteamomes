@@ -7,7 +7,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import Imagetemplate from '../images/image.png';
 import Imagetemplate2 from '../images/image2.png';
 import { Link } from 'react-router-dom';
-import Header from '../asset/Header';
+
 import Footer from '../asset/footer'
 import { InView } from 'react-intersection-observer';
 

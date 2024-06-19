@@ -6,7 +6,6 @@ import styled, { keyframes } from 'styled-components';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { firestore } from '../firebaseConfig';
 import { Link } from 'react-router-dom';
-import Header from '../asset/Header';
 import Footer from '../asset/footer';
 import { InView } from 'react-intersection-observer';
 import Background from '../images/atelier/atelieradultes.png'
