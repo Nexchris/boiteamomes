@@ -14,14 +14,12 @@ import { InView } from 'react-intersection-observer';
 const Container = styled.div`
   background-color: #black;
   width: 100vw;
-  height: 100vh;
 `;
 
 
 const Mainscreen = styled.div`
 background-color: #F36C97;
   width: 100vw;
-  height: 100vh;
   @media (max-width: 768px) {
     height: 50vh;
   }
@@ -30,15 +28,16 @@ background-color: #F36C97;
 
 const Secondscreen = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: auto;
   display: flex; 
   background-color: black;
-  @media (max-width: 768px) {
-    display:block;
+  box-sizing: border-box;
+  margin-bottom:5vh;
+  @media (max-width: 1200px) {
+    display: block;
     height: auto; 
   }
 `;
-
 const Thirdscreen = styled.div`
 background-color: black;
   width: 100vw;
@@ -46,6 +45,7 @@ background-color: black;
   padding-bottom:5vh;
   @media (max-width: 768px) {
    margin: 0;
+     position: relative;
    
   }
   
@@ -74,7 +74,25 @@ margin-top:5vh;
   font-size: xx-large;
   margin-left: 6vh;
   display: none;
+}
+`;
 
+const Mireille = styled.h2`
+font-size: 8vh;
+text-align: left;
+color: white;
+margin:0;
+margin-left: 4vw;
+@media (min-width: 300px) and (max-width:399px)  {
+margin : 0;
+text-align:center;
+padding-top: 2vh;
+font-size: 4vh;
+}
+@media (min-width: 400px) and (max-width:1200px)  {
+  font-size: xxx-large;
+  margin:0;
+text-align:center;
 }
 `;
 
@@ -130,6 +148,7 @@ background-color:black;
 
 const Secondcontent = styled.div`
   flex: 1; /* Pour que le contenu s'étende pour remplir l'espace disponible */
+    overflow: auto;
 `;
 
 
@@ -138,9 +157,8 @@ const Image = styled.img`
   width: 100%; /* Vous pouvez ajuster cette valeur selon vos besoins */
   
   margin-right:0vh;
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     margin-left: 9vw;
-    margin-top: 5vh;
     margin-bottom: 3vh;
     width: 85%;
   }
@@ -242,6 +260,7 @@ const [data, setData] = useState(null);
     <ImageContainer
       
     >
+      <Mireille>Mireille Fiévet</Mireille >
       <Image src={Image1} alt="" />
     </ImageContainer>
 
@@ -279,30 +298,29 @@ const [data, setData] = useState(null);
         </InView>
        
         <br />
+
+        <InView threshold={0.5}>
+          {({ ref, inView }) => (
+            <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
+              {/* Add the style prop here */}
+              Chaque année, la Boîte à Mômes et CinéBam s’engagent à créer et produire des spectacles et films courts originaux. L'objectif donné est d'initier ses élèves aux conditions réelles et professionnelles (costumes, décors, salles, plateaux, matériels) d'une représentation ou d'un tournage en fin d’année.
+              
+            </Secondtext>
+          )}
+        </InView>
+<br />
+        <InView threshold={0.5}>
+          {({ ref, inView }) => (
+            <Secondtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
+              {/* Add the style prop here */}
+              Depuis sa création, la Boîte à Mômes a formé quelques centaines de comédiens amateurs, certains devenus professionnels au sein de ses ateliers, comme des écoles communales, collèges et lycées.
+            </Secondtext>
+          )}
+        </InView>
+       
         
         </Secondcontent>
       </Secondscreen>
-      <Thirdscreen>
-      <InView threshold={0.5}>
-          {({ ref, inView }) => (
-            <Thirdtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
-              {/* Add the style prop here */}
-              Chaque année, la Boîte à Mômes et CinéBam s’engagent à créer et produire des spectacles et films courts originaux. L'objectif donné est d'initier ses élèves aux conditions réelles et professionnelles (costumes, décors, salles, plateaux, matériels) d'une représentation ou d'un tournage en fin d’année.
-            </Thirdtext>
-          )}
-        </InView>
-       <br />
-       <InView threshold={0.5}>
-          {({ ref, inView }) => (
-            <Thirdtext ref={ref} style={{ opacity: inView ? 1 : 0,   transition: 'opacity 1.5s ease-in-out' }}>
-              {/* Add the style prop here */}
-              Depuis sa création, la Boîte à Mômes a formé quelques centaines de comédiens amateurs, certains devenus professionnels au sein de ses ateliers, comme des écoles communales, collèges et lycées.
-            </Thirdtext>
-          )}
-        </InView>
-      </Thirdscreen>
-        
-     
 <Footer/>
 
 
