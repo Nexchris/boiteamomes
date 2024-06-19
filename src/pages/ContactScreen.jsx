@@ -75,6 +75,14 @@ const TextArea = styled.textarea`
  width: 90vw;
  padding:0;
   }
+
+    @media (min-width:1300px) and (max-width: 1600px) {
+  width: 94vw;
+    margin-bottom: 0;
+  }
+     @media (min-width:1601px) and (max-width: 1900px) {
+    margin-bottom: 0;
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -98,6 +106,11 @@ const SubmitButton = styled.button`
     width: 65vw
   }
       @media (min-width:501px) and (max-width: 1200px) {
+  margin-left: 20vw;
+  width: 50vw;
+  }
+
+     @media (min-width:1300px) and (max-width: 1600px) {
   margin-left: 20vw;
   width: 50vw;
   }
@@ -141,7 +154,7 @@ const Center = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 3vh;
-  @media (max-width: 1000px) {
+  @media (max-width: 1400px) {
     margin-top: 10vh;
   }
 `;
@@ -169,7 +182,7 @@ function Contact() {
     background-size: cover;
     width: 50vw;
     animation: ${fadeIn} 2s;
-    @media (max-width: 1000px) {
+    @media (max-width: 1400px) {
       display: none; }
   `;
 
@@ -196,7 +209,7 @@ function Contact() {
     const templateId = showCBForm ? 'template_9pqmfdc' : 'template_q01f6ss'; // IDs de vos modèles
 
     emailjs.send(
-      'service_b1w4wqu', // Remplacez par votre ID de service EmailJS
+      'service_lmk0pk7', // Remplacez par votre ID de service EmailJS
       templateId, // Sélection dynamique du modèle
       templateParams,
       '0uk0STjROFDlPMJ_C' // Remplacez par votre ID utilisateur EmailJS
