@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../asset/footer'
 import { InView } from 'react-intersection-observer';
 import Background from '../images/contactbackground.jpg';
+import { Audio } from 'react-loader-spinner'
 
 const Container = styled.div`
   background-color: #black;
